@@ -1,6 +1,7 @@
 package com.crispytwig.artisanal.neoforge.datagen.client;
 
 import com.crispytwig.artisanal.Artisanal;
+import com.crispytwig.artisanal.registry.ModItems;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 
@@ -11,5 +12,7 @@ public class ModLanguageProvider extends LanguageProvider {
 
     @Override
     protected void addTranslations() {
+        add("itemGroup." + Artisanal.MOD_ID, "Artisanal");
+        add(ModItems.ARCHITECTS_SCEPTER.get(), "Architect's Scepter");
     }
 }

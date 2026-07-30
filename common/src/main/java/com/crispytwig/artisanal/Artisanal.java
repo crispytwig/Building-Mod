@@ -4,6 +4,7 @@ import com.crispytwig.artisanal.entity.Wright;
 import com.crispytwig.artisanal.registry.ModBlockEntities;
 import com.crispytwig.artisanal.registry.ModBlocks;
 import com.crispytwig.artisanal.registry.ModCreativeTabs;
+import com.crispytwig.artisanal.registry.ModDataComponents;
 import com.crispytwig.artisanal.registry.ModEntityTypes;
 import com.crispytwig.artisanal.registry.ModItems;
 import com.mojang.logging.LogUtils;
@@ -27,6 +28,7 @@ public final class Artisanal {
     public static void bootstrap() {
         ModBlocks.init();
         ModEntityTypes.init();
+        ModDataComponents.init();
         ModItems.init();
         ModBlockEntities.init();
         ModCreativeTabs.init();

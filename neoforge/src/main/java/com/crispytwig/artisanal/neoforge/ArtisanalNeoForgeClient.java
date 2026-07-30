@@ -1,7 +1,9 @@
 package com.crispytwig.artisanal.neoforge;
 
 import com.crispytwig.artisanal.ArtisanalClient;
+import net.minecraft.client.renderer.item.ItemProperties;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 
 public final class ArtisanalNeoForgeClient {
@@ -11,6 +13,11 @@ public final class ArtisanalNeoForgeClient {
     public static void init(IEventBus modEventBus) {
         modEventBus.addListener(ArtisanalNeoForgeClient::registerLayerDefinitions);
         modEventBus.addListener(ArtisanalNeoForgeClient::registerRenderers);
+        modEventBus.addListener(ArtisanalNeoForgeClient::clientSetup);
+    }
+
+    private static void clientSetup(FMLClientSetupEvent event) {
+        event.enqueueWork(() -> ArtisanalClient.registerItemProperties(ItemProperties::register));
     }
 
     private static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {

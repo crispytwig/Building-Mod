@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "artisanal:item/architects_scepter_wright"
+  }
+}

@@ -1,12 +1,15 @@
 package com.crispytwig.artisanal.item;
 
+import com.crispytwig.artisanal.flight.AllayFlightHandler;
 import com.crispytwig.artisanal.registry.ModDataComponents;
 import com.crispytwig.artisanal.registry.ModItems;
 import net.minecraft.ChatFormatting;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.animal.allay.Allay;
 import net.minecraft.world.entity.player.Player;
@@ -55,6 +58,21 @@ public class ArchitectsScepterItem extends Item {
         }
 
         return InteractionResult.sidedSuccess(level.isClientSide);
+    }
+
+    @Override
+    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level level, @NotNull Player player, @NotNull InteractionHand hand) {
+        ItemStack stack = player.getItemInHand(hand);
+        if (getOccupant(stack) != ScepterOccupant.ALLAY) {
+            return InteractionResultHolder.pass(stack);
+        }
+
+        player.getCooldowns().addCooldown(this, AllayFlightHandler.COOLDOWN_TICKS);
+        if (player instanceof ServerPlayer serverPlayer) {
+            AllayFlightHandler.start(serverPlayer);
+        }
+
+        return InteractionResultHolder.sidedSuccess(stack, level.isClientSide());
     }
 
     @Override

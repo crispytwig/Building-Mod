@@ -51,7 +51,8 @@ public class WrightModel extends ArtisanalEntityModel<Wright> implements ArmedMo
         .texOffs(8, 14).addBox(-1.5F, 0.0F, -1.0F, 3.0F, 5.0F, 2.0F, new CubeDeformation(-0.2F)), PartPose.offset(0.0F, 18.0F, 0.0F));
 
         body.addOrReplaceChild("head", CubeListBuilder.create()
-        .texOffs(0, 0).addBox(-2.5F, -5.0F, -2.5F, 5.0F, 5.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
+        .texOffs(0, 0).addBox(-2.5F, -5.0F, -2.5F, 5.0F, 5.0F, 5.0F, new CubeDeformation(0.0F))
+        .texOffs(0, 22).addBox(-2.5F, -5.0F, -2.5F, 5.0F, 5.0F, 5.0F, new CubeDeformation(0.5F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 
         body.addOrReplaceChild("leftArm", CubeListBuilder.create()
         .texOffs(24, 0).mirror().addBox(-0.25F, -0.5F, -1.0F, 2.0F, 4.0F, 2.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(1.75F, 0.5F, 0.0F));

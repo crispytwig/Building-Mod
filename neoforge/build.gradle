@@ -1,0 +1,53 @@
+plugins {
+    id 'net.neoforged.moddev'
+}
+
+def generatedResources = project(':common').file('src/generated/resources')
+def commonResources = project(':common').file('src/main/resources')
+
+neoForge {
+    version = neoforge_version
+
+    def at = project(':common').file('src/main/resources/META-INF/accesstransformer.cfg')
+    if (at.exists()) {
+        accessTransformers.from(at.absolutePath)
+    }
+
+    parchment {
+        minecraftVersion = parchment_minecraft_version
+        mappingsVersion = parchment_mappings_version
+    }
+
+    runs {
+        configureEach {
+            ideName = "NeoForge ${it.name.capitalize()} (${project.path})"
+        }
+        client {
+            client()
+            gameDirectory = project.file('runs/client')
+        }
+        server {
+            server()
+            gameDirectory = project.file('runs/server')
+            programArgument '--nogui'
+        }
+        data {
+            data()
+            gameDirectory = project.file('runs/data')
+            programArguments.addAll '--all',
+                    '--mod', mod_id,
+                    '--output', generatedResources.absolutePath,
+                    '--existing', commonResources.absolutePath
+        }
+    }
+
+    mods {
+        "${mod_id}" {
+            sourceSet sourceSets.main
+        }
+    }
+}
+
+sourceSets.main.resources {
+    srcDir generatedResources.absolutePath
+}

@@ -1,0 +1,168 @@
+plugins {
+    id 'fabric-loom' version '1.16-SNAPSHOT' apply false
+    id 'net.neoforged.moddev' version '2.0.140' apply false
+}
+
+subprojects { proj ->
+    proj.apply plugin: 'java-library'
+    proj.apply plugin: 'maven-publish'
+
+    proj.group = mod_group_id
+    proj.version = mod_version
+
+    proj.base {
+        archivesName = "${mod_id}-${proj.name}-${minecraft_version}"
+    }
+
+    proj.java {
+        toolchain.languageVersion = JavaLanguageVersion.of(java_version)
+        withSourcesJar()
+    }
+
+    proj.repositories {
+        mavenCentral()
+        mavenLocal()
+
+        exclusiveContent {
+            forRepositories(
+                    maven {
+                        name = 'ParchmentMC'
+                        url = 'https://maven.parchmentmc.org/'
+                    },
+                    maven {
+                        name = 'NeoForge'
+                        url = 'https://maven.neoforged.net/releases'
+                    }
+            )
+            filter { includeGroup('org.parchmentmc.data') }
+        }
+
+        exclusiveContent {
+            forRepository {
+                maven {
+                    name = 'Modrinth'
+                    url = 'https://api.modrinth.com/maven'
+                }
+            }
+            filter { includeGroup('maven.modrinth') }
+        }
+    }
+
+    proj.dependencies {
+        compileOnly 'org.jetbrains:annotations:24.1.0'
+    }
+
+    ['apiElements', 'runtimeElements', 'sourcesElements'].each { variant ->
+        proj.configurations."$variant".outgoing {
+            capability("${proj.group}:${proj.base.archivesName.get()}:${proj.version}")
+            capability("${proj.group}:$mod_id-${proj.name}-${minecraft_version}:${proj.version}")
+            capability("${proj.group}:$mod_id:${proj.version}")
+        }
+        proj.publishing.publications.configureEach {
+            suppressPomMetadataWarningsFor(variant)
+        }
+    }
+
+    proj.tasks.withType(JavaCompile).configureEach {
+        options.encoding = 'UTF-8'
+        options.release = Integer.parseInt(java_version as String)
+    }
+
+    proj.tasks.named('sourcesJar') {
+        from(proj.rootProject.file('LICENSE')) {
+            rename { "${it}_${mod_id}" }
+        }
+    }
+
+    proj.tasks.named('jar') {
+        from(proj.rootProject.file('LICENSE')) {
+            rename { "${it}_${mod_id}" }
+        }
+
+        manifest {
+            attributes([
+                    'Specification-Title'   : mod_name,
+                    'Specification-Vendor'  : mod_authors,
+                    'Specification-Version' : archiveVersion,
+                    'Implementation-Title'  : proj.name,
+                    'Implementation-Version': archiveVersion,
+                    'Implementation-Vendor' : mod_authors,
+                    'Built-On-Minecraft'    : minecraft_version
+            ])
+        }
+    }
+
+    proj.tasks.named('processResources') {
+        var expandProps = [
+                'version'                      : proj.version,
+                'group'                        : proj.group,
+                'minecraft_version'            : minecraft_version,
+                'minecraft_version_range'      : minecraft_version_range,
+                'fabric_version'               : fabric_version,
+                'fabric_loader_version'        : fabric_loader_version,
+                'mod_version'                  : mod_version,
+                'mod_name'                     : mod_name,
+                'mod_authors'                  : mod_authors,
+                'mod_id'                       : mod_id,
+                'mod_license'                  : mod_license,
+                'mod_issues'                   : mod_issues,
+                'mod_description'              : mod_description,
+                'neoforge_version'             : neoforge_version,
+                'neoforge_version_range'       : neoforge_version_range,
+                'neoforge_loader_version_range': neoforge_loader_version_range,
+                'java_version'                 : java_version
+        ]
+
+        filesMatching(['pack.mcmeta', 'fabric.mod.json', 'META-INF/neoforge.mods.toml', '*.mixins.json']) {
+            expand expandProps
+        }
+        inputs.properties(expandProps)
+    }
+
+    if (proj.name != 'common') {
+        proj.configurations {
+            commonJava {
+                canBeResolved = true
+            }
+            commonResources {
+                canBeResolved = true
+            }
+        }
+
+        proj.dependencies {
+            compileOnly(project(':common')) {
+                capabilities {
+                    requireCapability "${proj.group}:$mod_id"
+                }
+            }
+            commonJava(project(path: ':common', configuration: 'commonJava'))
+            commonResources(project(path: ':common', configuration: 'commonResources'))
+        }
+
+        proj.tasks.named('compileJava', JavaCompile) {
+            dependsOn(proj.configurations.commonJava)
+            source(proj.configurations.commonJava)
+        }
+
+        proj.tasks.named('processResources') {
+            dependsOn(proj.configurations.commonResources)
+            from(proj.configurations.commonResources)
+        }
+
+        proj.tasks.named('sourcesJar') {
+            dependsOn(proj.configurations.commonJava)
+            from(proj.configurations.commonJava)
+            dependsOn(proj.configurations.commonResources)
+            from(proj.configurations.commonResources)
+        }
+    }
+
+    proj.publishing {
+        publications {
+            register('mavenJava', MavenPublication) {
+                artifactId proj.base.archivesName.get()
+                from proj.components.java
+            }
+        }
+    }
+}

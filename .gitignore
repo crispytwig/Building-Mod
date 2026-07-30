@@ -1,0 +1,28 @@
+# Gradle
+.gradle/
+build/
+buildSrc/build/
+buildSrc/.gradle/
+
+# Run directories
+run/
+runs/
+*/run/
+*/runs/
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.settings/
+.classpath
+.project
+bin/
+out/
+
+# Loom / NeoForge caches
+.architectury-transformer/
+remappedSrc/
+/common/src/generated/resources/.cache

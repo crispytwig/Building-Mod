@@ -1,4 +1,6 @@
 {
+  "entity.artisanal.wright": "Wright",
   "item.artisanal.architects_scepter": "Architect's Scepter",
+  "item.artisanal.wright_spawn_egg": "Wright Spawn Egg",
   "itemGroup.artisanal": "Artisanal"
 }

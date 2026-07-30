@@ -8,6 +8,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.level.block.Block;
 
 import java.util.function.Supplier;
@@ -17,6 +18,9 @@ public final class ModItems {
 
     public static final DeferredHolder<Item, ArchitectsScepterItem> ARCHITECTS_SCEPTER = ITEMS.register("architects_scepter",
             () -> new ArchitectsScepterItem(new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
+
+    public static final DeferredHolder<Item, SpawnEggItem> WRIGHT_SPAWN_EGG = ITEMS.register("wright_spawn_egg",
+            () -> new SpawnEggItem(ModEntityTypes.WRIGHT.get(), 0xF1D319, 0xD19303, new Item.Properties()));
 
     private ModItems() {
     }

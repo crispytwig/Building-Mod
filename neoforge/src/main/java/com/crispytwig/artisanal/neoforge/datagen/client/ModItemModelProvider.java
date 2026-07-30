@@ -19,6 +19,12 @@ public class ModItemModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
         handheldItem(ModItems.ARCHITECTS_SCEPTER);
+        spawnEggItem(ModItems.WRIGHT_SPAWN_EGG);
+    }
+
+    private void spawnEggItem(Supplier<? extends Item> item) {
+        ResourceLocation name = BuiltInRegistries.ITEM.getKey(item.get());
+        withExistingParent(name.getPath(), mcLoc("item/template_spawn_egg"));
     }
 
     private void handheldItem(Supplier<? extends Item> item) {

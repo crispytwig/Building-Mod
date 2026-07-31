@@ -1,7 +1,7 @@
 package com.crispytwig.artisanal.fabric;
 
 import com.crispytwig.artisanal.Artisanal;
-import com.crispytwig.artisanal.flight.AllayFlightHandler;
+import com.crispytwig.artisanal.item.AllayFlightHandler;
 import com.crispytwig.artisanal.item.ArchitectsScepterItem;
 import com.crispytwig.artisanal.network.AllayFlightPayload;
 import net.fabricmc.api.ModInitializer;

@@ -2,7 +2,7 @@ package com.crispytwig.artisanal.neoforge;
 
 import com.crispytwig.artisanal.Artisanal;
 import com.crispytwig.artisanal.client.AllayFlightClient;
-import com.crispytwig.artisanal.flight.AllayFlightHandler;
+import com.crispytwig.artisanal.item.AllayFlightHandler;
 import com.crispytwig.artisanal.item.ArchitectsScepterItem;
 import com.crispytwig.artisanal.network.AllayFlightPayload;
 import com.crispytwig.artisanal.neoforge.platform.NeoForgeRegistrationProvider;

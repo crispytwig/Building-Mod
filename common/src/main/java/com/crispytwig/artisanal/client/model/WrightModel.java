@@ -74,6 +74,7 @@ public class WrightModel extends ArtisanalEntityModel<Wright> implements ArmedMo
         this.animateIdleSmooth(entity.idleAnimationState, WrightAnimations.IDLE, ageInTicks, partialTick, limbSwingAmount);
         this.animateSmooth(entity.flyAnimationState, WrightAnimations.FLY, ageInTicks, partialTick, movementAnimationSpeed(limbSwingAmount, 1.5F, 0.7D));
         this.animateSmooth(entity.holdItemAnimationState, WrightAnimations.HOLD_ITEM, ageInTicks, partialTick);
+        this.animate(entity.swingAnimationState, WrightAnimations.SWING, ageInTicks, 2.0F);
 
         applyHeadLook(this.head, netHeadYaw, headPitch);
     }

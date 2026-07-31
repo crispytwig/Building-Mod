@@ -1,4 +1,4 @@
-package com.crispytwig.artisanal.flight;
+package com.crispytwig.artisanal.item;
 
 import com.crispytwig.artisanal.network.AllayFlightPayload;
 import net.minecraft.core.particles.ParticleTypes;

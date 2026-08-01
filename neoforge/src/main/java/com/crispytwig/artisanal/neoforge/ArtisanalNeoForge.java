@@ -5,7 +5,13 @@ import com.crispytwig.artisanal.client.AllayFlightClient;
 import com.crispytwig.artisanal.item.AllayFlightHandler;
 import com.crispytwig.artisanal.item.ArchitectsScepterItem;
 import com.crispytwig.artisanal.network.AllayFlightPayload;
+import com.crispytwig.artisanal.network.PanelPayload;
 import com.crispytwig.artisanal.neoforge.platform.NeoForgeRegistrationProvider;
+import com.crispytwig.artisanal.client.PanelClient;
+import com.crispytwig.artisanal.item.PanelItem;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FireBlock;
@@ -17,7 +23,9 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
+import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
@@ -33,6 +41,11 @@ public class ArtisanalNeoForge {
         modEventBus.addListener(ArtisanalNeoForge::registerPayloads);
         modEventBus.addListener(ArtisanalNeoForge::commonSetup);
         NeoForge.EVENT_BUS.addListener(ArtisanalNeoForge::onEntityInteract);
+        NeoForge.EVENT_BUS.addListener(ArtisanalNeoForge::onRightClickBlock);
+        NeoForge.EVENT_BUS.addListener(ArtisanalNeoForge::onBlockBreak);
+        NeoForge.EVENT_BUS.addListener((PlayerEvent.PlayerLoggedInEvent event) -> syncPanels(event.getEntity()));
+        NeoForge.EVENT_BUS.addListener((PlayerEvent.PlayerRespawnEvent event) -> syncPanels(event.getEntity()));
+        NeoForge.EVENT_BUS.addListener((PlayerEvent.PlayerChangedDimensionEvent event) -> syncPanels(event.getEntity()));
         NeoForge.EVENT_BUS.addListener(ArtisanalNeoForge::onServerTick);
         NeoForge.EVENT_BUS.addListener(ArtisanalNeoForge::onFurnaceFuelBurnTime);
 
@@ -61,10 +74,32 @@ public class ArtisanalNeoForge {
         PayloadRegistrar registrar = event.registrar("1");
         registrar.playToClient(AllayFlightPayload.TYPE, AllayFlightPayload.STREAM_CODEC,
                 (payload, context) -> AllayFlightClient.handleSync(payload));
+        registrar.playToClient(PanelPayload.TYPE, PanelPayload.STREAM_CODEC,
+                (payload, context) -> PanelClient.handle(payload));
     }
 
     private static void onServerTick(ServerTickEvent.Post event) {
         AllayFlightHandler.tick(event.getServer());
+    }
+
+    private static void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
+        InteractionResult result = PanelItem.tryRemove(event.getEntity(), event.getLevel(), event.getHand(), event.getHitVec());
+        if (result != InteractionResult.PASS) {
+            event.setCancellationResult(result);
+            event.setCanceled(true);
+        }
+    }
+
+    private static void onBlockBreak(BlockEvent.BreakEvent event) {
+        if (event.getLevel() instanceof ServerLevel level) {
+            PanelItem.onBlockBroken(level, event.getPos(), !event.getPlayer().getAbilities().instabuild);
+        }
+    }
+
+    private static void syncPanels(Player player) {
+        if (player instanceof ServerPlayer serverPlayer) {
+            PanelItem.sync(serverPlayer);
+        }
     }
 
     private static void onEntityInteract(PlayerInteractEvent.EntityInteract event) {

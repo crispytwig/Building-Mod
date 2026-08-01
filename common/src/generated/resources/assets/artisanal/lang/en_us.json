@@ -4,6 +4,8 @@
   "block.artisanal.oak_trim_stairs": "Oak Trim Stairs",
   "entity.artisanal.wright": "Wright",
   "item.artisanal.architects_scepter": "Architect's Scepter",
+  "item.artisanal.panel": "Panel",
+  "item.artisanal.panel.material": "%s Panel",
   "item.artisanal.wright_spawn_egg": "Wright Spawn Egg",
   "itemGroup.artisanal": "Artisanal"
 }

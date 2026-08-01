@@ -2,6 +2,7 @@ package com.crispytwig.artisanal.registry;
 
 import com.crispytwig.artisanal.Artisanal;
 import com.crispytwig.artisanal.item.ArchitectsScepterItem;
+import com.crispytwig.artisanal.item.PanelItem;
 import com.crispytwig.artisanal.platform.registry.DeferredHolder;
 import com.crispytwig.artisanal.platform.registry.DeferredRegister;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -25,6 +26,9 @@ public final class ModItems {
 
     public static final DeferredHolder<Item, SpawnEggItem> WRIGHT_SPAWN_EGG = ITEMS.register("wright_spawn_egg",
             () -> new SpawnEggItem(ModEntityTypes.WRIGHT.get(), 0xF1D319, 0xD19303, new Item.Properties()));
+
+    public static final DeferredHolder<Item, PanelItem> PANEL = ITEMS.register("panel",
+            () -> new PanelItem(new Item.Properties()));
 
     private ModItems() {
     }

@@ -7,6 +7,7 @@ import com.crispytwig.artisanal.registry.ModCreativeTabs;
 import com.crispytwig.artisanal.registry.ModDataComponents;
 import com.crispytwig.artisanal.registry.ModEntityTypes;
 import com.crispytwig.artisanal.registry.ModItems;
+import com.crispytwig.artisanal.registry.ModRecipeSerializers;
 import com.mojang.logging.LogUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
@@ -33,6 +34,7 @@ public final class Artisanal {
         ModDataComponents.init();
         ModItems.init();
         ModBlockEntities.init();
+        ModRecipeSerializers.init();
         ModCreativeTabs.init();
     }
 

@@ -8,6 +8,9 @@ import net.minecraft.core.GlobalPos;
 import net.minecraft.core.UUIDUtil;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.world.level.block.Block;
 
 import java.util.UUID;
 
@@ -31,6 +34,12 @@ public final class ModDataComponents {
             DATA_COMPONENT_TYPES.register("builder", () -> DataComponentType.<UUID>builder()
                     .persistent(UUIDUtil.CODEC)
                     .networkSynchronized(UUIDUtil.STREAM_CODEC)
+                    .build());
+
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Block>> PANEL_BLOCK =
+            DATA_COMPONENT_TYPES.register("panel_block", () -> DataComponentType.<Block>builder()
+                    .persistent(BuiltInRegistries.BLOCK.byNameCodec())
+                    .networkSynchronized(ByteBufCodecs.registry(Registries.BLOCK))
                     .build());
 
     private ModDataComponents() {

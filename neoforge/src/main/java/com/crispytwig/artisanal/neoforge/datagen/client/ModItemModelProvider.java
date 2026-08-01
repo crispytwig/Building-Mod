@@ -22,6 +22,7 @@ public class ModItemModelProvider extends ItemModelProvider {
     protected void registerModels() {
         scepterItem(ModItems.ARCHITECTS_SCEPTER);
         spawnEggItem(ModItems.WRIGHT_SPAWN_EGG);
+        withExistingParent("panel", mcLoc("item/generated")).texture("layer0", mcLoc("item/flower_banner_pattern"));
     }
 
     private void scepterItem(Supplier<? extends Item> item) {

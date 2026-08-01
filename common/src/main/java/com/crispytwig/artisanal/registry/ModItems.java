@@ -16,6 +16,10 @@ import java.util.function.Supplier;
 public final class ModItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(BuiltInRegistries.ITEM, Artisanal.MOD_ID);
 
+    public static final DeferredHolder<Item, BlockItem> OAK_TRIM = registerBlockItem("oak_trim", ModBlocks.OAK_TRIM);
+    public static final DeferredHolder<Item, BlockItem> OAK_TRIM_STAIRS = registerBlockItem("oak_trim_stairs", ModBlocks.OAK_TRIM_STAIRS);
+    public static final DeferredHolder<Item, BlockItem> OAK_TRIM_SLAB = registerBlockItem("oak_trim_slab", ModBlocks.OAK_TRIM_SLAB);
+
     public static final DeferredHolder<Item, ArchitectsScepterItem> ARCHITECTS_SCEPTER = ITEMS.register("architects_scepter",
             () -> new ArchitectsScepterItem(new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
 

@@ -10,6 +10,7 @@ import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import org.jetbrains.annotations.NotNull;
@@ -33,7 +34,13 @@ public class ModLootTableProvider extends LootTableProvider {
 
         @Override
         protected void generate() {
-            getKnownBlocks().forEach(this::dropSelf);
+            getKnownBlocks().forEach(block -> {
+                if (block instanceof SlabBlock) {
+                    add(block, createSlabItemTable(block));
+                } else {
+                    dropSelf(block);
+                }
+            });
         }
 
         @Override

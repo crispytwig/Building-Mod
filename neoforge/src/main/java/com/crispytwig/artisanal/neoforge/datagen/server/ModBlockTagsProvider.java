@@ -1,8 +1,14 @@
 package com.crispytwig.artisanal.neoforge.datagen.server;
 
 import com.crispytwig.artisanal.Artisanal;
+import com.crispytwig.artisanal.platform.registry.DeferredHolder;
+import com.crispytwig.artisanal.registry.ModBlocks;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.level.block.StairBlock;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
@@ -16,5 +22,15 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.@NotNull Provider provider) {
+        for (DeferredHolder<Block, ? extends Block> holder : ModBlocks.BLOCKS.getEntries()) {
+            Block block = holder.get();
+            if (block instanceof StairBlock) {
+                tag(BlockTags.STAIRS).add(block);
+            } else if (block instanceof SlabBlock) {
+                tag(BlockTags.SLABS).add(block);
+            }
+        }
+
+        tag(BlockTags.MINEABLE_WITH_AXE).add(ModBlocks.OAK_TRIM.get(), ModBlocks.OAK_TRIM_STAIRS.get(), ModBlocks.OAK_TRIM_SLAB.get());
     }
 }

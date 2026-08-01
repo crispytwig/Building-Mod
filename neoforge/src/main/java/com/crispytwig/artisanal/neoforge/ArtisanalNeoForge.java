@@ -7,11 +7,15 @@ import com.crispytwig.artisanal.item.ArchitectsScepterItem;
 import com.crispytwig.artisanal.network.AllayFlightPayload;
 import com.crispytwig.artisanal.neoforge.platform.NeoForgeRegistrationProvider;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.FireBlock;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.loading.FMLEnvironment;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
@@ -27,12 +31,26 @@ public class ArtisanalNeoForge {
 
         modEventBus.addListener(ArtisanalNeoForge::createAttributes);
         modEventBus.addListener(ArtisanalNeoForge::registerPayloads);
+        modEventBus.addListener(ArtisanalNeoForge::commonSetup);
         NeoForge.EVENT_BUS.addListener(ArtisanalNeoForge::onEntityInteract);
         NeoForge.EVENT_BUS.addListener(ArtisanalNeoForge::onServerTick);
+        NeoForge.EVENT_BUS.addListener(ArtisanalNeoForge::onFurnaceFuelBurnTime);
 
         if (FMLEnvironment.dist == Dist.CLIENT) {
             ArtisanalNeoForgeClient.init(modEventBus);
         }
+    }
+
+    private static void commonSetup(FMLCommonSetupEvent event) {
+        event.enqueueWork(() -> Artisanal.registerFlammability(((FireBlock) Blocks.FIRE)::setFlammable));
+    }
+
+    private static void onFurnaceFuelBurnTime(FurnaceFuelBurnTimeEvent event) {
+        Artisanal.registerFuels((item, burnTime) -> {
+            if (event.getItemStack().is(item.asItem())) {
+                event.setBurnTime(burnTime);
+            }
+        });
     }
 
     private static void createAttributes(EntityAttributeCreationEvent event) {

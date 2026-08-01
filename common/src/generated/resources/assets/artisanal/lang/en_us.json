@@ -1,4 +1,7 @@
 {
+  "block.artisanal.oak_trim": "Oak Trim",
+  "block.artisanal.oak_trim_slab": "Oak Trim Slab",
+  "block.artisanal.oak_trim_stairs": "Oak Trim Stairs",
   "entity.artisanal.wright": "Wright",
   "item.artisanal.architects_scepter": "Architect's Scepter",
   "item.artisanal.wright_spawn_egg": "Wright Spawn Egg",

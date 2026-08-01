@@ -6,6 +6,7 @@ import com.crispytwig.artisanal.item.AllayFlightHandler;
 import com.crispytwig.artisanal.item.ArchitectsScepterItem;
 import com.crispytwig.artisanal.network.AllayFlightPayload;
 import com.crispytwig.artisanal.network.PanelPayload;
+import com.crispytwig.artisanal.neoforge.config.NeoForgeArtisanalConfig;
 import com.crispytwig.artisanal.neoforge.platform.NeoForgeRegistrationProvider;
 import com.crispytwig.artisanal.client.PanelClient;
 import com.crispytwig.artisanal.item.PanelItem;
@@ -17,7 +18,9 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FireBlock;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
@@ -32,8 +35,10 @@ import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 
 @Mod(Artisanal.MOD_ID)
 public class ArtisanalNeoForge {
-    public ArtisanalNeoForge(IEventBus modEventBus) {
+    public ArtisanalNeoForge(IEventBus modEventBus, ModContainer modContainer) {
         NeoForgeRegistrationProvider.EVENT_BUS = modEventBus;
+
+        modContainer.registerConfig(ModConfig.Type.COMMON, NeoForgeArtisanalConfig.SPEC, NeoForgeArtisanalConfig.FILE_NAME);
 
         Artisanal.bootstrap();
 
@@ -50,7 +55,7 @@ public class ArtisanalNeoForge {
         NeoForge.EVENT_BUS.addListener(ArtisanalNeoForge::onFurnaceFuelBurnTime);
 
         if (FMLEnvironment.dist == Dist.CLIENT) {
-            ArtisanalNeoForgeClient.init(modEventBus);
+            ArtisanalNeoForgeClient.init(modEventBus, modContainer);
         }
     }
 

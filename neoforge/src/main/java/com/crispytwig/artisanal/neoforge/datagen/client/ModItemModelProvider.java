@@ -20,14 +20,14 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        scepterItem(ModItems.ARCHITECTS_SCEPTER);
+        scepterItem();
         spawnEggItem(ModItems.WRIGHT_SPAWN_EGG);
         withExistingParent("panel", mcLoc("item/generated")).texture("layer0", mcLoc("item/flower_banner_pattern"));
     }
 
-    private void scepterItem(Supplier<? extends Item> item) {
-        ResourceLocation name = BuiltInRegistries.ITEM.getKey(item.get());
-        ItemModelBuilder base = handheldItem(item);
+    private void scepterItem() {
+        ResourceLocation name = BuiltInRegistries.ITEM.getKey(((Supplier<? extends Item>) ModItems.ARCHITECTS_SCEPTER).get());
+        ItemModelBuilder base = handheldItem(ModItems.ARCHITECTS_SCEPTER);
         for (ScepterOccupant occupant : ScepterOccupant.values()) {
             ItemModelBuilder captured = handheldLayer(name.getPath() + "_" + occupant.getSerializedName());
             base.override()

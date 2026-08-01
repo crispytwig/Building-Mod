@@ -1,4 +1,7 @@
 {
+  "artisanal.configuration.cherry_wood_sounds": "Cherry Wood Sounds",
+  "artisanal.configuration.cherry_wood_sounds.tooltip": "Makes every woodset use the Cherry woodset's sounds",
+  "artisanal.configuration.title": "Artisanal Config",
   "block.artisanal.oak_trim": "Oak Trim",
   "block.artisanal.oak_trim_slab": "Oak Trim Slab",
   "block.artisanal.oak_trim_stairs": "Oak Trim Stairs",

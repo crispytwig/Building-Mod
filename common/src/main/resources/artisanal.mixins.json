@@ -1,8 +1,13 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "com.crispytwig.artisanal.neoforge.mixin",
+  "package": "com.crispytwig.artisanal.mixin",
   "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "BlockBehaviourMixin",
+    "BlockSetTypeMixin",
+    "WoodTypeMixin"
+  ],
   "client": [
     "BlockRenderDispatcherMixin"
   ],

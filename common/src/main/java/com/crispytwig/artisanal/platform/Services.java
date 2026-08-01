@@ -1,12 +1,14 @@
 package com.crispytwig.artisanal.platform;
 
 import com.crispytwig.artisanal.Artisanal;
+import com.crispytwig.artisanal.platform.services.IConfigHelper;
 import com.crispytwig.artisanal.platform.services.IPlatformHelper;
 
 import java.util.ServiceLoader;
 
 public final class Services {
     public static final IPlatformHelper PLATFORM = load(IPlatformHelper.class);
+    public static final IConfigHelper CONFIG = load(IConfigHelper.class);
 
     private Services() {
     }

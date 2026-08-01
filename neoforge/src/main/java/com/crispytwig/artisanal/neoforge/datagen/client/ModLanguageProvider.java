@@ -15,11 +15,18 @@ public class ModLanguageProvider extends LanguageProvider {
     @Override
     protected void addTranslations() {
         add("itemGroup." + Artisanal.MOD_ID, "Artisanal");
+
+        add("artisanal.configuration.title", "Artisanal Config");
+        add("artisanal.configuration.cherry_wood_sounds", "Cherry Wood Sounds");
+        add("artisanal.configuration.cherry_wood_sounds.tooltip", "Makes every woodset use the Cherry woodset's sounds");
+
         add(ModBlocks.OAK_TRIM.get(), "Oak Trim");
         add(ModBlocks.OAK_TRIM_STAIRS.get(), "Oak Trim Stairs");
         add(ModBlocks.OAK_TRIM_SLAB.get(), "Oak Trim Slab");
+
         add(ModItems.PANEL.get(), "Panel");
         add(ModItems.PANEL.get().getDescriptionId() + ".material", "%s Panel");
+
         add(ModItems.ARCHITECTS_SCEPTER.get(), "Architect's Scepter");
         add(ModItems.WRIGHT_SPAWN_EGG.get(), "Wright Spawn Egg");
         add(ModEntityTypes.WRIGHT.get(), "Wright");

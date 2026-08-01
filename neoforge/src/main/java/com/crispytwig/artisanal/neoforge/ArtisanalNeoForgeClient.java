@@ -7,8 +7,11 @@ import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.client.resources.PlayerSkin;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
+import net.neoforged.neoforge.client.gui.ConfigurationScreen;
+import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.common.NeoForge;
 
@@ -16,7 +19,9 @@ public final class ArtisanalNeoForgeClient {
     private ArtisanalNeoForgeClient() {
     }
 
-    public static void init(IEventBus modEventBus) {
+    public static void init(IEventBus modEventBus, ModContainer modContainer) {
+        modContainer.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
+
         modEventBus.addListener(ArtisanalNeoForgeClient::registerLayerDefinitions);
         modEventBus.addListener(ArtisanalNeoForgeClient::registerRenderers);
         modEventBus.addListener(ArtisanalNeoForgeClient::addLayers);

@@ -1,5 +1,9 @@
 {
   "values": [
+    "artisanal:oak_boards",
+    "artisanal:oak_board_stairs",
+    "artisanal:oak_board_slab",
+    "artisanal:polished_oak",
     "artisanal:oak_trim",
     "artisanal:oak_trim_stairs",
     "artisanal:oak_trim_slab"

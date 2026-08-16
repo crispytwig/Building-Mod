@@ -3,8 +3,8 @@
 	"credit": "Made with Blockbench",
 	"parent": "minecraft:block/block",
 	"textures": {
-		"particle": "artisanal:block/polished_oak_planks",
-		"bottom": "artisanal:block/polished_oak_planks",
+		"particle": "artisanal:block/polished_oak",
+		"bottom": "artisanal:block/polished_oak",
 		"side": "artisanal:block/oak_pillar"
 	},
 	"elements": [

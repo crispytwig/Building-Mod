@@ -51,6 +51,10 @@ public final class Artisanal {
     }
 
     public static void registerFlammability(FlammabilityRegistrar registrar) {
+        registrar.register(ModBlocks.OAK_BOARDS.get(), 5, 20);
+        registrar.register(ModBlocks.OAK_BOARD_STAIRS.get(), 5, 20);
+        registrar.register(ModBlocks.OAK_BOARD_SLAB.get(), 5, 20);
+        registrar.register(ModBlocks.POLISHED_OAK.get(), 5, 20);
         registrar.register(ModBlocks.OAK_TRIM.get(), 5, 20);
         registrar.register(ModBlocks.OAK_TRIM_STAIRS.get(), 5, 20);
         registrar.register(ModBlocks.OAK_TRIM_SLAB.get(), 5, 20);
@@ -62,6 +66,10 @@ public final class Artisanal {
     }
 
     public static void registerFuels(FuelRegistrar registrar) {
+        registrar.register(ModBlocks.OAK_BOARDS.get(), 300);
+        registrar.register(ModBlocks.OAK_BOARD_STAIRS.get(), 300);
+        registrar.register(ModBlocks.OAK_BOARD_SLAB.get(), 150);
+        registrar.register(ModBlocks.POLISHED_OAK.get(), 300);
         registrar.register(ModBlocks.OAK_TRIM.get(), 300);
         registrar.register(ModBlocks.OAK_TRIM_STAIRS.get(), 300);
         registrar.register(ModBlocks.OAK_TRIM_SLAB.get(), 150);

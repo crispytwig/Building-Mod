@@ -18,6 +18,11 @@ public class ModLanguageProvider extends LanguageProvider {
         add("artisanal.configuration.cherry_wood_sounds", "Cherry Wood Sounds");
         add("artisanal.configuration.cherry_wood_sounds.tooltip", "Makes every woodset use the Cherry woodset's sounds");
 
+        add(ModBlocks.OAK_BOARDS.get(), "Oak Boards");
+        add(ModBlocks.OAK_BOARD_STAIRS.get(), "Oak Board Stairs");
+        add(ModBlocks.OAK_BOARD_SLAB.get(), "Oak Board Slab");
+        add(ModBlocks.POLISHED_OAK.get(), "Polished Oak");
+
         add(ModBlocks.OAK_TRIM.get(), "Oak Trim");
         add(ModBlocks.OAK_TRIM_STAIRS.get(), "Oak Trim Stairs");
         add(ModBlocks.OAK_TRIM_SLAB.get(), "Oak Trim Slab");

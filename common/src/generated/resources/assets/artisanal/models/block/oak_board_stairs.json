@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "artisanal:block/oak_boards",
+    "side": "artisanal:block/oak_boards",
+    "top": "artisanal:block/oak_boards"
+  }
+}

@@ -8,6 +8,7 @@ import com.crispytwig.artisanal.registry.ModBlocks;
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -27,9 +28,28 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
+        cube("oak_boards", ModBlocks.OAK_BOARDS.get());
+        cubeStairs("oak_board_stairs", Artisanal.location("block/oak_boards"), ModBlocks.OAK_BOARD_STAIRS.get());
+        cubeSlab("oak_board_slab", Artisanal.location("block/oak_boards"), Artisanal.location("block/oak_boards"), ModBlocks.OAK_BOARD_SLAB.get());
+        cube("polished_oak", ModBlocks.POLISHED_OAK.get());
+
         trim("oak_trim", Artisanal.location("block/oak_boards"), ModBlocks.OAK_TRIM.get());
         trimStairs("oak_trim", ModBlocks.OAK_TRIM_STAIRS.get());
         slab("oak_trim_slab", Artisanal.location("block/oak_trim_slab_full"), ModBlocks.OAK_TRIM_SLAB.get());
+    }
+
+    private void cube(String name, Block block) {
+        simpleBlockWithItem(block, models().cubeAll(name, Artisanal.location("block/" + name)));
+    }
+
+    private void cubeStairs(String name, ResourceLocation texture, StairBlock block) {
+        stairsBlock(block, texture);
+        itemModels().withExistingParent(name, Artisanal.location("block/" + name));
+    }
+
+    private void cubeSlab(String name, ResourceLocation full, ResourceLocation texture, SlabBlock block) {
+        slabBlock(block, full, texture);
+        itemModels().withExistingParent(name, Artisanal.location("block/" + name));
     }
 
     private void trim(String name, ResourceLocation end, TrimBlock block) {

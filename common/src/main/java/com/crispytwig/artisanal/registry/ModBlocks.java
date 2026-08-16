@@ -18,6 +18,18 @@ import java.util.function.Supplier;
 public final class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(BuiltInRegistries.BLOCK, Artisanal.MOD_ID);
 
+    public static final DeferredHolder<Block, Block> OAK_BOARDS = register("oak_boards",
+            Block::new, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS));
+
+    public static final DeferredHolder<Block, ModStairBlock> OAK_BOARD_STAIRS = registerStairs("oak_board_stairs",
+            OAK_BOARDS, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS));
+
+    public static final DeferredHolder<Block, SlabBlock> OAK_BOARD_SLAB = register("oak_board_slab",
+            SlabBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS));
+
+    public static final DeferredHolder<Block, Block> POLISHED_OAK = register("polished_oak",
+            Block::new, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS));
+
     public static final DeferredHolder<Block, TrimBlock> OAK_TRIM = register("oak_trim",
             TrimBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS));
 

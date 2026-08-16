@@ -6,7 +6,7 @@
 		"particle": "artisanal:block/oak_boards",
 		"top": "artisanal:block/oak_boards",
 		"side": "artisanal:block/oak_trim_single",
-		"stair": "artisanal:block/polished_oak_planks"
+		"stair": "artisanal:block/polished_oak"
 	},
 	"elements": [
 		{

@@ -13,6 +13,11 @@ import java.util.function.Supplier;
 public final class ModItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(BuiltInRegistries.ITEM, Artisanal.MOD_ID);
 
+    public static final DeferredHolder<Item, BlockItem> OAK_BOARDS = registerBlockItem("oak_boards", ModBlocks.OAK_BOARDS);
+    public static final DeferredHolder<Item, BlockItem> OAK_BOARD_STAIRS = registerBlockItem("oak_board_stairs", ModBlocks.OAK_BOARD_STAIRS);
+    public static final DeferredHolder<Item, BlockItem> OAK_BOARD_SLAB = registerBlockItem("oak_board_slab", ModBlocks.OAK_BOARD_SLAB);
+    public static final DeferredHolder<Item, BlockItem> POLISHED_OAK = registerBlockItem("polished_oak", ModBlocks.POLISHED_OAK);
+
     public static final DeferredHolder<Item, BlockItem> OAK_TRIM = registerBlockItem("oak_trim", ModBlocks.OAK_TRIM);
     public static final DeferredHolder<Item, BlockItem> OAK_TRIM_STAIRS = registerBlockItem("oak_trim_stairs", ModBlocks.OAK_TRIM_STAIRS);
     public static final DeferredHolder<Item, BlockItem> OAK_TRIM_SLAB = registerBlockItem("oak_trim_slab", ModBlocks.OAK_TRIM_SLAB);

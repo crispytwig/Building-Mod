@@ -36,6 +36,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
         trim("oak_trim", Artisanal.location("block/oak_boards"), ModBlocks.OAK_TRIM.get());
         trimStairs("oak_trim", ModBlocks.OAK_TRIM_STAIRS.get());
         slab("oak_trim_slab", Artisanal.location("block/oak_trim_slab_full"), ModBlocks.OAK_TRIM_SLAB.get());
+
+        cube("prismarine_tiles", ModBlocks.PRISMARINE_TILES.get());
+        cubeStairs("prismarine_tile_stairs", Artisanal.location("block/prismarine_tiles"), ModBlocks.PRISMARINE_TILE_STAIRS.get());
+        cubeSlab("prismarine_tile_slab", Artisanal.location("block/prismarine_tiles"), Artisanal.location("block/prismarine_tiles"), ModBlocks.PRISMARINE_TILE_SLAB.get());
     }
 
     private void cube(String name, Block block) {

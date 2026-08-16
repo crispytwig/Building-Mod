@@ -22,6 +22,10 @@ public final class ModItems {
     public static final DeferredHolder<Item, BlockItem> OAK_TRIM_STAIRS = registerBlockItem("oak_trim_stairs", ModBlocks.OAK_TRIM_STAIRS);
     public static final DeferredHolder<Item, BlockItem> OAK_TRIM_SLAB = registerBlockItem("oak_trim_slab", ModBlocks.OAK_TRIM_SLAB);
 
+    public static final DeferredHolder<Item, BlockItem> PRISMARINE_TILES = registerBlockItem("prismarine_tiles", ModBlocks.PRISMARINE_TILES);
+    public static final DeferredHolder<Item, BlockItem> PRISMARINE_TILE_STAIRS = registerBlockItem("prismarine_tile_stairs", ModBlocks.PRISMARINE_TILE_STAIRS);
+    public static final DeferredHolder<Item, BlockItem> PRISMARINE_TILE_SLAB = registerBlockItem("prismarine_tile_slab", ModBlocks.PRISMARINE_TILE_SLAB);
+
     private ModItems() {
     }
 

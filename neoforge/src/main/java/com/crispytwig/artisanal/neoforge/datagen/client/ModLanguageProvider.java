@@ -26,5 +26,9 @@ public class ModLanguageProvider extends LanguageProvider {
         add(ModBlocks.OAK_TRIM.get(), "Oak Trim");
         add(ModBlocks.OAK_TRIM_STAIRS.get(), "Oak Trim Stairs");
         add(ModBlocks.OAK_TRIM_SLAB.get(), "Oak Trim Slab");
+
+        add(ModBlocks.PRISMARINE_TILES.get(), "Prismarine Tiles");
+        add(ModBlocks.PRISMARINE_TILE_STAIRS.get(), "Prismarine Tile Stairs");
+        add(ModBlocks.PRISMARINE_TILE_SLAB.get(), "Prismarine Tile Slab");
     }
 }

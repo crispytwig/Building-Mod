@@ -24,12 +24,19 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
     protected void addTags(HolderLookup.@NotNull Provider provider) {
         for (DeferredHolder<Block, ? extends Block> holder : ModBlocks.BLOCKS.getEntries()) {
             Block block = holder.get();
-            tag(BlockTags.MINEABLE_WITH_AXE).add(block);
             if (block instanceof StairBlock) {
                 tag(BlockTags.STAIRS).add(block);
             } else if (block instanceof SlabBlock) {
                 tag(BlockTags.SLABS).add(block);
             }
         }
+
+        tag(BlockTags.MINEABLE_WITH_AXE).add(
+                ModBlocks.OAK_BOARDS.get(), ModBlocks.OAK_BOARD_STAIRS.get(), ModBlocks.OAK_BOARD_SLAB.get(),
+                ModBlocks.POLISHED_OAK.get(),
+                ModBlocks.OAK_TRIM.get(), ModBlocks.OAK_TRIM_STAIRS.get(), ModBlocks.OAK_TRIM_SLAB.get());
+
+        tag(BlockTags.MINEABLE_WITH_PICKAXE).add(
+                ModBlocks.PRISMARINE_TILES.get(), ModBlocks.PRISMARINE_TILE_STAIRS.get(), ModBlocks.PRISMARINE_TILE_SLAB.get());
     }
 }

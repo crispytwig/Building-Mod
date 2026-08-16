@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_prismarine_tiles": {
+      "conditions": {
+        "items": [
+          {
+            "items": "artisanal:prismarine_tiles"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "artisanal:prismarine_tile_stairs"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_prismarine_tiles"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "artisanal:prismarine_tile_stairs"
+    ]
+  }
+}

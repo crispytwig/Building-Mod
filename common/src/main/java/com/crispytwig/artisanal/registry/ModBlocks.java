@@ -39,6 +39,15 @@ public final class ModBlocks {
     public static final DeferredHolder<Block, SlabBlock> OAK_TRIM_SLAB = register("oak_trim_slab",
             SlabBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS));
 
+    public static final DeferredHolder<Block, Block> PRISMARINE_TILES = register("prismarine_tiles",
+            Block::new, BlockBehaviour.Properties.ofFullCopy(Blocks.PRISMARINE_BRICKS));
+
+    public static final DeferredHolder<Block, ModStairBlock> PRISMARINE_TILE_STAIRS = registerStairs("prismarine_tile_stairs",
+            PRISMARINE_TILES, BlockBehaviour.Properties.ofFullCopy(Blocks.PRISMARINE_BRICKS));
+
+    public static final DeferredHolder<Block, SlabBlock> PRISMARINE_TILE_SLAB = register("prismarine_tile_slab",
+            SlabBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.PRISMARINE_BRICKS));
+
     private ModBlocks() {
     }
 

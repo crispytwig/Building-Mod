@@ -11,7 +11,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SlabBlock;
-import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import org.jetbrains.annotations.NotNull;
 
@@ -58,7 +57,6 @@ public class ModLootTableProvider extends LootTableProvider {
 
         @Override
         public void generate() {
-            add(ModEntityTypes.WRIGHT.get(), LootTable.lootTable());
         }
 
         @Override

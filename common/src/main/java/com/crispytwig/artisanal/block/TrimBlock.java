@@ -29,7 +29,7 @@ public class TrimBlock extends RotatedPillarBlock {
     }
 
     @Override
-    public BlockState getStateForPlacement(BlockPlaceContext context) {
+    public @NotNull BlockState getStateForPlacement(BlockPlaceContext context) {
         Direction.Axis axis = context.getClickedFace().getAxis();
         BlockState state = defaultBlockState().setValue(AXIS, axis);
         if (context.getPlayer() != null && context.getPlayer().isShiftKeyDown()) {

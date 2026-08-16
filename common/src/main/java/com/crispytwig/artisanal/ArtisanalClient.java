@@ -1,20 +1,8 @@
 package com.crispytwig.artisanal;
 
-import com.crispytwig.artisanal.client.model.WrightModel;
-import com.crispytwig.artisanal.client.renderer.AllayFlightLayer;
-import com.crispytwig.artisanal.client.renderer.WrightRenderer;
-import com.crispytwig.artisanal.item.ArchitectsScepterItem;
-import com.crispytwig.artisanal.item.ScepterOccupant;
-import com.crispytwig.artisanal.registry.ModEntityTypes;
-import com.crispytwig.artisanal.registry.ModItems;
-import net.minecraft.client.model.PlayerModel;
-import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
-import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import net.minecraft.client.renderer.entity.layers.RenderLayer;
-import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraft.client.renderer.item.ClampedItemPropertyFunction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
@@ -42,28 +30,12 @@ public final class ArtisanalClient {
         void register(Item item, ResourceLocation name, ClampedItemPropertyFunction function);
     }
 
-    @FunctionalInterface
-    public interface PlayerLayerRegistrar {
-        void register(RenderLayer<AbstractClientPlayer, PlayerModel<AbstractClientPlayer>> layer);
-    }
-
     public static void registerLayerDefinitions(LayerRegistrar registrar) {
-        registrar.register(WrightModel.LAYER_LOCATION, WrightModel::createBodyLayer);
     }
 
     public static void registerRenderers(RendererRegistrar registrar) {
-        registrar.register(ModEntityTypes.WRIGHT.get(), WrightRenderer::new);
-    }
-
-    public static void registerPlayerLayers(PlayerRenderer renderer, EntityModelSet modelSet, PlayerLayerRegistrar registrar) {
-        registrar.register(new AllayFlightLayer(renderer, modelSet));
     }
 
     public static void registerItemProperties(ItemPropertyRegistrar registrar) {
-        registrar.register(ModItems.ARCHITECTS_SCEPTER.get(), Artisanal.location("captured"),
-                (stack, level, entity, seed) -> {
-                    ScepterOccupant occupant = ArchitectsScepterItem.getOccupant(stack);
-                    return occupant == null ? 0.0F : occupant.getPredicateValue();
-                });
     }
 }

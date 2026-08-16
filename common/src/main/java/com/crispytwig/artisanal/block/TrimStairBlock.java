@@ -24,15 +24,15 @@ public class TrimStairBlock extends ModStairBlock {
     }
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
         builder.add(TYPE);
     }
 
     @Override
-    public BlockState getStateForPlacement(BlockPlaceContext context) {
+    public @NotNull BlockState getStateForPlacement(@NotNull BlockPlaceContext context) {
         BlockState state = super.getStateForPlacement(context);
-        if (state == null || (context.getPlayer() != null && context.getPlayer().isShiftKeyDown())) {
+        if (context.getPlayer() != null && context.getPlayer().isShiftKeyDown()) {
             return state;
         }
         BlockState trim = context.getLevel().getBlockState(context.getClickedPos().relative(towardsTrim(state)));
@@ -41,7 +41,7 @@ public class TrimStairBlock extends ModStairBlock {
     }
 
     @Override
-    public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
+    public void setPlacedBy(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState state, @Nullable LivingEntity placer, @NotNull ItemStack stack) {
         updateTrim(level, pos, state, true);
     }
 

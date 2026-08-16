@@ -8,9 +8,6 @@
     "BlockSetTypeMixin",
     "WoodTypeMixin"
   ],
-  "client": [
-    "BlockRenderDispatcherMixin"
-  ],
   "injectors": {
     "defaultRequire": 1
   }

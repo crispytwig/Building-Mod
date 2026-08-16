@@ -2,7 +2,6 @@ package com.crispytwig.artisanal.neoforge.datagen.server;
 
 import com.crispytwig.artisanal.Artisanal;
 import com.crispytwig.artisanal.platform.registry.DeferredHolder;
-import com.crispytwig.artisanal.item.PanelItem;
 import com.crispytwig.artisanal.registry.ModBlocks;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -33,7 +32,5 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
         }
 
         tag(BlockTags.MINEABLE_WITH_AXE).add(ModBlocks.OAK_TRIM.get(), ModBlocks.OAK_TRIM_STAIRS.get(), ModBlocks.OAK_TRIM_SLAB.get());
-
-        tag(PanelItem.MATERIALS);
     }
 }

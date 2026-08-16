@@ -31,6 +31,6 @@ public final class CherrySounds {
     }
 
     public static boolean appliesTo(SoundType type) {
-        return type == SoundType.WOOD && Services.CONFIG.cherryWoodSounds();
+        return type != SoundType.WOOD || !Services.CONFIG.cherryWoodSounds();
     }
 }

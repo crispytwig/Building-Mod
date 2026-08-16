@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 public class WoodTypeMixin {
     @ModifyVariable(method = "register", at = @At("HEAD"), argsOnly = true)
     private static WoodType artisanal$cherryWoodSounds(WoodType type) {
-        if (!CherrySounds.appliesTo(type.soundType())) {
+        if (CherrySounds.appliesTo(type.soundType())) {
             return type;
         }
         return new WoodType(type.name(), type.setType(), type.soundType(), type.hangingSignSoundType(),

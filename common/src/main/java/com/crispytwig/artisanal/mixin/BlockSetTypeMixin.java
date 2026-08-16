@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 public class BlockSetTypeMixin {
     @ModifyVariable(method = "register", at = @At("HEAD"), argsOnly = true)
     private static BlockSetType artisanal$cherryWoodSounds(BlockSetType type) {
-        if (!CherrySounds.appliesTo(type.soundType())) {
+        if (CherrySounds.appliesTo(type.soundType())) {
             return type;
         }
         return new BlockSetType(type.name(), type.canOpenByHand(), type.canOpenByWindCharge(), type.canButtonBeActivatedByArrows(),

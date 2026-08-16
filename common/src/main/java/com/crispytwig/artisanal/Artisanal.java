@@ -1,6 +1,5 @@
 package com.crispytwig.artisanal;
 
-import com.crispytwig.artisanal.entity.Wright;
 import com.crispytwig.artisanal.registry.ModBlockEntities;
 import com.crispytwig.artisanal.registry.ModBlocks;
 import com.crispytwig.artisanal.registry.ModCreativeTabs;
@@ -44,7 +43,6 @@ public final class Artisanal {
     }
 
     public static void createAttributes(AttributeRegistrar registrar) {
-        registrar.register(ModEntityTypes.WRIGHT.get(), Wright.createAttributes());
     }
 
     @FunctionalInterface

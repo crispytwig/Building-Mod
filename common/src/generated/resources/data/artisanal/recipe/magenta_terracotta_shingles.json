@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "terracotta_shingles",
+  "key": {
+    "#": {
+      "item": "minecraft:magenta_terracotta"
+    }
+  },
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "result": {
+    "count": 4,
+    "id": "artisanal:magenta_terracotta_shingles"
+  }
+}

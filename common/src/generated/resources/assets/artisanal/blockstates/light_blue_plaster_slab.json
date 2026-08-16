@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "artisanal:block/light_blue_plaster_slab"
+    },
+    "type=double": {
+      "model": "artisanal:block/light_blue_plaster"
+    },
+    "type=top": {
+      "model": "artisanal:block/light_blue_plaster_slab_top"
+    }
+  }
+}

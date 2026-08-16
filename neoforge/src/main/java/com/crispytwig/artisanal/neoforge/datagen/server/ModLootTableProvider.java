@@ -12,7 +12,6 @@ import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Set;
@@ -43,7 +42,7 @@ public class ModLootTableProvider extends LootTableProvider {
         }
 
         @Override
-        protected @NotNull Iterable<Block> getKnownBlocks() {
+        protected Iterable<Block> getKnownBlocks() {
             return ModBlocks.BLOCKS.getEntries().stream()
                     .map(entry -> (Block) entry.get())
                     .toList();
@@ -60,7 +59,7 @@ public class ModLootTableProvider extends LootTableProvider {
         }
 
         @Override
-        protected @NotNull Stream<EntityType<?>> getKnownEntityTypes() {
+        protected Stream<EntityType<?>> getKnownEntityTypes() {
             return ModEntityTypes.ENTITY_TYPES.getEntries().stream().map(entry -> (EntityType<?>) entry.get());
         }
     }

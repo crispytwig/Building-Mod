@@ -12,8 +12,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.Half;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 public class TrimStairBlock extends ModStairBlock {
     public static final EnumProperty<TrimType> TYPE = EnumProperty.create("type", TrimType.class, TrimType.SINGLE, TrimType.TOP);
@@ -24,13 +22,13 @@ public class TrimStairBlock extends ModStairBlock {
     }
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
         builder.add(TYPE);
     }
 
     @Override
-    public @NotNull BlockState getStateForPlacement(@NotNull BlockPlaceContext context) {
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
         BlockState state = super.getStateForPlacement(context);
         if (context.getPlayer() != null && context.getPlayer().isShiftKeyDown()) {
             return state;
@@ -41,12 +39,12 @@ public class TrimStairBlock extends ModStairBlock {
     }
 
     @Override
-    public void setPlacedBy(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState state, @Nullable LivingEntity placer, @NotNull ItemStack stack) {
+    public void setPlacedBy(Level level, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
         updateTrim(level, pos, state, true);
     }
 
     @Override
-    public void onRemove(BlockState state, @NotNull Level level, @NotNull BlockPos pos, BlockState newState, boolean movedByPiston) {
+    public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {
         if (!state.is(newState.getBlock())) {
             updateTrim(level, pos, state, false);
         }

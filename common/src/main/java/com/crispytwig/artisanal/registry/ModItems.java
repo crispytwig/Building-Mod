@@ -8,23 +8,12 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
-import java.util.function.Supplier;
-
 public final class ModItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(BuiltInRegistries.ITEM, Artisanal.MOD_ID);
 
-    public static final DeferredHolder<Item, BlockItem> OAK_BOARDS = registerBlockItem("oak_boards", ModBlocks.OAK_BOARDS);
-    public static final DeferredHolder<Item, BlockItem> OAK_BOARD_STAIRS = registerBlockItem("oak_board_stairs", ModBlocks.OAK_BOARD_STAIRS);
-    public static final DeferredHolder<Item, BlockItem> OAK_BOARD_SLAB = registerBlockItem("oak_board_slab", ModBlocks.OAK_BOARD_SLAB);
-    public static final DeferredHolder<Item, BlockItem> POLISHED_OAK = registerBlockItem("polished_oak", ModBlocks.POLISHED_OAK);
-
-    public static final DeferredHolder<Item, BlockItem> OAK_TRIM = registerBlockItem("oak_trim", ModBlocks.OAK_TRIM);
-    public static final DeferredHolder<Item, BlockItem> OAK_TRIM_STAIRS = registerBlockItem("oak_trim_stairs", ModBlocks.OAK_TRIM_STAIRS);
-    public static final DeferredHolder<Item, BlockItem> OAK_TRIM_SLAB = registerBlockItem("oak_trim_slab", ModBlocks.OAK_TRIM_SLAB);
-
-    public static final DeferredHolder<Item, BlockItem> PRISMARINE_TILES = registerBlockItem("prismarine_tiles", ModBlocks.PRISMARINE_TILES);
-    public static final DeferredHolder<Item, BlockItem> PRISMARINE_TILE_STAIRS = registerBlockItem("prismarine_tile_stairs", ModBlocks.PRISMARINE_TILE_STAIRS);
-    public static final DeferredHolder<Item, BlockItem> PRISMARINE_TILE_SLAB = registerBlockItem("prismarine_tile_slab", ModBlocks.PRISMARINE_TILE_SLAB);
+    static {
+        ModBlocks.BLOCKS.getEntries().forEach(ModItems::registerBlockItem);
+    }
 
     private ModItems() {
     }
@@ -32,11 +21,7 @@ public final class ModItems {
     public static void init() {
     }
 
-    public static DeferredHolder<Item, Item> registerItem(String name, Item.Properties properties) {
-        return ITEMS.register(name, () -> new Item(properties));
-    }
-
-    public static DeferredHolder<Item, BlockItem> registerBlockItem(String name, Supplier<? extends Block> block) {
-        return ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
+    private static void registerBlockItem(DeferredHolder<Block, ? extends Block> holder) {
+        ITEMS.register(holder.getId().getPath(), () -> new BlockItem(holder.get(), new Item.Properties()));
     }
 }

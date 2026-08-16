@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "terracotta_shingles",
+  "key": {
+    "#": {
+      "item": "minecraft:light_blue_terracotta"
+    }
+  },
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "result": {
+    "count": 4,
+    "id": "artisanal:light_blue_terracotta_shingles"
+  }
+}

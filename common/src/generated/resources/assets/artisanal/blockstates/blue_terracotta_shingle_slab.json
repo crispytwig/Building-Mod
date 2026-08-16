@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "artisanal:block/blue_terracotta_shingle_slab"
+    },
+    "type=double": {
+      "model": "artisanal:block/blue_terracotta_shingles"
+    },
+    "type=top": {
+      "model": "artisanal:block/blue_terracotta_shingle_slab_top"
+    }
+  }
+}

@@ -1,57 +1,79 @@
 package com.crispytwig.artisanal.registry;
 
 import com.crispytwig.artisanal.Artisanal;
+import com.crispytwig.artisanal.block.ChairBlock;
 import com.crispytwig.artisanal.block.ModStairBlock;
+import com.crispytwig.artisanal.block.TableBlock;
 import com.crispytwig.artisanal.block.TrimBlock;
 import com.crispytwig.artisanal.block.TrimStairBlock;
+import com.crispytwig.artisanal.block.WindowBlock;
+import com.crispytwig.artisanal.block.WindowPaneBlock;
 import com.crispytwig.artisanal.platform.registry.DeferredHolder;
 import com.crispytwig.artisanal.platform.registry.DeferredRegister;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.MapColor;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
 public final class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(BuiltInRegistries.BLOCK, Artisanal.MOD_ID);
 
-    public static final DeferredHolder<Block, Block> OAK_BOARDS = register("oak_boards",
-            Block::new, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS));
+    private static final List<DeferredHolder<Block, ? extends Block>> WOODEN_BLOCKS = new ArrayList<>();
 
-    public static final DeferredHolder<Block, ModStairBlock> OAK_BOARD_STAIRS = registerStairs("oak_board_stairs",
-            OAK_BOARDS, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS));
+    public static final DeferredHolder<Block, Block> OAK_BOARDS = registerWooden("oak_boards", Block::new, oakProperties());
+    public static final DeferredHolder<Block, ModStairBlock> OAK_BOARD_STAIRS = registerWoodenStairs("oak_board_stairs", OAK_BOARDS, oakProperties());
+    public static final DeferredHolder<Block, SlabBlock> OAK_BOARD_SLAB = registerWooden("oak_board_slab", SlabBlock::new, oakProperties());
+    public static final DeferredHolder<Block, Block> POLISHED_OAK = registerWooden("polished_oak", Block::new, oakProperties());
 
-    public static final DeferredHolder<Block, SlabBlock> OAK_BOARD_SLAB = register("oak_board_slab",
-            SlabBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS));
+    public static final DeferredHolder<Block, TrimBlock> OAK_TRIM = registerWooden("oak_trim", TrimBlock::new, oakProperties());
+    public static final DeferredHolder<Block, TrimStairBlock> OAK_TRIM_STAIRS = registerWoodenTrimStairs("oak_trim_stairs", OAK_TRIM, oakProperties());
+    public static final DeferredHolder<Block, SlabBlock> OAK_TRIM_SLAB = registerWooden("oak_trim_slab", SlabBlock::new, oakProperties());
 
-    public static final DeferredHolder<Block, Block> POLISHED_OAK = register("polished_oak",
-            Block::new, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS));
+    public static final DeferredHolder<Block, TableBlock> OAK_TABLE = registerWooden("oak_table", TableBlock::new, decorativeProperties(MapColor.WOOD, SoundType.WOOD).strength(2.5F).dynamicShape());
+    public static final DeferredHolder<Block, ChairBlock> OAK_CHAIR = registerWooden("oak_chair", ChairBlock::new, decorativeProperties(MapColor.WOOD, SoundType.WOOD).strength(2.5F));
 
-    public static final DeferredHolder<Block, TrimBlock> OAK_TRIM = register("oak_trim",
-            TrimBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS));
+    public static final DeferredHolder<Block, WindowBlock> OAK_WINDOW = register("oak_window", WindowBlock::new, windowProperties(MapColor.WOOD));
+    public static final DeferredHolder<Block, WindowPaneBlock> OAK_WINDOW_PANE = register("oak_window_pane", WindowPaneBlock::new, windowProperties(MapColor.WOOD));
 
-    public static final DeferredHolder<Block, TrimStairBlock> OAK_TRIM_STAIRS = registerTrimStairs("oak_trim_stairs",
-            OAK_TRIM, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS));
+    public static final DeferredHolder<Block, Block> PRISMARINE_TILES = register("prismarine_tiles", Block::new, prismarineProperties());
+    public static final DeferredHolder<Block, ModStairBlock> PRISMARINE_TILE_STAIRS = registerStairs("prismarine_tile_stairs", PRISMARINE_TILES, prismarineProperties());
+    public static final DeferredHolder<Block, SlabBlock> PRISMARINE_TILE_SLAB = register("prismarine_tile_slab", SlabBlock::new, prismarineProperties());
 
-    public static final DeferredHolder<Block, SlabBlock> OAK_TRIM_SLAB = register("oak_trim_slab",
-            SlabBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS));
+    public static final List<ColoredSet> TERRACOTTA = createTerracotta();
 
-    public static final DeferredHolder<Block, Block> PRISMARINE_TILES = register("prismarine_tiles",
-            Block::new, BlockBehaviour.Properties.ofFullCopy(Blocks.PRISMARINE_BRICKS));
+    public static final List<ColoredSet> PLASTER = createPlaster();
 
-    public static final DeferredHolder<Block, ModStairBlock> PRISMARINE_TILE_STAIRS = registerStairs("prismarine_tile_stairs",
-            PRISMARINE_TILES, BlockBehaviour.Properties.ofFullCopy(Blocks.PRISMARINE_BRICKS));
+    public record BlockSet(DeferredHolder<Block, Block> block, DeferredHolder<Block, ModStairBlock> stairs, DeferredHolder<Block, SlabBlock> slab) {
+    }
 
-    public static final DeferredHolder<Block, SlabBlock> PRISMARINE_TILE_SLAB = register("prismarine_tile_slab",
-            SlabBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.PRISMARINE_BRICKS));
+    public record ColoredSet(DyeColor color, List<BlockSet> sets) {
+    }
 
     private ModBlocks() {
     }
 
     public static void init() {
+    }
+
+    public static List<DeferredHolder<Block, ? extends Block>> woodenBlocks() {
+        return List.copyOf(WOODEN_BLOCKS);
+    }
+
+    public static Block vanillaTerracotta(DyeColor color) {
+        if (color == null) {
+            return Blocks.TERRACOTTA;
+        }
+        return BuiltInRegistries.BLOCK.get(ResourceLocation.withDefaultNamespace(color.getName() + "_terracotta"));
     }
 
     public static <T extends Block> DeferredHolder<Block, T> register(String name, Function<BlockBehaviour.Properties, T> factory, BlockBehaviour.Properties properties) {
@@ -62,7 +84,78 @@ public final class ModBlocks {
         return BLOCKS.register(name, () -> new ModStairBlock(base.get().defaultBlockState(), properties));
     }
 
-    public static DeferredHolder<Block, TrimStairBlock> registerTrimStairs(String name, Supplier<? extends Block> base, BlockBehaviour.Properties properties) {
-        return BLOCKS.register(name, () -> new TrimStairBlock(base.get().defaultBlockState(), properties));
+    private static <T extends Block> DeferredHolder<Block, T> registerWooden(String name, Function<BlockBehaviour.Properties, T> factory, BlockBehaviour.Properties properties) {
+        return markWooden(register(name, factory, properties));
+    }
+
+    private static DeferredHolder<Block, ModStairBlock> registerWoodenStairs(String name, Supplier<? extends Block> base, BlockBehaviour.Properties properties) {
+        return markWooden(registerStairs(name, base, properties));
+    }
+
+    private static DeferredHolder<Block, TrimStairBlock> registerWoodenTrimStairs(String name, Supplier<? extends Block> base, BlockBehaviour.Properties properties) {
+        return markWooden(BLOCKS.register(name, () -> new TrimStairBlock(base.get().defaultBlockState(), properties)));
+    }
+
+    private static <T extends Block> DeferredHolder<Block, T> markWooden(DeferredHolder<Block, T> holder) {
+        WOODEN_BLOCKS.add(holder);
+        return holder;
+    }
+
+    private static BlockSet registerSet(String pluralName, String singularName, Supplier<BlockBehaviour.Properties> properties) {
+        DeferredHolder<Block, Block> block = register(pluralName, Block::new, properties.get());
+        return new BlockSet(block, registerStairs(singularName + "_stairs", block, properties.get()), register(singularName + "_slab", SlabBlock::new, properties.get()));
+    }
+
+    private static List<ColoredSet> createTerracotta() {
+        List<ColoredSet> sets = new ArrayList<>();
+        sets.add(terracottaSet(null));
+        for (DyeColor color : DyeColor.values()) {
+            sets.add(terracottaSet(color));
+        }
+        return List.copyOf(sets);
+    }
+
+    private static ColoredSet terracottaSet(DyeColor color) {
+        String prefix = color == null ? "terracotta" : color.getName() + "_terracotta";
+        MapColor mapColor = vanillaTerracotta(color).defaultMapColor();
+        BlockSet bricks = registerSet(prefix + "_bricks", prefix + "_brick", () -> stoneProperties(mapColor));
+        BlockSet shingles = registerSet(prefix + "_shingles", prefix + "_shingle", () -> stoneProperties(mapColor));
+        return new ColoredSet(color, List.of(bricks, shingles));
+    }
+
+    private static List<ColoredSet> createPlaster() {
+        List<ColoredSet> sets = new ArrayList<>();
+        for (DyeColor color : DyeColor.values()) {
+            String name = color.getName() + "_plaster";
+            sets.add(new ColoredSet(color, List.of(registerSet(name, name, () -> stoneProperties(color.getMapColor())))));
+        }
+        return List.copyOf(sets);
+    }
+
+    private static BlockBehaviour.Properties oakProperties() {
+        return BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS);
+    }
+
+    private static BlockBehaviour.Properties prismarineProperties() {
+        return BlockBehaviour.Properties.ofFullCopy(Blocks.PRISMARINE_BRICKS);
+    }
+
+    private static BlockBehaviour.Properties stoneProperties(MapColor mapColor) {
+        return BlockBehaviour.Properties.of().mapColor(mapColor).strength(1.25F, 4.2F).sound(SoundType.STONE);
+    }
+
+    private static BlockBehaviour.Properties windowProperties(MapColor mapColor) {
+        return decorativeProperties(mapColor, SoundType.GLASS).strength(0.3F);
+    }
+
+    private static BlockBehaviour.Properties decorativeProperties(MapColor mapColor, SoundType soundType) {
+        return BlockBehaviour.Properties.of()
+                .mapColor(mapColor)
+                .sound(soundType)
+                .noOcclusion()
+                .isValidSpawn((state, level, pos, entity) -> false)
+                .isRedstoneConductor((state, level, pos) -> false)
+                .isSuffocating((state, level, pos) -> false)
+                .isViewBlocking((state, level, pos) -> false);
     }
 }

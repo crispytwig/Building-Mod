@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "plaster_slab",
+  "key": {
+    "#": {
+      "item": "artisanal:red_plaster"
+    }
+  },
+  "pattern": [
+    "###"
+  ],
+  "result": {
+    "count": 6,
+    "id": "artisanal:red_plaster_slab"
+  }
+}

@@ -12,8 +12,6 @@ import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 public class TrimBlock extends RotatedPillarBlock {
     public static final EnumProperty<TrimType> TYPE = EnumProperty.create("type", TrimType.class);
@@ -29,7 +27,7 @@ public class TrimBlock extends RotatedPillarBlock {
     }
 
     @Override
-    public @NotNull BlockState getStateForPlacement(BlockPlaceContext context) {
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
         Direction.Axis axis = context.getClickedFace().getAxis();
         BlockState state = defaultBlockState().setValue(AXIS, axis);
         if (context.getPlayer() != null && context.getPlayer().isShiftKeyDown()) {
@@ -41,12 +39,12 @@ public class TrimBlock extends RotatedPillarBlock {
     }
 
     @Override
-    public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
+    public void setPlacedBy(Level level, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
         updateConnections(level, pos, state, true);
     }
 
     @Override
-    public void onRemove(BlockState state, @NotNull Level level, @NotNull BlockPos pos, BlockState newState, boolean movedByPiston) {
+    public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {
         if (!state.is(newState.getBlock())) {
             updateConnections(level, pos, state, false);
         }

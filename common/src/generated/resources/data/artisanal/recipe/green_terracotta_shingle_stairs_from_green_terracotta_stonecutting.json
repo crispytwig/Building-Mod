@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:stonecutting",
+  "group": "terracotta_shingle_stairs",
+  "ingredient": {
+    "item": "minecraft:green_terracotta"
+  },
+  "result": {
+    "count": 1,
+    "id": "artisanal:green_terracotta_shingle_stairs"
+  }
+}

@@ -1,9 +1,13 @@
 package com.crispytwig.artisanal.neoforge.datagen.client;
 
 import com.crispytwig.artisanal.Artisanal;
+import com.crispytwig.artisanal.block.ChairBlock;
+import com.crispytwig.artisanal.block.TableBlock;
 import com.crispytwig.artisanal.block.TrimBlock;
 import com.crispytwig.artisanal.block.TrimStairBlock;
 import com.crispytwig.artisanal.block.TrimType;
+import com.crispytwig.artisanal.block.WindowBlock;
+import com.crispytwig.artisanal.block.WindowPaneBlock;
 import com.crispytwig.artisanal.registry.ModBlocks;
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
@@ -12,7 +16,9 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.Half;
+import net.neoforged.neoforge.client.model.generators.BlockModelBuilder;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
@@ -28,40 +34,110 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        cube("oak_boards", ModBlocks.OAK_BOARDS.get());
-        cubeStairs("oak_board_stairs", Artisanal.location("block/oak_boards"), ModBlocks.OAK_BOARD_STAIRS.get());
-        cubeSlab("oak_board_slab", Artisanal.location("block/oak_boards"), Artisanal.location("block/oak_boards"), ModBlocks.OAK_BOARD_SLAB.get());
-        cube("polished_oak", ModBlocks.POLISHED_OAK.get());
+        cube(ModBlocks.OAK_BOARDS.get());
+        cubeStairs(ModBlocks.OAK_BOARD_STAIRS.get(), Artisanal.location("block/oak_boards"));
+        cubeSlab(ModBlocks.OAK_BOARD_SLAB.get(), Artisanal.location("block/oak_boards"), Artisanal.location("block/oak_boards"));
+        cube(ModBlocks.POLISHED_OAK.get());
 
         trim("oak_trim", Artisanal.location("block/oak_boards"), ModBlocks.OAK_TRIM.get());
         trimStairs("oak_trim", ModBlocks.OAK_TRIM_STAIRS.get());
         slab("oak_trim_slab", Artisanal.location("block/oak_trim_slab_full"), ModBlocks.OAK_TRIM_SLAB.get());
 
-        cube("prismarine_tiles", ModBlocks.PRISMARINE_TILES.get());
-        cubeStairs("prismarine_tile_stairs", Artisanal.location("block/prismarine_tiles"), ModBlocks.PRISMARINE_TILE_STAIRS.get());
-        cubeSlab("prismarine_tile_slab", Artisanal.location("block/prismarine_tiles"), Artisanal.location("block/prismarine_tiles"), ModBlocks.PRISMARINE_TILE_SLAB.get());
+        cube(ModBlocks.PRISMARINE_TILES.get());
+        cubeStairs(ModBlocks.PRISMARINE_TILE_STAIRS.get(), Artisanal.location("block/prismarine_tiles"));
+        cubeSlab(ModBlocks.PRISMARINE_TILE_SLAB.get(), Artisanal.location("block/prismarine_tiles"), Artisanal.location("block/prismarine_tiles"));
+
+        table(ModBlocks.OAK_TABLE.get(), Artisanal.location("block/oak_boards"));
+        chair(ModBlocks.OAK_CHAIR.get(), Artisanal.location("block/oak_boards"));
+        window(ModBlocks.OAK_WINDOW.get());
+        windowPane(ModBlocks.OAK_WINDOW_PANE.get(), "oak_window", Artisanal.location("block/oak_trim_end"));
+
+        ModBlocks.TERRACOTTA.forEach(colored -> colored.sets().forEach(this::cubeSet));
+        ModBlocks.PLASTER.forEach(colored -> colored.sets().forEach(this::cubeSet));
     }
 
-    private void cube(String name, Block block) {
-        simpleBlockWithItem(block, models().cubeAll(name, Artisanal.location("block/" + name)));
+    private void cubeSet(ModBlocks.BlockSet set) {
+        ResourceLocation texture = blockTexture(set.block().get());
+        cube(set.block().get());
+        cubeStairs(set.stairs().get(), texture);
+        cubeSlab(set.slab().get(), texture, texture);
     }
 
-    private void cubeStairs(String name, ResourceLocation texture, StairBlock block) {
-        stairsBlock(block, texture);
+    private void table(TableBlock block, ResourceLocation particle) {
+        String name = Artisanal.name(block);
+        ResourceLocation texture = blockTexture(block);
+
+        ModelFile inventory = templateModel(name + "_inventory", "table_full", texture, particle);
+        getVariantBuilder(block).forAllStates(state -> ConfiguredModel.builder().modelFile(inventory).build());
+        itemModels().withExistingParent(name, Artisanal.location("block/" + name + "_inventory"));
+
+        templateModel(name + "_" + TableBlock.TOP_PART, "table_" + TableBlock.TOP_PART, texture, particle);
+        for (String part : TableBlock.LEG_PARTS) {
+            templateModel(name + "_" + part, "table_" + part, texture, particle);
+        }
+    }
+
+    private void chair(ChairBlock block, ResourceLocation particle) {
+        String name = Artisanal.name(block);
+        ResourceLocation texture = blockTexture(block);
+
+        ModelFile normal = templateModel(name, "chair", texture, particle).renderType("cutout");
+        ModelFile tucked = templateModel(name + "_tucked", "chair_tucked", texture, particle).renderType("cutout");
+        getVariantBuilder(block).forAllStates(state -> ConfiguredModel.builder()
+                .modelFile(state.getValue(ChairBlock.TUCKED) ? tucked : normal)
+                .rotationY(((int) state.getValue(ChairBlock.FACING).toYRot() + 180) % 360)
+                .build());
+        simpleBlockItem(block, normal);
+    }
+
+    private void window(WindowBlock block) {
+        String name = Artisanal.name(block);
+        ResourceLocation end = Artisanal.location("block/" + name);
+
+        Map<TrimType, ModelFile> models = new EnumMap<>(TrimType.class);
+        for (TrimType type : TrimType.values()) {
+            models.put(type, models().cubeColumn(name + suffix(type), Artisanal.location("block/" + name + suffix(type)), end).renderType("translucent"));
+        }
+        getVariantBuilder(block).forAllStates(state -> ConfiguredModel.builder().modelFile(models.get(state.getValue(WindowBlock.TYPE))).build());
         itemModels().withExistingParent(name, Artisanal.location("block/" + name));
     }
 
-    private void cubeSlab(String name, ResourceLocation full, ResourceLocation texture, SlabBlock block) {
-        slabBlock(block, full, texture);
-        itemModels().withExistingParent(name, Artisanal.location("block/" + name));
+    private void windowPane(WindowPaneBlock block, String paneTexture, ResourceLocation edge) {
+        String name = Artisanal.name(block);
+        BooleanProperty[] sides = {WindowPaneBlock.NORTH, WindowPaneBlock.EAST, WindowPaneBlock.SOUTH, WindowPaneBlock.WEST};
+        int[][] sideVariants = {{0, 0}, {0, 90}, {1, 0}, {1, 90}};
+        int[][] noSideVariants = {{0, 0}, {1, 0}, {1, 90}, {0, 270}};
+
+        var builder = getMultipartBuilder(block);
+        for (TrimType type : TrimType.values()) {
+            ResourceLocation pane = Artisanal.location("block/" + paneTexture + suffix(type));
+
+            ModelFile[] sideModels = {
+                    models().paneSide(name + "_side" + suffix(type), pane, edge).renderType("translucent"),
+                    models().paneSideAlt(name + "_side_alt" + suffix(type), pane, edge).renderType("translucent")
+            };
+            ModelFile[] noSideModels = {
+                    models().singleTexture(name + "_noside" + suffix(type), Artisanal.location("block/template_pane_noside"), "pane", pane).renderType("translucent"),
+                    models().singleTexture(name + "_noside_alt" + suffix(type), Artisanal.location("block/template_pane_noside_alt"), "pane", pane).renderType("translucent")
+            };
+
+            builder.part().modelFile(models().panePost(name + "_post" + suffix(type), pane, edge).renderType("translucent")).addModel()
+                    .condition(WindowPaneBlock.TYPE, type).end();
+
+            for (int i = 0; i < sides.length; i++) {
+                builder.part().modelFile(sideModels[sideVariants[i][0]]).rotationY(sideVariants[i][1]).addModel()
+                        .condition(sides[i], true).condition(WindowPaneBlock.TYPE, type).end();
+                builder.part().modelFile(noSideModels[noSideVariants[i][0]]).rotationY(noSideVariants[i][1]).addModel()
+                        .condition(sides[i], false).condition(WindowPaneBlock.TYPE, type).end();
+            }
+        }
+        itemModels().withExistingParent(name, mcLoc("item/generated")).texture("layer0", Artisanal.location("item/" + name));
     }
 
     private void trim(String name, ResourceLocation end, TrimBlock block) {
         Map<TrimType, ModelFile> models = new EnumMap<>(TrimType.class);
         for (TrimType type : TrimType.values()) {
-            models.put(type, models().cubeColumn(name + "_" + type.getSerializedName(),
-                            Artisanal.location("block/" + name + "_" + type.getSerializedName()), end)
-                    .texture("particle", end));
+            models.put(type, models().cubeColumn(name + "_" + type.getSerializedName(), Artisanal.location("block/" + name + "_" + type.getSerializedName()), end).texture("particle", end));
         }
         getVariantBuilder(block).forAllStates(state -> {
             Direction.Axis axis = state.getValue(TrimBlock.AXIS);
@@ -74,23 +150,56 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(block, models.get(TrimType.SINGLE));
     }
 
-    private void stairs(String name, StairBlock block) {
-        getVariantBuilder(block).forAllStatesExcept(state -> ConfiguredModel.builder()
-                .modelFile(existing(name + shape(state) + (state.getValue(StairBlock.HALF) == Half.TOP ? "_top" : "")))
-                .rotationY(rotation(state))
-                .uvLock(true)
-                .build(), StairBlock.WATERLOGGED);
-        simpleBlockItem(block, existing(name));
-    }
-
     private void trimStairs(String name, TrimStairBlock block) {
         getVariantBuilder(block).forAllStatesExcept(state -> ConfiguredModel.builder()
-                .modelFile(existing(name + shape(state) + "_stairs"
-                        + (state.getValue(TrimStairBlock.TYPE) == TrimType.SINGLE ? "_single" : "")))
+                .modelFile(existing(name + shape(state) + "_stairs" + (state.getValue(TrimStairBlock.TYPE) == TrimType.SINGLE ? "_single" : "")))
                 .rotationX(state.getValue(StairBlock.HALF) == Half.TOP ? 180 : 0)
                 .rotationY(rotation(state))
                 .build(), StairBlock.WATERLOGGED);
         simpleBlockItem(block, existing(name + "_stairs_single"));
+    }
+
+    private void cube(Block block) {
+        String name = Artisanal.name(block);
+        simpleBlockWithItem(block, models().cubeAll(name, Artisanal.location("block/" + name)));
+    }
+
+    private void cubeStairs(StairBlock block, ResourceLocation texture) {
+        String name = Artisanal.name(block);
+        stairsBlock(block, texture);
+        itemModels().withExistingParent(name, Artisanal.location("block/" + name));
+    }
+
+    private void cubeSlab(SlabBlock block, ResourceLocation full, ResourceLocation texture) {
+        String name = Artisanal.name(block);
+        slabBlock(block, full, texture);
+        itemModels().withExistingParent(name, Artisanal.location("block/" + name));
+    }
+
+    private void slab(String name, ResourceLocation doubleModel, SlabBlock block) {
+        ModelFile bottom = existing(name);
+        ModelFile top = existing(name + "_top");
+        ModelFile full = models().getExistingFile(doubleModel);
+        getVariantBuilder(block).forAllStatesExcept(state -> ConfiguredModel.builder()
+                .modelFile(switch (state.getValue(SlabBlock.TYPE)) {
+                    case BOTTOM -> bottom;
+                    case TOP -> top;
+                    case DOUBLE -> full;
+                })
+                .build(), SlabBlock.WATERLOGGED);
+        simpleBlockItem(block, bottom);
+    }
+
+    private BlockModelBuilder templateModel(String name, String template, ResourceLocation texture, ResourceLocation particle) {
+        return models().withExistingParent(name, Artisanal.location("block/template/" + template)).texture("all", texture).texture("particle", particle);
+    }
+
+    private ModelFile existing(String name) {
+        return models().getExistingFile(Artisanal.location("block/" + name));
+    }
+
+    private static String suffix(TrimType type) {
+        return type == TrimType.SINGLE ? "" : "_" + type.getSerializedName();
     }
 
     private static String shape(BlockState state) {
@@ -109,23 +218,5 @@ public class ModBlockStateProvider extends BlockStateProvider {
             case INNER_RIGHT, OUTER_RIGHT -> top ? 90 : 0;
         };
         return (((int) state.getValue(StairBlock.FACING).toYRot() + 90) + offset) % 360;
-    }
-
-    private void slab(String name, ResourceLocation doubleModel, SlabBlock block) {
-        ModelFile bottom = existing(name);
-        ModelFile top = existing(name + "_top");
-        ModelFile full = models().getExistingFile(doubleModel);
-        getVariantBuilder(block).forAllStatesExcept(state -> ConfiguredModel.builder()
-                .modelFile(switch (state.getValue(SlabBlock.TYPE)) {
-                    case BOTTOM -> bottom;
-                    case TOP -> top;
-                    case DOUBLE -> full;
-                })
-                .build(), SlabBlock.WATERLOGGED);
-        simpleBlockItem(block, bottom);
-    }
-
-    private ModelFile existing(String name) {
-        return models().getExistingFile(Artisanal.location("block/" + name));
     }
 }

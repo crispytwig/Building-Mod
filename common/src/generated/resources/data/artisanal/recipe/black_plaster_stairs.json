@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "plaster_stairs",
+  "key": {
+    "#": {
+      "item": "artisanal:black_plaster"
+    }
+  },
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "result": {
+    "count": 4,
+    "id": "artisanal:black_plaster_stairs"
+  }
+}

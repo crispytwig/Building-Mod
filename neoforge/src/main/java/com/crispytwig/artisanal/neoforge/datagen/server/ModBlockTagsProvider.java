@@ -11,7 +11,6 @@ import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.StairBlock;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -21,7 +20,7 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
     }
 
     @Override
-    protected void addTags(HolderLookup.@NotNull Provider provider) {
+    protected void addTags(HolderLookup.Provider provider) {
         for (DeferredHolder<Block, ? extends Block> holder : ModBlocks.BLOCKS.getEntries()) {
             Block block = holder.get();
             if (block instanceof StairBlock) {
@@ -31,12 +30,16 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
             }
         }
 
-        tag(BlockTags.MINEABLE_WITH_AXE).add(
-                ModBlocks.OAK_BOARDS.get(), ModBlocks.OAK_BOARD_STAIRS.get(), ModBlocks.OAK_BOARD_SLAB.get(),
-                ModBlocks.POLISHED_OAK.get(),
-                ModBlocks.OAK_TRIM.get(), ModBlocks.OAK_TRIM_STAIRS.get(), ModBlocks.OAK_TRIM_SLAB.get());
+        ModBlocks.woodenBlocks().forEach(holder -> tag(BlockTags.MINEABLE_WITH_AXE).add(holder.get()));
+        tag(BlockTags.MINEABLE_WITH_AXE).add(ModBlocks.OAK_WINDOW.get(), ModBlocks.OAK_WINDOW_PANE.get());
 
-        tag(BlockTags.MINEABLE_WITH_PICKAXE).add(
-                ModBlocks.PRISMARINE_TILES.get(), ModBlocks.PRISMARINE_TILE_STAIRS.get(), ModBlocks.PRISMARINE_TILE_SLAB.get());
+        tag(BlockTags.MINEABLE_WITH_PICKAXE).add(ModBlocks.PRISMARINE_TILES.get(), ModBlocks.PRISMARINE_TILE_STAIRS.get(), ModBlocks.PRISMARINE_TILE_SLAB.get());
+
+        ModBlocks.TERRACOTTA.forEach(colored -> colored.sets().forEach(this::addPickaxeSet));
+        ModBlocks.PLASTER.forEach(colored -> colored.sets().forEach(this::addPickaxeSet));
+    }
+
+    private void addPickaxeSet(ModBlocks.BlockSet set) {
+        tag(BlockTags.MINEABLE_WITH_PICKAXE).add(set.block().get(), set.stairs().get(), set.slab().get());
     }
 }

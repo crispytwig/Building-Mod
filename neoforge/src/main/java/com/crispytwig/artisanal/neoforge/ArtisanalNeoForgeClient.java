@@ -7,7 +7,9 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
+import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.client.event.ModelEvent;
 
 public final class ArtisanalNeoForgeClient {
     private ArtisanalNeoForgeClient() {
@@ -18,7 +20,12 @@ public final class ArtisanalNeoForgeClient {
 
         modEventBus.addListener(ArtisanalNeoForgeClient::registerLayerDefinitions);
         modEventBus.addListener(ArtisanalNeoForgeClient::registerRenderers);
+        modEventBus.addListener(ArtisanalNeoForgeClient::registerAdditionalModels);
         modEventBus.addListener(ArtisanalNeoForgeClient::clientSetup);
+    }
+
+    private static void registerAdditionalModels(ModelEvent.RegisterAdditional event) {
+        ArtisanalClient.registerExtraModels(location -> event.register(new ModelResourceLocation(location, "standalone")));
     }
 
     private static void clientSetup(FMLClientSetupEvent event) {
@@ -31,5 +38,6 @@ public final class ArtisanalNeoForgeClient {
 
     private static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
         ArtisanalClient.registerRenderers(event::registerEntityRenderer);
+        ArtisanalClient.registerBlockEntityRenderers(event::registerBlockEntityRenderer);
     }
 }

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_purple_plaster": {
+      "conditions": {
+        "items": [
+          {
+            "items": "artisanal:purple_plaster"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "artisanal:purple_plaster_stairs_from_purple_plaster_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_purple_plaster"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "artisanal:purple_plaster_stairs_from_purple_plaster_stonecutting"
+    ]
+  }
+}

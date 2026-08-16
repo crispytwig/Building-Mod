@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "artisanal:block/black_terracotta_shingles",
+    "side": "artisanal:block/black_terracotta_shingles",
+    "top": "artisanal:block/black_terracotta_shingles"
+  }
+}

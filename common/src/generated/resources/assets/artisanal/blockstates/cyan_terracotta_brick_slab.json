@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "artisanal:block/cyan_terracotta_brick_slab"
+    },
+    "type=double": {
+      "model": "artisanal:block/cyan_terracotta_bricks"
+    },
+    "type=top": {
+      "model": "artisanal:block/cyan_terracotta_brick_slab_top"
+    }
+  }
+}

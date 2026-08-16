@@ -6,7 +6,11 @@
   "mixins": [
     "BlockBehaviourMixin",
     "BlockSetTypeMixin",
+    "VillagerGoalPackagesMixin",
     "WoodTypeMixin"
+  ],
+  "client": [
+    "ParticleEngineMixin"
   ],
   "injectors": {
     "defaultRequire": 1

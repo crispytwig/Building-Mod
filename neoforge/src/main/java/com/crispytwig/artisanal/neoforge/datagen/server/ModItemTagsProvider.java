@@ -9,7 +9,6 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -19,7 +18,7 @@ public class ModItemTagsProvider extends ItemTagsProvider {
     }
 
     @Override
-    protected void addTags(HolderLookup.@NotNull Provider provider) {
+    protected void addTags(HolderLookup.Provider provider) {
         copy(BlockTags.STAIRS, ItemTags.STAIRS);
         copy(BlockTags.SLABS, ItemTags.SLABS);
     }

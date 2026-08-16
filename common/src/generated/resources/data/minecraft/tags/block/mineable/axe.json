@@ -6,6 +6,10 @@
     "artisanal:polished_oak",
     "artisanal:oak_trim",
     "artisanal:oak_trim_stairs",
-    "artisanal:oak_trim_slab"
+    "artisanal:oak_trim_slab",
+    "artisanal:oak_table",
+    "artisanal:oak_chair",
+    "artisanal:oak_window",
+    "artisanal:oak_window_pane"
   ]
 }

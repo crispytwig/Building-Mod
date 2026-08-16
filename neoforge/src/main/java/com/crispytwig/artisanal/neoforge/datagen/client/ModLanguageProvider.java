@@ -1,9 +1,14 @@
 package com.crispytwig.artisanal.neoforge.datagen.client;
 
 import com.crispytwig.artisanal.Artisanal;
+import com.crispytwig.artisanal.platform.registry.DeferredHolder;
 import com.crispytwig.artisanal.registry.ModBlocks;
 import net.minecraft.data.PackOutput;
+import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.LanguageProvider;
+
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public class ModLanguageProvider extends LanguageProvider {
     public ModLanguageProvider(PackOutput output) {
@@ -18,17 +23,12 @@ public class ModLanguageProvider extends LanguageProvider {
         add("artisanal.configuration.cherry_wood_sounds", "Cherry Wood Sounds");
         add("artisanal.configuration.cherry_wood_sounds.tooltip", "Makes every woodset use the Cherry woodset's sounds");
 
-        add(ModBlocks.OAK_BOARDS.get(), "Oak Boards");
-        add(ModBlocks.OAK_BOARD_STAIRS.get(), "Oak Board Stairs");
-        add(ModBlocks.OAK_BOARD_SLAB.get(), "Oak Board Slab");
-        add(ModBlocks.POLISHED_OAK.get(), "Polished Oak");
+        ModBlocks.BLOCKS.getEntries().forEach(this::addTitleCased);
+    }
 
-        add(ModBlocks.OAK_TRIM.get(), "Oak Trim");
-        add(ModBlocks.OAK_TRIM_STAIRS.get(), "Oak Trim Stairs");
-        add(ModBlocks.OAK_TRIM_SLAB.get(), "Oak Trim Slab");
-
-        add(ModBlocks.PRISMARINE_TILES.get(), "Prismarine Tiles");
-        add(ModBlocks.PRISMARINE_TILE_STAIRS.get(), "Prismarine Tile Stairs");
-        add(ModBlocks.PRISMARINE_TILE_SLAB.get(), "Prismarine Tile Slab");
+    private void addTitleCased(DeferredHolder<Block, ? extends Block> holder) {
+        add(holder.get(), Arrays.stream(holder.getId().getPath().split("_"))
+                .map(word -> Character.toUpperCase(word.charAt(0)) + word.substring(1))
+                .collect(Collectors.joining(" ")));
     }
 }

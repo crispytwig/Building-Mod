@@ -18,6 +18,7 @@ public class ModLanguageProvider extends LanguageProvider {
     @Override
     protected void addTranslations() {
         add("itemGroup." + Artisanal.MOD_ID, "Artisanal");
+        add("itemGroup." + Artisanal.MOD_ID + ".colored", "Artisanal Colored Blocks");
 
         add("artisanal.configuration.title", "Artisanal Config");
         add("artisanal.configuration.cherry_wood_sounds", "Cherry Wood Sounds");

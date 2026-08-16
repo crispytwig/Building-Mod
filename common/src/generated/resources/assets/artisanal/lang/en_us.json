@@ -166,5 +166,6 @@
   "block.artisanal.yellow_terracotta_shingle_slab": "Yellow Terracotta Shingle Slab",
   "block.artisanal.yellow_terracotta_shingle_stairs": "Yellow Terracotta Shingle Stairs",
   "block.artisanal.yellow_terracotta_shingles": "Yellow Terracotta Shingles",
-  "itemGroup.artisanal": "Artisanal"
+  "itemGroup.artisanal": "Artisanal",
+  "itemGroup.artisanal.colored": "Artisanal Colored Blocks"
 }

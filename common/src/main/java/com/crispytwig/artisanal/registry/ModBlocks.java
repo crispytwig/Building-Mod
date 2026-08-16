@@ -30,6 +30,13 @@ public final class ModBlocks {
 
     private static final List<DeferredHolder<Block, ? extends Block>> WOODEN_BLOCKS = new ArrayList<>();
 
+    private static final DyeColor[] COLOR_ORDER = {
+            DyeColor.WHITE, DyeColor.LIGHT_GRAY, DyeColor.GRAY, DyeColor.BLACK,
+            DyeColor.BROWN, DyeColor.RED, DyeColor.ORANGE, DyeColor.YELLOW,
+            DyeColor.LIME, DyeColor.GREEN, DyeColor.CYAN, DyeColor.LIGHT_BLUE,
+            DyeColor.BLUE, DyeColor.PURPLE, DyeColor.MAGENTA, DyeColor.PINK
+    };
+
     public static final DeferredHolder<Block, Block> OAK_BOARDS = registerWooden("oak_boards", Block::new, oakProperties());
     public static final DeferredHolder<Block, ModStairBlock> OAK_BOARD_STAIRS = registerWoodenStairs("oak_board_stairs", OAK_BOARDS, oakProperties());
     public static final DeferredHolder<Block, SlabBlock> OAK_BOARD_SLAB = registerWooden("oak_board_slab", SlabBlock::new, oakProperties());
@@ -109,7 +116,7 @@ public final class ModBlocks {
     private static List<ColoredSet> createTerracotta() {
         List<ColoredSet> sets = new ArrayList<>();
         sets.add(terracottaSet(null));
-        for (DyeColor color : DyeColor.values()) {
+        for (DyeColor color : COLOR_ORDER) {
             sets.add(terracottaSet(color));
         }
         return List.copyOf(sets);
@@ -118,16 +125,16 @@ public final class ModBlocks {
     private static ColoredSet terracottaSet(DyeColor color) {
         String prefix = color == null ? "terracotta" : color.getName() + "_terracotta";
         MapColor mapColor = vanillaTerracotta(color).defaultMapColor();
-        BlockSet bricks = registerSet(prefix + "_bricks", prefix + "_brick", () -> stoneProperties(mapColor));
-        BlockSet shingles = registerSet(prefix + "_shingles", prefix + "_shingle", () -> stoneProperties(mapColor));
+        BlockSet bricks = registerSet(prefix + "_bricks", prefix + "_brick", () -> stoneProperties(mapColor, SoundType.DEEPSLATE_TILES));
+        BlockSet shingles = registerSet(prefix + "_shingles", prefix + "_shingle", () -> stoneProperties(mapColor, SoundType.DEEPSLATE_TILES));
         return new ColoredSet(color, List.of(bricks, shingles));
     }
 
     private static List<ColoredSet> createPlaster() {
         List<ColoredSet> sets = new ArrayList<>();
-        for (DyeColor color : DyeColor.values()) {
+        for (DyeColor color : COLOR_ORDER) {
             String name = color.getName() + "_plaster";
-            sets.add(new ColoredSet(color, List.of(registerSet(name, name, () -> stoneProperties(color.getMapColor())))));
+            sets.add(new ColoredSet(color, List.of(registerSet(name, name, () -> stoneProperties(color.getMapColor(), SoundType.TUFF)))));
         }
         return List.copyOf(sets);
     }
@@ -140,8 +147,8 @@ public final class ModBlocks {
         return BlockBehaviour.Properties.ofFullCopy(Blocks.PRISMARINE_BRICKS);
     }
 
-    private static BlockBehaviour.Properties stoneProperties(MapColor mapColor) {
-        return BlockBehaviour.Properties.of().mapColor(mapColor).strength(1.25F, 4.2F).sound(SoundType.STONE);
+    private static BlockBehaviour.Properties stoneProperties(MapColor mapColor, SoundType soundType) {
+        return BlockBehaviour.Properties.of().mapColor(mapColor).strength(1.25F, 4.2F).sound(soundType);
     }
 
     private static BlockBehaviour.Properties windowProperties(MapColor mapColor) {

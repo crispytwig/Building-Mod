@@ -1,6 +1,7 @@
 package com.crispytwig.artisanal.neoforge.datagen.client;
 
 import com.crispytwig.artisanal.Artisanal;
+import com.crispytwig.artisanal.block.BeamBlock;
 import com.crispytwig.artisanal.block.ChairBlock;
 import com.crispytwig.artisanal.block.TableBlock;
 import com.crispytwig.artisanal.block.TrimBlock;
@@ -13,6 +14,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -42,6 +44,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
         trim("oak_trim", Artisanal.location("block/oak_boards"), ModBlocks.OAK_TRIM.get());
         trimStairs("oak_trim", ModBlocks.OAK_TRIM_STAIRS.get());
         slab("oak_trim_slab", Artisanal.location("block/oak_trim_slab_full"), ModBlocks.OAK_TRIM_SLAB.get());
+
+        pillar(ModBlocks.OAK_PILLAR.get(), Artisanal.location("block/oak_pillar"), Artisanal.location("block/oak_pillar_top"));
+        beam(ModBlocks.OAK_BEAM.get(), Artisanal.location("block/oak_pillar"), Artisanal.location("block/oak_pillar_top"));
 
         cube(ModBlocks.PRISMARINE_TILES.get());
         cubeStairs(ModBlocks.PRISMARINE_TILE_STAIRS.get(), Artisanal.location("block/prismarine_tiles"));
@@ -88,6 +93,40 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 .rotationY(((int) state.getValue(ChairBlock.FACING).toYRot() + 180) % 360)
                 .build());
         simpleBlockItem(block, normal);
+    }
+
+    private void pillar(RotatedPillarBlock block, ResourceLocation side, ResourceLocation end) {
+        String name = Artisanal.name(block);
+        axisBlock(block, side, end);
+        itemModels().withExistingParent(name, Artisanal.location("block/" + name));
+    }
+
+    private void beam(BeamBlock block, ResourceLocation side, ResourceLocation end) {
+        String name = Artisanal.name(block);
+        ModelFile bottom = beamModel(name + "_bottom", "beam_bottom", side, end);
+        ModelFile center = beamModel(name + "_center", "beam_center", side, end);
+        ModelFile top = beamModel(name + "_top", "beam_top", side, end);
+        beamModel(name + "_inventory", "beam_inventory", side, end);
+
+        var builder = getMultipartBuilder(block);
+        builder.part().modelFile(bottom).addModel().condition(BeamBlock.Y, true).end();
+        builder.part().modelFile(top).addModel().condition(BeamBlock.Y, true).end();
+        builder.part().modelFile(bottom).rotationX(90).addModel().condition(BeamBlock.Z, true).end();
+        builder.part().modelFile(top).rotationX(90).addModel().condition(BeamBlock.Z, true).end();
+        builder.part().modelFile(bottom).rotationX(90).rotationY(90).addModel().condition(BeamBlock.X, true).end();
+        builder.part().modelFile(top).rotationX(90).rotationY(90).addModel().condition(BeamBlock.X, true).end();
+        builder.part().modelFile(center).addModel().condition(BeamBlock.Y, true).end();
+        builder.part().modelFile(center).rotationX(90).addModel().condition(BeamBlock.Y, false).condition(BeamBlock.Z, true).end();
+        builder.part().modelFile(center).rotationX(90).rotationY(90).addModel().condition(BeamBlock.X, true).condition(BeamBlock.Y, false).condition(BeamBlock.Z, false).end();
+
+        itemModels().withExistingParent(name, Artisanal.location("block/" + name + "_inventory"));
+    }
+
+    private BlockModelBuilder beamModel(String name, String template, ResourceLocation side, ResourceLocation end) {
+        return models().withExistingParent(name, Artisanal.location("block/template/" + template))
+                .texture("side", side)
+                .texture("end", end)
+                .texture("particle", side);
     }
 
     private void window(WindowBlock block) {

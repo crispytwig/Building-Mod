@@ -10,6 +10,7 @@ import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.data.recipes.SingleItemRecipeBuilder;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.DyeItem;
 import net.minecraft.world.item.Items;
@@ -40,6 +41,22 @@ public class ModRecipeProvider extends RecipeProvider {
                 .save(output);
 
         slab(output, RecipeCategory.BUILDING_BLOCKS, ModBlocks.PRISMARINE_TILE_SLAB.get(), ModBlocks.PRISMARINE_TILES.get());
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.OAK_PILLAR.get(), 8)
+                .group("pillar")
+                .pattern("L")
+                .pattern("L")
+                .define('L', ItemTags.OAK_LOGS)
+                .unlockedBy("has_logs", has(ItemTags.OAK_LOGS))
+                .save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.OAK_BEAM.get(), 8)
+                .group("beam")
+                .pattern("P")
+                .pattern("P")
+                .define('P', ModBlocks.OAK_PILLAR.get())
+                .unlockedBy(getHasName(ModBlocks.OAK_PILLAR.get()), has(ModBlocks.OAK_PILLAR.get()))
+                .save(output);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.OAK_TABLE.get(), 2)
                 .pattern("PPP")

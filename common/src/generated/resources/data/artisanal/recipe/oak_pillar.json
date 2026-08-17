@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "pillar",
+  "key": {
+    "L": {
+      "tag": "minecraft:oak_logs"
+    }
+  },
+  "pattern": [
+    "L",
+    "L"
+  ],
+  "result": {
+    "count": 8,
+    "id": "artisanal:oak_pillar"
+  }
+}

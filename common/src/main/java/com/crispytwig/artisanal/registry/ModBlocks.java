@@ -1,6 +1,7 @@
 package com.crispytwig.artisanal.registry;
 
 import com.crispytwig.artisanal.Artisanal;
+import com.crispytwig.artisanal.block.BeamBlock;
 import com.crispytwig.artisanal.block.ChairBlock;
 import com.crispytwig.artisanal.block.ModStairBlock;
 import com.crispytwig.artisanal.block.TableBlock;
@@ -15,6 +16,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -45,6 +47,9 @@ public final class ModBlocks {
     public static final DeferredHolder<Block, TrimBlock> OAK_TRIM = registerWooden("oak_trim", TrimBlock::new, oakProperties());
     public static final DeferredHolder<Block, TrimStairBlock> OAK_TRIM_STAIRS = registerWoodenTrimStairs("oak_trim_stairs", OAK_TRIM, oakProperties());
     public static final DeferredHolder<Block, SlabBlock> OAK_TRIM_SLAB = registerWooden("oak_trim_slab", SlabBlock::new, oakProperties());
+
+    public static final DeferredHolder<Block, RotatedPillarBlock> OAK_PILLAR = registerWooden("oak_pillar", RotatedPillarBlock::new, oakProperties());
+    public static final DeferredHolder<Block, BeamBlock> OAK_BEAM = registerWooden("oak_beam", BeamBlock::new, oakProperties().noOcclusion());
 
     public static final DeferredHolder<Block, TableBlock> OAK_TABLE = registerWooden("oak_table", TableBlock::new, decorativeProperties(MapColor.WOOD, SoundType.WOOD).strength(2.5F).dynamicShape());
     public static final DeferredHolder<Block, ChairBlock> OAK_CHAIR = registerWooden("oak_chair", ChairBlock::new, decorativeProperties(MapColor.WOOD, SoundType.WOOD).strength(2.5F));

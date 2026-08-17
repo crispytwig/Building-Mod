@@ -1,7 +1,9 @@
 package com.crispytwig.artisanal.neoforge.datagen.server;
 
+import com.crispytwig.artisanal.block.BeamBlock;
 import com.crispytwig.artisanal.registry.ModBlocks;
 import com.crispytwig.artisanal.registry.ModEntityTypes;
+import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.BlockLootSubProvider;
@@ -11,7 +13,13 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 
 import java.util.List;
 import java.util.Set;
@@ -35,10 +43,24 @@ public class ModLootTableProvider extends LootTableProvider {
             getKnownBlocks().forEach(block -> {
                 if (block instanceof SlabBlock) {
                     add(block, createSlabItemTable(block));
+                } else if (block instanceof BeamBlock) {
+                    add(block, createBeamTable(block));
                 } else {
                     dropSelf(block);
                 }
             });
+        }
+
+        private LootTable.Builder createBeamTable(Block block) {
+            LootTable.Builder table = LootTable.lootTable();
+            for (BooleanProperty axis : new BooleanProperty[]{BeamBlock.X, BeamBlock.Y, BeamBlock.Z}) {
+                table.withPool(applyExplosionCondition(block, LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(block))
+                        .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
+                                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(axis, true)))));
+            }
+            return table;
         }
 
         @Override

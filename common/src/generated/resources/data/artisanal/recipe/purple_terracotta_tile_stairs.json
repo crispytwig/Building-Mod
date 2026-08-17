@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "terracotta_tile_stairs",
+  "key": {
+    "#": {
+      "item": "artisanal:purple_terracotta_tiles"
+    }
+  },
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "result": {
+    "count": 4,
+    "id": "artisanal:purple_terracotta_tile_stairs"
+  }
+}

@@ -48,6 +48,13 @@ neoForge {
     }
 }
 
+dependencies {
+    compileOnly "maven.modrinth:emi:${emi_version}"
+    runtimeOnly "maven.modrinth:emi:${emi_version}"
+    compileOnly "maven.modrinth:farmers-delight:${farmers_delight_version}"
+    runtimeOnly "maven.modrinth:farmers-delight:${farmers_delight_version}"
+}
+
 sourceSets.main.resources {
     srcDir generatedResources.absolutePath
 }

@@ -1,0 +1,28 @@
+{
+  "add": {
+    "/artisanal:(?<stem>.+)_bricks/": [
+      "artisanal:${stem}_brick_stairs",
+      "artisanal:${stem}_brick_slab"
+    ],
+    "/artisanal:(?<stem>.+)_tiles/": [
+      "artisanal:${stem}_tile_stairs",
+      "artisanal:${stem}_tile_slab"
+    ],
+    "/artisanal:(?<stem>.+)_shingles/": [
+      "artisanal:${stem}_shingle_stairs",
+      "artisanal:${stem}_shingle_slab"
+    ],
+    "/artisanal:(?<stem>.+)_boards/": [
+      "artisanal:${stem}_board_stairs",
+      "artisanal:${stem}_board_slab"
+    ],
+    "/artisanal:(?<stem>.+)_plaster/": [
+      "artisanal:${stem}_plaster_stairs",
+      "artisanal:${stem}_plaster_slab"
+    ],
+    "/artisanal:(?<stem>.+)_trim/": [
+      "artisanal:${stem}_trim_stairs",
+      "artisanal:${stem}_trim_slab"
+    ]
+  }
+}

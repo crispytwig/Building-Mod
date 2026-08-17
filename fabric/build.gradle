@@ -12,6 +12,8 @@ dependencies {
     }
     modImplementation "net.fabricmc:fabric-loader:$fabric_loader_version"
     modImplementation "net.fabricmc.fabric-api:fabric-api:$fabric_version"
+    modCompileOnly "maven.modrinth:clutter-no-more:${clutter_no_more_version}-fabric"
+    modRuntimeOnly "maven.modrinth:clutter-no-more:${clutter_no_more_version}-fabric"
 }
 
 loom {

@@ -7,6 +7,7 @@ import net.minecraft.world.level.block.Block;
 
 public final class ModTags {
     public static final TagKey<Block> PRISMARINE = TagKey.create(Registries.BLOCK, Artisanal.location("prismarine"));
+    public static final TagKey<Block> FACADE_MATERIALS = TagKey.create(Registries.BLOCK, Artisanal.location("facade_materials"));
 
     private ModTags() {
     }

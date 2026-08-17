@@ -1,6 +1,7 @@
 package com.crispytwig.artisanal.registry;
 
 import com.crispytwig.artisanal.Artisanal;
+import com.crispytwig.artisanal.item.FacadeItem;
 import com.crispytwig.artisanal.platform.registry.DeferredHolder;
 import com.crispytwig.artisanal.platform.registry.DeferredRegister;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -14,6 +15,9 @@ public final class ModItems {
     static {
         ModBlocks.BLOCKS.getEntries().forEach(ModItems::registerBlockItem);
     }
+
+    public static final DeferredHolder<Item, FacadeItem> FACADE = ITEMS.register("facade",
+            () -> new FacadeItem(new Item.Properties()));
 
     private ModItems() {
     }

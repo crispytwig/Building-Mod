@@ -159,7 +159,7 @@ public final class ModBlocks {
     }
 
     private static BlockBehaviour.Properties stoneProperties(MapColor mapColor, SoundType soundType) {
-        return BlockBehaviour.Properties.of().mapColor(mapColor).strength(1.25F, 4.2F).sound(soundType);
+        return BlockBehaviour.Properties.of().mapColor(mapColor).strength(1.25F, 4.2F).sound(soundType).requiresCorrectToolForDrops();
     }
 
     private static BlockBehaviour.Properties windowProperties(MapColor mapColor) {

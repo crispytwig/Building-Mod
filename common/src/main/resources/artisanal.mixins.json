@@ -10,6 +10,7 @@
     "WoodTypeMixin"
   ],
   "client": [
+    "BlockRenderDispatcherMixin",
     "ParticleEngineMixin"
   ],
   "injectors": {

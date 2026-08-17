@@ -43,6 +43,8 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
                 Blocks.DARK_PRISMARINE, Blocks.DARK_PRISMARINE_STAIRS, Blocks.DARK_PRISMARINE_SLAB,
                 ModBlocks.PRISMARINE_TILES.get(), ModBlocks.PRISMARINE_TILE_STAIRS.get(), ModBlocks.PRISMARINE_TILE_SLAB.get());
 
+        tag(ModTags.FACADE_MATERIALS);
+
         ModBlocks.TERRACOTTA.forEach(colored -> colored.sets().forEach(this::addPickaxeSet));
         ModBlocks.PLASTER.forEach(colored -> colored.sets().forEach(this::addPickaxeSet));
     }

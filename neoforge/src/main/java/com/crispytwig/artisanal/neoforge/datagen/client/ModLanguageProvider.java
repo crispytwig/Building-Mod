@@ -3,6 +3,7 @@ package com.crispytwig.artisanal.neoforge.datagen.client;
 import com.crispytwig.artisanal.Artisanal;
 import com.crispytwig.artisanal.platform.registry.DeferredHolder;
 import com.crispytwig.artisanal.registry.ModBlocks;
+import com.crispytwig.artisanal.registry.ModItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.LanguageProvider;
@@ -25,6 +26,9 @@ public class ModLanguageProvider extends LanguageProvider {
         add("artisanal.configuration.cherry_wood_sounds.tooltip", "Makes every woodset use the Cherry woodset's sounds");
         add("artisanal.configuration.prismarine_deepslate_sounds", "Prismarine Sounds");
         add("artisanal.configuration.prismarine_deepslate_sounds.tooltip", "Makes every Prismarine block use Deepslate sounds");
+
+        add(ModItems.FACADE.get(), "Facade");
+        add(ModItems.FACADE.get().getDescriptionId() + ".material", "%s Facade");
 
         ModBlocks.BLOCKS.getEntries().forEach(this::addTitleCased);
     }

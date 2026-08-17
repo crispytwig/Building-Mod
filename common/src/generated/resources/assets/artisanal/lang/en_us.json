@@ -224,6 +224,8 @@
   "block.artisanal.yellow_terracotta_tile_slab": "Yellow Terracotta Tile Slab",
   "block.artisanal.yellow_terracotta_tile_stairs": "Yellow Terracotta Tile Stairs",
   "block.artisanal.yellow_terracotta_tiles": "Yellow Terracotta Tiles",
+  "item.artisanal.facade": "Facade",
+  "item.artisanal.facade.material": "%s Facade",
   "itemGroup.artisanal": "Artisanal",
   "itemGroup.artisanal.colored": "Artisanal Colored Blocks"
 }

@@ -1,6 +1,7 @@
 package com.crispytwig.artisanal.neoforge.datagen.server;
 
 import com.crispytwig.artisanal.Artisanal;
+import com.crispytwig.artisanal.recipe.FacadeRecipe;
 import com.crispytwig.artisanal.registry.ModBlocks;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -10,6 +11,7 @@ import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.data.recipes.SingleItemRecipeBuilder;
+import net.minecraft.data.recipes.SpecialRecipeBuilder;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.DyeItem;
@@ -29,6 +31,8 @@ public class ModRecipeProvider extends RecipeProvider {
 
     @Override
     protected void buildRecipes(RecipeOutput output) {
+        SpecialRecipeBuilder.special(FacadeRecipe::new).save(output, Artisanal.location("facade"));
+
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.PRISMARINE_TILES.get(), 4)
                 .define('#', Blocks.PRISMARINE_BRICKS)
                 .pattern("##")

@@ -55,6 +55,11 @@ dependencies {
     runtimeOnly "maven.modrinth:farmers-delight:${farmers_delight_version}"
     compileOnly "maven.modrinth:clutter-no-more:${clutter_no_more_version}-neoforge"
     runtimeOnly "maven.modrinth:clutter-no-more:${clutter_no_more_version}-neoforge"
+    runtimeOnly "maven.modrinth:create:${create_version}"
+    runtimeOnly "maven.modrinth:sable:${sable_version}-neoforge"
+    runtimeOnly "maven.modrinth:create-aeronautics:${create_aeronautics_version}"
+    runtimeOnly "maven.modrinth:cloth-config:${cloth_config_version}"
+    runtimeOnly "maven.modrinth:barehanded:${barehanded_version}-neoforge"
 }
 
 sourceSets.main.resources {

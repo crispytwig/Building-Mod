@@ -50,6 +50,14 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_logs", has(ItemTags.OAK_LOGS))
                 .save(output);
 
+        slab(output, RecipeCategory.BUILDING_BLOCKS, ModBlocks.POLISHED_OAK_SLAB.get(), ModBlocks.POLISHED_OAK.get());
+
+        stairBuilder(ModBlocks.OAK_PILLAR_STAIRS.get(), Ingredient.of(ModBlocks.OAK_PILLAR.get()))
+                .unlockedBy(getHasName(ModBlocks.OAK_PILLAR.get()), has(ModBlocks.OAK_PILLAR.get()))
+                .save(output);
+
+        slab(output, RecipeCategory.BUILDING_BLOCKS, ModBlocks.OAK_PILLAR_SLAB.get(), ModBlocks.OAK_PILLAR.get());
+
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.OAK_BEAM.get(), 8)
                 .group("beam")
                 .pattern("P")

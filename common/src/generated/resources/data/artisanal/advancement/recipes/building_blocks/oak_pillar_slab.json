@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_oak_pillar": {
+      "conditions": {
+        "items": [
+          {
+            "items": "artisanal:oak_pillar"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "artisanal:oak_pillar_slab"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_oak_pillar"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "artisanal:oak_pillar_slab"
+    ]
+  }
+}

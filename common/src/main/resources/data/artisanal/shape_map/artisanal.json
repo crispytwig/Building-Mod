@@ -20,9 +20,20 @@
       "artisanal:${stem}_plaster_stairs",
       "artisanal:${stem}_plaster_slab"
     ],
+    "/artisanal:polished_(?<stem>.+)(?<!_slab)/": [
+      "artisanal:polished_${stem}_slab"
+    ],
     "/artisanal:(?<stem>.+)_trim/": [
-      "artisanal:${stem}_trim_stairs",
-      "artisanal:${stem}_trim_slab"
+      "artisanal:${stem}_trim_stairs"
+    ],
+    "/artisanal:(?<stem>.+)_pillar/": [
+      "artisanal:${stem}_pillar_stairs",
+      "artisanal:${stem}_pillar_slab"
+    ]
+  },
+  "remove": {
+    "/artisanal:polished_(?<stem>.+)_slab/": [
+      "clutternomore:artisanal/vertical_polished_${stem}_slab"
     ]
   }
 }

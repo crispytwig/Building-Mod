@@ -4,6 +4,7 @@ import com.crispytwig.artisanal.Artisanal;
 import com.crispytwig.artisanal.block.BeamBlock;
 import com.crispytwig.artisanal.block.ChairBlock;
 import com.crispytwig.artisanal.block.ModStairBlock;
+import com.crispytwig.artisanal.block.ShutterBlock;
 import com.crispytwig.artisanal.block.TableBlock;
 import com.crispytwig.artisanal.block.TrimBlock;
 import com.crispytwig.artisanal.block.TrimStairBlock;
@@ -43,16 +44,20 @@ public final class ModBlocks {
     public static final DeferredHolder<Block, ModStairBlock> OAK_BOARD_STAIRS = registerWoodenStairs("oak_board_stairs", OAK_BOARDS, oakProperties());
     public static final DeferredHolder<Block, SlabBlock> OAK_BOARD_SLAB = registerWooden("oak_board_slab", SlabBlock::new, oakProperties());
     public static final DeferredHolder<Block, Block> POLISHED_OAK = registerWooden("polished_oak", Block::new, oakProperties());
+    public static final DeferredHolder<Block, SlabBlock> POLISHED_OAK_SLAB = registerWooden("polished_oak_slab", SlabBlock::new, oakProperties());
 
     public static final DeferredHolder<Block, TrimBlock> OAK_TRIM = registerWooden("oak_trim", TrimBlock::new, oakProperties());
     public static final DeferredHolder<Block, TrimStairBlock> OAK_TRIM_STAIRS = registerWoodenTrimStairs("oak_trim_stairs", OAK_TRIM, oakProperties());
-    public static final DeferredHolder<Block, SlabBlock> OAK_TRIM_SLAB = registerWooden("oak_trim_slab", SlabBlock::new, oakProperties());
 
     public static final DeferredHolder<Block, RotatedPillarBlock> OAK_PILLAR = registerWooden("oak_pillar", RotatedPillarBlock::new, oakProperties());
+    public static final DeferredHolder<Block, ModStairBlock> OAK_PILLAR_STAIRS = registerWoodenStairs("oak_pillar_stairs", OAK_PILLAR, oakProperties());
+    public static final DeferredHolder<Block, SlabBlock> OAK_PILLAR_SLAB = registerWooden("oak_pillar_slab", SlabBlock::new, oakProperties());
     public static final DeferredHolder<Block, BeamBlock> OAK_BEAM = registerWooden("oak_beam", BeamBlock::new, oakProperties().noOcclusion());
 
     public static final DeferredHolder<Block, TableBlock> OAK_TABLE = registerWooden("oak_table", TableBlock::new, decorativeProperties(MapColor.WOOD, SoundType.WOOD).strength(2.5F).dynamicShape());
     public static final DeferredHolder<Block, ChairBlock> OAK_CHAIR = registerWooden("oak_chair", ChairBlock::new, decorativeProperties(MapColor.WOOD, SoundType.WOOD).strength(2.5F));
+
+    public static final DeferredHolder<Block, ShutterBlock> OAK_SHUTTER = registerWooden("oak_shutter", ShutterBlock::new, oakProperties().noOcclusion());
 
     public static final DeferredHolder<Block, WindowBlock> OAK_WINDOW = register("oak_window", WindowBlock::new, windowProperties(MapColor.WOOD));
     public static final DeferredHolder<Block, WindowPaneBlock> OAK_WINDOW_PANE = register("oak_window_pane", WindowPaneBlock::new, windowProperties(MapColor.WOOD));

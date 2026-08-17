@@ -3,6 +3,7 @@ package com.crispytwig.artisanal.neoforge.datagen.client;
 import com.crispytwig.artisanal.Artisanal;
 import com.crispytwig.artisanal.block.BeamBlock;
 import com.crispytwig.artisanal.block.ChairBlock;
+import com.crispytwig.artisanal.block.ShutterBlock;
 import com.crispytwig.artisanal.block.TableBlock;
 import com.crispytwig.artisanal.block.TrimBlock;
 import com.crispytwig.artisanal.block.TrimStairBlock;
@@ -19,6 +20,7 @@ import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.DoorHingeSide;
 import net.minecraft.world.level.block.state.properties.Half;
 import net.neoforged.neoforge.client.model.generators.BlockModelBuilder;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
@@ -40,12 +42,14 @@ public class ModBlockStateProvider extends BlockStateProvider {
         cubeStairs(ModBlocks.OAK_BOARD_STAIRS.get(), Artisanal.location("block/oak_boards"));
         cubeSlab(ModBlocks.OAK_BOARD_SLAB.get(), Artisanal.location("block/oak_boards"), Artisanal.location("block/oak_boards"));
         cube(ModBlocks.POLISHED_OAK.get());
+        slab("polished_oak_slab", Artisanal.location("block/polished_oak_slab_full"), ModBlocks.POLISHED_OAK_SLAB.get());
 
         trim("oak_trim", Artisanal.location("block/oak_boards"), ModBlocks.OAK_TRIM.get());
         trimStairs("oak_trim", ModBlocks.OAK_TRIM_STAIRS.get());
-        slab("oak_trim_slab", Artisanal.location("block/oak_trim_slab_full"), ModBlocks.OAK_TRIM_SLAB.get());
 
         pillar(ModBlocks.OAK_PILLAR.get(), Artisanal.location("block/oak_pillar"), Artisanal.location("block/oak_pillar_top"));
+        pillarStairs("oak_pillar", ModBlocks.OAK_PILLAR_STAIRS.get());
+        pillarSlab(ModBlocks.OAK_PILLAR_SLAB.get(), Artisanal.location("block/oak_pillar"), Artisanal.location("block/oak_pillar"), Artisanal.location("block/oak_pillar_top"));
         beam(ModBlocks.OAK_BEAM.get(), Artisanal.location("block/oak_pillar"), Artisanal.location("block/oak_pillar_top"));
 
         cube(ModBlocks.PRISMARINE_TILES.get());
@@ -54,6 +58,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         table(ModBlocks.OAK_TABLE.get(), Artisanal.location("block/oak_boards"));
         chair(ModBlocks.OAK_CHAIR.get(), Artisanal.location("block/oak_boards"));
+        shutter(ModBlocks.OAK_SHUTTER.get());
         window(ModBlocks.OAK_WINDOW.get());
         windowPane(ModBlocks.OAK_WINDOW_PANE.get(), "oak_window", Artisanal.location("block/oak_trim_end"));
 
@@ -101,6 +106,21 @@ public class ModBlockStateProvider extends BlockStateProvider {
         itemModels().withExistingParent(name, Artisanal.location("block/" + name));
     }
 
+    private void pillarStairs(String name, StairBlock block) {
+        getVariantBuilder(block).forAllStatesExcept(state -> ConfiguredModel.builder()
+                .modelFile(existing(name + shape(state) + "_stairs"))
+                .rotationX(state.getValue(StairBlock.HALF) == Half.TOP ? 180 : 0)
+                .rotationY(rotation(state))
+                .build(), StairBlock.WATERLOGGED);
+        simpleBlockItem(block, existing(name + "_stairs"));
+    }
+
+    private void pillarSlab(SlabBlock block, ResourceLocation full, ResourceLocation side, ResourceLocation end) {
+        String name = Artisanal.name(block);
+        slabBlock(block, full, side, end, end);
+        itemModels().withExistingParent(name, Artisanal.location("block/" + name));
+    }
+
     private void beam(BeamBlock block, ResourceLocation side, ResourceLocation end) {
         String name = Artisanal.name(block);
         ModelFile bottom = beamModel(name + "_bottom", "beam_bottom", side, end);
@@ -127,6 +147,23 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 .texture("side", side)
                 .texture("end", end)
                 .texture("particle", side);
+    }
+
+    private void shutter(ShutterBlock block) {
+        String name = Artisanal.name(block);
+        ResourceLocation texture = blockTexture(block);
+
+        ModelFile closed = templateModel(name, "shutter", texture, texture).renderType("cutout");
+        ModelFile leftOpen = templateModel(name + "_left_open", "shutter_left_open", texture, texture).renderType("cutout");
+        ModelFile rightOpen = templateModel(name + "_right_open", "shutter_right_open", texture, texture).renderType("cutout");
+        templateModel(name + "_inventory", "shutter_inventory", texture, texture).renderType("cutout");
+
+        getVariantBuilder(block).forAllStatesExcept(state -> ConfiguredModel.builder()
+                .modelFile(!state.getValue(ShutterBlock.OPEN) ? closed
+                        : state.getValue(ShutterBlock.HINGE) == DoorHingeSide.LEFT ? leftOpen : rightOpen)
+                .rotationY((int) state.getValue(ShutterBlock.FACING).toYRot())
+                .build(), ShutterBlock.POWERED);
+        itemModels().withExistingParent(name, Artisanal.location("block/" + name + "_inventory"));
     }
 
     private void window(WindowBlock block) {

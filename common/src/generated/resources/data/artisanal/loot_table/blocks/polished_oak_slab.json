@@ -11,7 +11,7 @@
               "add": false,
               "conditions": [
                 {
-                  "block": "artisanal:oak_trim_slab",
+                  "block": "artisanal:polished_oak_slab",
                   "condition": "minecraft:block_state_property",
                   "properties": {
                     "type": "double"
@@ -25,11 +25,11 @@
               "function": "minecraft:explosion_decay"
             }
           ],
-          "name": "artisanal:oak_trim_slab"
+          "name": "artisanal:polished_oak_slab"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "artisanal:blocks/oak_trim_slab"
+  "random_sequence": "artisanal:blocks/polished_oak_slab"
 }

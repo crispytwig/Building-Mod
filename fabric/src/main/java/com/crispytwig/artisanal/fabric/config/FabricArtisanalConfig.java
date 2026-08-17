@@ -11,12 +11,15 @@ import java.nio.file.Path;
 import java.util.Properties;
 
 public final class FabricArtisanalConfig implements IConfigHelper {
-    private static final boolean CHERRY_WOOD_SOUNDS = read();
+    private static final Properties PROPERTIES = read();
+    private static final boolean CHERRY_WOOD_SOUNDS = Boolean.parseBoolean(PROPERTIES.getProperty("cherry_wood_sounds", "true"));
+    private static final boolean PRISMARINE_DEEPSLATE_SOUNDS = Boolean.parseBoolean(PROPERTIES.getProperty("prismarine_deepslate_sounds", "true"));
 
-    private static boolean read() {
+    private static Properties read() {
         Path path = FabricLoader.getInstance().getConfigDir().resolve(Artisanal.MOD_ID + ".properties");
         Properties properties = new Properties();
         properties.setProperty("cherry_wood_sounds", "true");
+        properties.setProperty("prismarine_deepslate_sounds", "true");
 
         try {
             if (Files.exists(path)) {
@@ -29,11 +32,16 @@ public final class FabricArtisanalConfig implements IConfigHelper {
             }
         } catch (Exception ignored) {
         }
-        return Boolean.parseBoolean(properties.getProperty("cherry_wood_sounds", "true"));
+        return properties;
     }
 
     @Override
     public boolean cherryWoodSounds() {
         return CHERRY_WOOD_SOUNDS;
+    }
+
+    @Override
+    public boolean prismarineDeepslateSounds() {
+        return PRISMARINE_DEEPSLATE_SOUNDS;
     }
 }

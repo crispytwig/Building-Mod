@@ -21,8 +21,10 @@ public class ModLanguageProvider extends LanguageProvider {
         add("itemGroup." + Artisanal.MOD_ID + ".colored", "Artisanal Colored Blocks");
 
         add("artisanal.configuration.title", "Artisanal Config");
-        add("artisanal.configuration.cherry_wood_sounds", "Cherry Wood Sounds");
+        add("artisanal.configuration.cherry_wood_sounds", "Wood Sounds");
         add("artisanal.configuration.cherry_wood_sounds.tooltip", "Makes every woodset use the Cherry woodset's sounds");
+        add("artisanal.configuration.prismarine_deepslate_sounds", "Prismarine Sounds");
+        add("artisanal.configuration.prismarine_deepslate_sounds.tooltip", "Makes every Prismarine block use Deepslate sounds");
 
         ModBlocks.BLOCKS.getEntries().forEach(this::addTitleCased);
     }

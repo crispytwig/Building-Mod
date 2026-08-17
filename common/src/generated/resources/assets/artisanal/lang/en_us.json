@@ -1,6 +1,8 @@
 {
-  "artisanal.configuration.cherry_wood_sounds": "Cherry Wood Sounds",
+  "artisanal.configuration.cherry_wood_sounds": "Wood Sounds",
   "artisanal.configuration.cherry_wood_sounds.tooltip": "Makes every woodset use the Cherry woodset's sounds",
+  "artisanal.configuration.prismarine_deepslate_sounds": "Prismarine Sounds",
+  "artisanal.configuration.prismarine_deepslate_sounds.tooltip": "Makes every Prismarine block use Deepslate sounds",
   "artisanal.configuration.title": "Artisanal Config",
   "block.artisanal.black_plaster": "Black Plaster",
   "block.artisanal.black_plaster_slab": "Black Plaster Slab",

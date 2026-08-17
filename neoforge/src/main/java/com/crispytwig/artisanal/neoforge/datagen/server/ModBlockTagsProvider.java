@@ -3,10 +3,12 @@ package com.crispytwig.artisanal.neoforge.datagen.server;
 import com.crispytwig.artisanal.Artisanal;
 import com.crispytwig.artisanal.platform.registry.DeferredHolder;
 import com.crispytwig.artisanal.registry.ModBlocks;
+import com.crispytwig.artisanal.registry.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.StairBlock;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
@@ -34,6 +36,12 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
         tag(BlockTags.MINEABLE_WITH_AXE).add(ModBlocks.OAK_WINDOW.get(), ModBlocks.OAK_WINDOW_PANE.get());
 
         tag(BlockTags.MINEABLE_WITH_PICKAXE).add(ModBlocks.PRISMARINE_TILES.get(), ModBlocks.PRISMARINE_TILE_STAIRS.get(), ModBlocks.PRISMARINE_TILE_SLAB.get());
+
+        tag(ModTags.PRISMARINE).add(
+                Blocks.PRISMARINE, Blocks.PRISMARINE_STAIRS, Blocks.PRISMARINE_SLAB, Blocks.PRISMARINE_WALL,
+                Blocks.PRISMARINE_BRICKS, Blocks.PRISMARINE_BRICK_STAIRS, Blocks.PRISMARINE_BRICK_SLAB,
+                Blocks.DARK_PRISMARINE, Blocks.DARK_PRISMARINE_STAIRS, Blocks.DARK_PRISMARINE_SLAB,
+                ModBlocks.PRISMARINE_TILES.get(), ModBlocks.PRISMARINE_TILE_STAIRS.get(), ModBlocks.PRISMARINE_TILE_SLAB.get());
 
         ModBlocks.TERRACOTTA.forEach(colored -> colored.sets().forEach(this::addPickaxeSet));
         ModBlocks.PLASTER.forEach(colored -> colored.sets().forEach(this::addPickaxeSet));

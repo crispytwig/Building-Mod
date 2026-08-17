@@ -1,6 +1,7 @@
 package com.crispytwig.artisanal.mixin;
 
 import com.crispytwig.artisanal.sound.CherrySounds;
+import com.crispytwig.artisanal.sound.PrismarineSounds;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
@@ -15,7 +16,7 @@ public class BlockBehaviourMixin {
             method = "getSoundType(Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/block/SoundType;",
             at = @At("RETURN"),
             cancellable = true)
-    private void artisanal$cherryWoodSounds(BlockState state, CallbackInfoReturnable<SoundType> cir) {
-        cir.setReturnValue(CherrySounds.replace(state, cir.getReturnValue()));
+    private void artisanal$replaceSounds(BlockState state, CallbackInfoReturnable<SoundType> cir) {
+        cir.setReturnValue(PrismarineSounds.replace(state, CherrySounds.replace(state, cir.getReturnValue())));
     }
 }

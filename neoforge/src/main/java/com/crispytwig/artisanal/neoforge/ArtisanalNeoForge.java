@@ -1,6 +1,7 @@
 package com.crispytwig.artisanal.neoforge;
 
 import com.crispytwig.artisanal.Artisanal;
+import com.crispytwig.artisanal.block.TimberFrameBlock;
 import com.crispytwig.artisanal.client.FacadeClient;
 import com.crispytwig.artisanal.item.FacadeItem;
 import com.crispytwig.artisanal.network.FacadePayload;
@@ -94,6 +95,9 @@ public class ArtisanalNeoForge {
 
     private static void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
         InteractionResult result = FacadeItem.tryRemove(event.getEntity(), event.getLevel(), event.getHand(), event.getHitVec());
+        if (result == InteractionResult.PASS) {
+            result = TimberFrameBlock.tryCycleCross(event.getEntity(), event.getLevel(), event.getHand(), event.getHitVec());
+        }
         if (result != InteractionResult.PASS) {
             event.setCancellationResult(result);
             event.setCanceled(true);

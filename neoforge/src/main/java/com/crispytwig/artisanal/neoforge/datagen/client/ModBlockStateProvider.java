@@ -5,7 +5,9 @@ import com.crispytwig.artisanal.block.BeamBlock;
 import com.crispytwig.artisanal.block.ChairBlock;
 import com.crispytwig.artisanal.block.FrameBlock;
 import com.crispytwig.artisanal.block.ShutterBlock;
+import com.crispytwig.artisanal.block.CrossType;
 import com.crispytwig.artisanal.block.TableBlock;
+import com.crispytwig.artisanal.block.TimberFrameBlock;
 import com.crispytwig.artisanal.block.TrimBlock;
 import com.crispytwig.artisanal.block.TrimStairBlock;
 import com.crispytwig.artisanal.block.TrimType;
@@ -61,6 +63,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         chair(ModBlocks.OAK_CHAIR.get(), Artisanal.location("block/oak_boards"));
         frame(ModBlocks.OAK_FRAME.get());
         shutter(ModBlocks.OAK_SHUTTER.get());
+        timberFrame(ModBlocks.OAK_TIMBER_FRAME.get());
         window(ModBlocks.OAK_WINDOW.get());
         windowPane(ModBlocks.OAK_WINDOW_PANE.get(), "oak_window", Artisanal.location("block/oak_trim_end"));
 
@@ -179,6 +182,33 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 .rotationY((int) state.getValue(ShutterBlock.FACING).toYRot())
                 .build(), ShutterBlock.POWERED);
         itemModels().withExistingParent(name, Artisanal.location("block/" + name + "_inventory"));
+    }
+
+    private void timberFrame(TimberFrameBlock block) {
+        String name = Artisanal.name(block);
+        ResourceLocation end = Artisanal.location("block/" + name);
+
+        Map<TrimType, ModelFile> models = new EnumMap<>(TrimType.class);
+        for (TrimType type : TrimType.values()) {
+            models.put(type, models().cubeColumn(name + suffix(type), Artisanal.location("block/" + name + suffix(type)), end).renderType("cutout"));
+        }
+
+        Map<CrossType, ModelFile> crossModels = new EnumMap<>(CrossType.class);
+        for (CrossType cross : CrossType.values()) {
+            if (cross != CrossType.NONE) {
+                String crossName = name + "_" + cross.getSerializedName();
+                crossModels.put(cross, models().cubeColumn(crossName, Artisanal.location("block/" + crossName), end).renderType("cutout"));
+            }
+        }
+
+        getVariantBuilder(block).forAllStates(state -> {
+            TrimType type = state.getValue(TimberFrameBlock.TYPE);
+            CrossType cross = state.getValue(TimberFrameBlock.CROSS);
+            return ConfiguredModel.builder()
+                    .modelFile(type == TrimType.SINGLE && cross != CrossType.NONE ? crossModels.get(cross) : models.get(type))
+                    .build();
+        });
+        itemModels().withExistingParent(name, Artisanal.location("block/" + name));
     }
 
     private void window(WindowBlock block) {

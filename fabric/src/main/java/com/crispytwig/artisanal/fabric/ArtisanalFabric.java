@@ -1,6 +1,7 @@
 package com.crispytwig.artisanal.fabric;
 
 import com.crispytwig.artisanal.Artisanal;
+import com.crispytwig.artisanal.block.TimberFrameBlock;
 import com.crispytwig.artisanal.item.FacadeItem;
 import com.crispytwig.artisanal.network.FacadePayload;
 import com.crispytwig.artisanal.registry.ModLayers;
@@ -31,6 +32,7 @@ public class ArtisanalFabric implements ModInitializer {
         PayloadTypeRegistry.playS2C().register(FacadePayload.TYPE, FacadePayload.STREAM_CODEC);
 
         UseBlockCallback.EVENT.register(FacadeItem::tryRemove);
+        UseBlockCallback.EVENT.register(TimberFrameBlock::tryCycleCross);
         PlayerBlockBreakEvents.AFTER.register((level, player, pos, state, blockEntity) -> {
             if (level instanceof ServerLevel serverLevel) {
                 FacadeItem.onBlockBroken(serverLevel, pos, !player.getAbilities().instabuild);

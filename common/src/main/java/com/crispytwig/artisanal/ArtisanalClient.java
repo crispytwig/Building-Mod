@@ -3,6 +3,7 @@ package com.crispytwig.artisanal;
 import com.crispytwig.artisanal.block.ChairBlock;
 import com.crispytwig.artisanal.block.FrameBlock;
 import com.crispytwig.artisanal.block.TableBlock;
+import com.crispytwig.artisanal.block.TimberFrameBlock;
 import com.crispytwig.artisanal.block.WindowBlock;
 import com.crispytwig.artisanal.block.WindowPaneBlock;
 import com.crispytwig.artisanal.client.renderer.FrameBlockRenderer;
@@ -73,7 +74,7 @@ public final class ArtisanalClient {
     public static void registerRenderTypes(RenderTypeRegistrar registrar) {
         for (DeferredHolder<Block, ? extends Block> holder : ModBlocks.BLOCKS.getEntries()) {
             Block block = holder.get();
-            if (block instanceof ChairBlock) {
+            if (block instanceof ChairBlock || block instanceof TimberFrameBlock) {
                 registrar.register(RenderType.cutout(), block);
             } else if (block instanceof WindowBlock || block instanceof WindowPaneBlock) {
                 registrar.register(RenderType.translucent(), block);

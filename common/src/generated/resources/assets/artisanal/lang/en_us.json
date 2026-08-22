@@ -228,5 +228,6 @@
   "item.artisanal.facade": "Facade",
   "item.artisanal.facade.material": "%s Facade",
   "itemGroup.artisanal": "Artisanal",
-  "itemGroup.artisanal.colored": "Artisanal Colored Blocks"
+  "itemGroup.artisanal.colored": "Artisanal Colored Blocks",
+  "itemGroup.artisanal.layers": "Artisanal Layers"
 }

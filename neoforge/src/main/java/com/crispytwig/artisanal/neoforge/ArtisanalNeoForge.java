@@ -6,6 +6,8 @@ import com.crispytwig.artisanal.item.FacadeItem;
 import com.crispytwig.artisanal.network.FacadePayload;
 import com.crispytwig.artisanal.neoforge.config.NeoForgeArtisanalConfig;
 import com.crispytwig.artisanal.neoforge.platform.NeoForgeRegistrationProvider;
+import com.crispytwig.artisanal.registry.ModLayers;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
@@ -27,6 +29,7 @@ import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
+import net.neoforged.neoforge.registries.RegisterEvent;
 
 @Mod(Artisanal.MOD_ID)
 public class ArtisanalNeoForge {
@@ -40,6 +43,7 @@ public class ArtisanalNeoForge {
         modEventBus.addListener(ArtisanalNeoForge::createAttributes);
         modEventBus.addListener(ArtisanalNeoForge::registerPayloads);
         modEventBus.addListener(ArtisanalNeoForge::commonSetup);
+        modEventBus.addListener(ArtisanalNeoForge::registerLayers);
         NeoForge.EVENT_BUS.addListener(ArtisanalNeoForge::onRightClickBlock);
         NeoForge.EVENT_BUS.addListener(ArtisanalNeoForge::onBlockBreak);
         NeoForge.EVENT_BUS.addListener((PlayerEvent.PlayerLoggedInEvent event) -> syncFacades(event.getEntity()));
@@ -52,11 +56,25 @@ public class ArtisanalNeoForge {
         }
     }
 
+    private static void registerLayers(RegisterEvent event) {
+        if (event.getRegistryKey().equals(Registries.POTION)) {
+            ModLayers.register();
+        }
+    }
+
     private static void commonSetup(FMLCommonSetupEvent event) {
-        event.enqueueWork(() -> Artisanal.registerFlammability(((FireBlock) Blocks.FIRE)::setFlammable));
+        event.enqueueWork(() -> {
+            Artisanal.registerFlammability(((FireBlock) Blocks.FIRE)::setFlammable);
+            Artisanal.registerLayerFlammability(((FireBlock) Blocks.FIRE)::setFlammable);
+        });
     }
 
     private static void onFurnaceFuelBurnTime(FurnaceFuelBurnTimeEvent event) {
+        Artisanal.registerFuelTags((tag, burnTime) -> {
+            if (event.getItemStack().is(tag)) {
+                event.setBurnTime(burnTime);
+            }
+        });
         Artisanal.registerFuels((item, burnTime) -> {
             if (event.getItemStack().is(item.asItem())) {
                 event.setBurnTime(burnTime);

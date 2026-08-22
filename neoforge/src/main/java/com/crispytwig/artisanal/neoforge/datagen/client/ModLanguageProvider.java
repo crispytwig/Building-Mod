@@ -8,8 +8,6 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 
-import java.util.Arrays;
-import java.util.stream.Collectors;
 
 public class ModLanguageProvider extends LanguageProvider {
     public ModLanguageProvider(PackOutput output) {
@@ -20,6 +18,7 @@ public class ModLanguageProvider extends LanguageProvider {
     protected void addTranslations() {
         add("itemGroup." + Artisanal.MOD_ID, "Artisanal");
         add("itemGroup." + Artisanal.MOD_ID + ".colored", "Artisanal Colored Blocks");
+        add("itemGroup." + Artisanal.MOD_ID + ".layers", "Artisanal Layers");
 
         add("artisanal.configuration.title", "Artisanal Config");
         add("artisanal.configuration.cherry_wood_sounds", "Wood Sounds");
@@ -34,8 +33,6 @@ public class ModLanguageProvider extends LanguageProvider {
     }
 
     private void addTitleCased(DeferredHolder<Block, ? extends Block> holder) {
-        add(holder.get(), Arrays.stream(holder.getId().getPath().split("_"))
-                .map(word -> Character.toUpperCase(word.charAt(0)) + word.substring(1))
-                .collect(Collectors.joining(" ")));
+        add(holder.get(), Artisanal.titleCase(holder.getId().getPath()));
     }
 }

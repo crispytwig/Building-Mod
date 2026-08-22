@@ -3,11 +3,13 @@ package com.crispytwig.artisanal.registry;
 import com.crispytwig.artisanal.Artisanal;
 import com.crispytwig.artisanal.platform.registry.DeferredHolder;
 import com.crispytwig.artisanal.platform.registry.DeferredRegister;
+import com.crispytwig.artisanal.platform.Services;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 
@@ -26,16 +28,32 @@ public final class ModCreativeTabs {
                     .build());
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> COLORED_TAB = CREATIVE_MODE_TABS.register("colored_tab",
-            () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 1)
+            () -> after(CreativeModeTab.builder(CreativeModeTab.Row.TOP, 1)
                     .title(Component.translatable("itemGroup." + Artisanal.MOD_ID + ".colored"))
                     .icon(Items.RED_TERRACOTTA::getDefaultInstance)
-                    .displayItems((parameters, output) -> displayItems(output, true))
+                    .displayItems((parameters, output) -> displayItems(output, true)), "tab")
+                    .build());
+
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> LAYERS_TAB = CREATIVE_MODE_TABS.register("layers_tab",
+            () -> after(CreativeModeTab.builder(CreativeModeTab.Row.TOP, 2)
+                    .title(Component.translatable("itemGroup." + Artisanal.MOD_ID + ".layers"))
+                    .icon(ModCreativeTabs::layerIcon)
+                    .displayItems((parameters, output) -> ModLayers.layers().values().forEach(output::accept)), "colored_tab")
                     .build());
 
     private ModCreativeTabs() {
     }
 
     public static void init() {
+    }
+
+    private static CreativeModeTab.Builder after(CreativeModeTab.Builder builder, String previous) {
+        Services.PLATFORM.tabAfter(builder, Artisanal.location(previous));
+        return builder;
+    }
+
+    private static ItemStack layerIcon() {
+        return ModLayers.layers().get(Artisanal.location("oak_layer")).asItem().getDefaultInstance();
     }
 
     private static void displayItems(CreativeModeTab.Output output, boolean colored) {

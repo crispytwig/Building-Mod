@@ -6,12 +6,14 @@
   "mixins": [
     "BlockBehaviourMixin",
     "BlockSetTypeMixin",
+    "PackRepositoryMixin",
     "VillagerGoalPackagesMixin",
     "WoodTypeMixin"
   ],
   "client": [
     "BlockRenderDispatcherMixin",
-    "ParticleEngineMixin"
+    "ParticleEngineMixin",
+    "ReloadableResourceManagerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

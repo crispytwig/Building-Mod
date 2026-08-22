@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.crispytwig.artisanal.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "BuiltInRegistriesMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

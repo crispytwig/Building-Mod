@@ -1,6 +1,7 @@
 package com.crispytwig.artisanal.neoforge.datagen.server;
 
 import com.crispytwig.artisanal.Artisanal;
+import com.crispytwig.artisanal.block.BeamBlock;
 import com.crispytwig.artisanal.platform.registry.DeferredHolder;
 import com.crispytwig.artisanal.registry.ModBlocks;
 import com.crispytwig.artisanal.registry.ModTags;
@@ -29,6 +30,8 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
                 tag(BlockTags.STAIRS).add(block);
             } else if (block instanceof SlabBlock) {
                 tag(BlockTags.SLABS).add(block);
+            } else if (block instanceof BeamBlock) {
+                tag(ModTags.CHAIN_CONNECTIBLE).add(block);
             }
         }
 

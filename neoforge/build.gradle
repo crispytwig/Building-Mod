@@ -58,7 +58,8 @@ dependencies {
     runtimeOnly "maven.modrinth:create:${create_version}"
     runtimeOnly "maven.modrinth:sable:${sable_version}-neoforge"
     runtimeOnly "maven.modrinth:create-aeronautics:${create_aeronautics_version}"
-    runtimeOnly "maven.modrinth:cloth-config:${cloth_config_version}"
+    runtimeOnly "maven.modrinth:cloth-config:${cloth_config_version}+neoforge"
+    runtimeOnly "maven.modrinth:reconnectible-chains:${reconnectible_chains_version}-${minecraft_version}-neoforge"
     runtimeOnly "maven.modrinth:barehanded:${barehanded_version}-neoforge"
 }
 

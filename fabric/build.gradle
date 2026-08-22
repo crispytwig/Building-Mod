@@ -14,6 +14,8 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:$fabric_version"
     modCompileOnly "maven.modrinth:clutter-no-more:${clutter_no_more_version}-fabric"
     modRuntimeOnly "maven.modrinth:clutter-no-more:${clutter_no_more_version}-fabric"
+    modRuntimeOnly "maven.modrinth:cloth-config:${cloth_config_version}+fabric"
+    modRuntimeOnly "maven.modrinth:reconnectible-chains:${reconnectible_chains_version}-${minecraft_version}-fabric"
 }
 
 loom {

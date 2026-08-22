@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:stonecutting",
+  "group": "cobbled_light_gray_terracotta",
+  "ingredient": {
+    "item": "minecraft:light_gray_terracotta"
+  },
+  "result": {
+    "count": 1,
+    "id": "artisanal:cobbled_light_gray_terracotta"
+  }
+}

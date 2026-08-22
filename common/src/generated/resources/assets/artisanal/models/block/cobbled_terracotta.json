@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "artisanal:block/cobbled_terracotta"
+  }
+}

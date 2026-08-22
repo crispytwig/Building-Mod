@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_cobbled_orange_terracotta": {
+      "conditions": {
+        "items": [
+          {
+            "items": "artisanal:cobbled_orange_terracotta"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "artisanal:cobbled_orange_terracotta_stairs_from_cobbled_orange_terracotta_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_cobbled_orange_terracotta"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "artisanal:cobbled_orange_terracotta_stairs_from_cobbled_orange_terracotta_stonecutting"
+    ]
+  }
+}

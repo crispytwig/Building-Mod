@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "artisanal:block/cobbled_yellow_terracotta_slab"
+    },
+    "type=double": {
+      "model": "artisanal:block/cobbled_yellow_terracotta"
+    },
+    "type=top": {
+      "model": "artisanal:block/cobbled_yellow_terracotta_slab_top"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "cobbled_pink_terracotta_slab",
+  "key": {
+    "#": {
+      "item": "artisanal:cobbled_pink_terracotta"
+    }
+  },
+  "pattern": [
+    "###"
+  ],
+  "result": {
+    "count": 6,
+    "id": "artisanal:cobbled_pink_terracotta_slab"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:stonecutting",
+  "group": "cobbled_lime_terracotta",
+  "ingredient": {
+    "item": "minecraft:lime_terracotta"
+  },
+  "result": {
+    "count": 1,
+    "id": "artisanal:cobbled_lime_terracotta"
+  }
+}

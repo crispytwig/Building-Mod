@@ -138,10 +138,11 @@ public final class ModBlocks {
     private static ColoredSet terracottaSet(DyeColor color) {
         String prefix = color == null ? "terracotta" : color.getName() + "_terracotta";
         MapColor mapColor = vanillaTerracotta(color).defaultMapColor();
+        BlockSet cobbled = registerSet("cobbled_" + prefix, "cobbled_" + prefix, () -> stoneProperties(mapColor, SoundType.DRIPSTONE_BLOCK));
         BlockSet bricks = registerSet(prefix + "_bricks", prefix + "_brick", () -> stoneProperties(mapColor, SoundType.DEEPSLATE_TILES));
         BlockSet tiles = registerSet(prefix + "_tiles", prefix + "_tile", () -> stoneProperties(mapColor, SoundType.DEEPSLATE_TILES));
         BlockSet shingles = registerSet(prefix + "_shingles", prefix + "_shingle", () -> stoneProperties(mapColor, SoundType.DEEPSLATE_TILES));
-        return new ColoredSet(color, List.of(bricks, tiles, shingles));
+        return new ColoredSet(color, List.of(cobbled, bricks, tiles, shingles));
     }
 
     private static List<ColoredSet> createPlaster() {

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:stonecutting",
+  "group": "cobbled_purple_terracotta",
+  "ingredient": {
+    "item": "minecraft:purple_terracotta"
+  },
+  "result": {
+    "count": 1,
+    "id": "artisanal:cobbled_purple_terracotta"
+  }
+}

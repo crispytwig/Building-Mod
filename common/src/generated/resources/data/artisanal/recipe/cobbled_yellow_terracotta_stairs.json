@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "cobbled_yellow_terracotta_stairs",
+  "key": {
+    "#": {
+      "item": "artisanal:cobbled_yellow_terracotta"
+    }
+  },
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "result": {
+    "count": 4,
+    "id": "artisanal:cobbled_yellow_terracotta_stairs"
+  }
+}

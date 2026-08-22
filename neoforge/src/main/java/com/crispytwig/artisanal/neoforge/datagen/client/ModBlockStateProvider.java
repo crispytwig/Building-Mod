@@ -3,6 +3,7 @@ package com.crispytwig.artisanal.neoforge.datagen.client;
 import com.crispytwig.artisanal.Artisanal;
 import com.crispytwig.artisanal.block.BeamBlock;
 import com.crispytwig.artisanal.block.ChairBlock;
+import com.crispytwig.artisanal.block.FrameBlock;
 import com.crispytwig.artisanal.block.ShutterBlock;
 import com.crispytwig.artisanal.block.TableBlock;
 import com.crispytwig.artisanal.block.TrimBlock;
@@ -58,6 +59,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         table(ModBlocks.OAK_TABLE.get(), Artisanal.location("block/oak_boards"));
         chair(ModBlocks.OAK_CHAIR.get(), Artisanal.location("block/oak_boards"));
+        frame(ModBlocks.OAK_FRAME.get());
         shutter(ModBlocks.OAK_SHUTTER.get());
         window(ModBlocks.OAK_WINDOW.get());
         windowPane(ModBlocks.OAK_WINDOW_PANE.get(), "oak_window", Artisanal.location("block/oak_trim_end"));
@@ -84,6 +86,19 @@ public class ModBlockStateProvider extends BlockStateProvider {
         templateModel(name + "_" + TableBlock.TOP_PART, "table_" + TableBlock.TOP_PART, texture, particle);
         for (String part : TableBlock.LEG_PARTS) {
             templateModel(name + "_" + part, "table_" + part, texture, particle);
+        }
+    }
+
+    private void frame(FrameBlock block) {
+        String name = Artisanal.name(block);
+        ResourceLocation texture = blockTexture(block);
+
+        ModelFile inventory = templateModel(name + "_inventory", "frame_inventory", texture, texture);
+        getVariantBuilder(block).forAllStates(state -> ConfiguredModel.builder().modelFile(inventory).build());
+        itemModels().withExistingParent(name, Artisanal.location("block/" + name + "_inventory"));
+
+        for (String part : FrameBlock.PARTS) {
+            templateModel(name + "_" + part, "frame_" + part, texture, texture);
         }
     }
 

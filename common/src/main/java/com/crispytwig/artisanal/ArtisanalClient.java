@@ -1,9 +1,11 @@
 package com.crispytwig.artisanal;
 
 import com.crispytwig.artisanal.block.ChairBlock;
+import com.crispytwig.artisanal.block.FrameBlock;
 import com.crispytwig.artisanal.block.TableBlock;
 import com.crispytwig.artisanal.block.WindowBlock;
 import com.crispytwig.artisanal.block.WindowPaneBlock;
+import com.crispytwig.artisanal.client.renderer.FrameBlockRenderer;
 import com.crispytwig.artisanal.client.renderer.SeatEntityRenderer;
 import com.crispytwig.artisanal.client.renderer.TableBlockRenderer;
 import com.crispytwig.artisanal.platform.registry.DeferredHolder;
@@ -65,6 +67,7 @@ public final class ArtisanalClient {
 
     public static void registerBlockEntityRenderers(BlockEntityRendererRegistrar registrar) {
         registrar.register(ModBlockEntities.TABLE.get(), context -> new TableBlockRenderer());
+        registrar.register(ModBlockEntities.FRAME.get(), context -> new FrameBlockRenderer());
     }
 
     public static void registerRenderTypes(RenderTypeRegistrar registrar) {
@@ -80,14 +83,18 @@ public final class ArtisanalClient {
 
     public static void registerExtraModels(Consumer<ResourceLocation> registrar) {
         for (DeferredHolder<Block, ? extends Block> holder : ModBlocks.BLOCKS.getEntries()) {
-            if (!(holder.get() instanceof TableBlock)) {
-                continue;
-            }
-            String tableName = holder.getId().getPath();
-            TableBlockRenderer.cachePartModels(holder.get(), tableName);
-            registrar.accept(TableBlockRenderer.partLocation(tableName, TableBlock.TOP_PART));
-            for (String part : TableBlock.LEG_PARTS) {
-                registrar.accept(TableBlockRenderer.partLocation(tableName, part));
+            String name = holder.getId().getPath();
+            if (holder.get() instanceof TableBlock) {
+                TableBlockRenderer.cachePartModels(holder.get(), name);
+                registrar.accept(TableBlockRenderer.partLocation(name, TableBlock.TOP_PART));
+                for (String part : TableBlock.LEG_PARTS) {
+                    registrar.accept(TableBlockRenderer.partLocation(name, part));
+                }
+            } else if (holder.get() instanceof FrameBlock) {
+                FrameBlockRenderer.cachePartModels(holder.get(), name);
+                for (String part : FrameBlock.PARTS) {
+                    registrar.accept(FrameBlockRenderer.partLocation(name, part));
+                }
             }
         }
     }

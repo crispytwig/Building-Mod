@@ -3,6 +3,7 @@ package com.crispytwig.artisanal.registry;
 import com.crispytwig.artisanal.Artisanal;
 import com.crispytwig.artisanal.block.BeamBlock;
 import com.crispytwig.artisanal.block.ChairBlock;
+import com.crispytwig.artisanal.block.FrameBlock;
 import com.crispytwig.artisanal.block.ModStairBlock;
 import com.crispytwig.artisanal.block.ShutterBlock;
 import com.crispytwig.artisanal.block.TableBlock;
@@ -56,6 +57,8 @@ public final class ModBlocks {
 
     public static final DeferredHolder<Block, TableBlock> OAK_TABLE = registerWooden("oak_table", TableBlock::new, decorativeProperties(MapColor.WOOD, SoundType.WOOD).strength(2.5F).dynamicShape());
     public static final DeferredHolder<Block, ChairBlock> OAK_CHAIR = registerWooden("oak_chair", ChairBlock::new, decorativeProperties(MapColor.WOOD, SoundType.WOOD).strength(2.5F));
+
+    public static final DeferredHolder<Block, FrameBlock> OAK_FRAME = registerWooden("oak_frame", FrameBlock::new, oakProperties().noOcclusion());
 
     public static final DeferredHolder<Block, ShutterBlock> OAK_SHUTTER = registerWooden("oak_shutter", ShutterBlock::new, oakProperties().noOcclusion());
 

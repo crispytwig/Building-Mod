@@ -3,6 +3,7 @@ package com.crispytwig.artisanal.registry;
 import com.crispytwig.artisanal.Artisanal;
 import com.crispytwig.artisanal.block.entity.FrameBlockEntity;
 import com.crispytwig.artisanal.block.entity.TableBlockEntity;
+import com.crispytwig.artisanal.block.entity.TimberFrameBlockEntity;
 import com.crispytwig.artisanal.platform.registry.DeferredHolder;
 import com.crispytwig.artisanal.platform.registry.DeferredRegister;
 import com.crispytwig.artisanal.platform.Services;
@@ -17,6 +18,9 @@ public final class ModBlockEntities {
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<FrameBlockEntity>> FRAME =
             BLOCK_ENTITY_TYPES.register("frame", () -> Services.PLATFORM.createBlockEntityType(FrameBlockEntity::new, ModBlocks.OAK_FRAME.get()));
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TimberFrameBlockEntity>> TIMBER_FRAME =
+            BLOCK_ENTITY_TYPES.register("timber_frame", () -> Services.PLATFORM.createBlockEntityType(TimberFrameBlockEntity::new, ModBlocks.OAK_TIMBER_FRAME.get()));
 
     private ModBlockEntities() {
     }

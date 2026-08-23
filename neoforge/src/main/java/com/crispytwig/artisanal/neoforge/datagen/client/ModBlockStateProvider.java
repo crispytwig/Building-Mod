@@ -201,13 +201,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
             }
         }
 
-        getVariantBuilder(block).forAllStates(state -> {
+        getVariantBuilder(block).forAllStatesExcept(state -> {
             TrimType type = state.getValue(TimberFrameBlock.TYPE);
             CrossType cross = state.getValue(TimberFrameBlock.CROSS);
             return ConfiguredModel.builder()
                     .modelFile(type == TrimType.SINGLE && cross != CrossType.NONE ? crossModels.get(cross) : models.get(type))
                     .build();
-        });
+        }, TimberFrameBlock.FILLED);
         itemModels().withExistingParent(name, Artisanal.location("block/" + name));
     }
 

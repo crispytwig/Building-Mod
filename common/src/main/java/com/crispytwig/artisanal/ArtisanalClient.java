@@ -9,6 +9,7 @@ import com.crispytwig.artisanal.block.WindowPaneBlock;
 import com.crispytwig.artisanal.client.renderer.FrameBlockRenderer;
 import com.crispytwig.artisanal.client.renderer.SeatEntityRenderer;
 import com.crispytwig.artisanal.client.renderer.TableBlockRenderer;
+import com.crispytwig.artisanal.client.renderer.TimberFrameBlockRenderer;
 import com.crispytwig.artisanal.platform.registry.DeferredHolder;
 import com.crispytwig.artisanal.registry.ModBlockEntities;
 import com.crispytwig.artisanal.registry.ModBlocks;
@@ -69,6 +70,7 @@ public final class ArtisanalClient {
     public static void registerBlockEntityRenderers(BlockEntityRendererRegistrar registrar) {
         registrar.register(ModBlockEntities.TABLE.get(), context -> new TableBlockRenderer());
         registrar.register(ModBlockEntities.FRAME.get(), context -> new FrameBlockRenderer());
+        registrar.register(ModBlockEntities.TIMBER_FRAME.get(), context -> new TimberFrameBlockRenderer());
     }
 
     public static void registerRenderTypes(RenderTypeRegistrar registrar) {

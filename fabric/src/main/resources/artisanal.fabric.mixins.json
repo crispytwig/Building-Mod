@@ -4,7 +4,13 @@
   "package": "com.crispytwig.artisanal.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "BuiltInRegistriesMixin"
+    "BuiltInRegistriesMixin",
+    "EntityMixin",
+    "LivingEntityMixin"
+  ],
+  "client": [
+    "LevelRendererMixin",
+    "MultiPlayerGameModeMixin"
   ],
   "injectors": {
     "defaultRequire": 1

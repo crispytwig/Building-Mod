@@ -1,15 +1,15 @@
 {
   "values": [
-    "artisanal:oak_beam",
-    "artisanal:spruce_beam",
-    "artisanal:birch_beam",
-    "artisanal:jungle_beam",
-    "artisanal:acacia_beam",
-    "artisanal:dark_oak_beam",
-    "artisanal:mangrove_beam",
-    "artisanal:cherry_beam",
-    "artisanal:bamboo_beam",
-    "artisanal:crimson_beam",
-    "artisanal:warped_beam"
+    "bbb:oak_beam",
+    "bbb:spruce_beam",
+    "bbb:birch_beam",
+    "bbb:jungle_beam",
+    "bbb:acacia_beam",
+    "bbb:dark_oak_beam",
+    "bbb:mangrove_beam",
+    "bbb:cherry_beam",
+    "bbb:bamboo_beam",
+    "bbb:crimson_beam",
+    "bbb:warped_beam"
   ]
 }

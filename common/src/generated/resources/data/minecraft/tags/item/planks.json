@@ -1,15 +1,15 @@
 {
   "values": [
-    "artisanal:oak_boards",
-    "artisanal:spruce_boards",
-    "artisanal:birch_boards",
-    "artisanal:jungle_boards",
-    "artisanal:acacia_boards",
-    "artisanal:dark_oak_boards",
-    "artisanal:mangrove_boards",
-    "artisanal:cherry_boards",
-    "artisanal:bamboo_boards",
-    "artisanal:crimson_boards",
-    "artisanal:warped_boards"
+    "bbb:oak_boards",
+    "bbb:spruce_boards",
+    "bbb:birch_boards",
+    "bbb:jungle_boards",
+    "bbb:acacia_boards",
+    "bbb:dark_oak_boards",
+    "bbb:mangrove_boards",
+    "bbb:cherry_boards",
+    "bbb:bamboo_boards",
+    "bbb:crimson_boards",
+    "bbb:warped_boards"
   ]
 }

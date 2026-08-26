@@ -6,6 +6,7 @@ import com.crispytwig.bbb.neoforge.datagen.client.ModItemModelProvider;
 import com.crispytwig.bbb.neoforge.datagen.client.ModLanguageProvider;
 import com.crispytwig.bbb.neoforge.datagen.server.ModAdvancementProvider;
 import com.crispytwig.bbb.neoforge.datagen.server.ModBlockTagsProvider;
+import com.crispytwig.bbb.neoforge.datagen.server.ModCompatRecipeProvider;
 import com.crispytwig.bbb.neoforge.datagen.server.ModItemTagsProvider;
 import com.crispytwig.bbb.neoforge.datagen.server.ModLootTableProvider;
 import com.crispytwig.bbb.neoforge.datagen.server.ModRecipeProvider;
@@ -39,6 +40,7 @@ public final class ModDatagen {
         generator.addProvider(event.includeServer(), new ModItemTagsProvider(output, lookup, blockTags.contentsGetter(), helper));
 
         generator.addProvider(event.includeServer(), new ModRecipeProvider(output, lookup));
+        generator.addProvider(event.includeServer(), new ModCompatRecipeProvider(output));
         generator.addProvider(event.includeServer(), new ModLootTableProvider(output, lookup));
         generator.addProvider(event.includeServer(), ModAdvancementProvider.create(output, lookup, helper));
     }

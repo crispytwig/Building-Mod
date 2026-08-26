@@ -292,7 +292,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .save(output, BuildingButBetter.location(getConversionRecipeName(result, input) + "_stonecutting"));
     }
 
-    private static String group(ItemLike item) {
+    static String group(ItemLike item) {
         String name = getItemName(item);
         for (DyeColor color : DyeColor.values()) {
             if (name.startsWith(color.getName() + "_")) {

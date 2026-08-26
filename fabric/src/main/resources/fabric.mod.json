@@ -14,10 +14,10 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.crispytwig.artisanal.fabric.ArtisanalFabric"
+      "com.crispytwig.bbb.fabric.BuildingButBetterFabric"
     ],
     "client": [
-      "com.crispytwig.artisanal.fabric.ArtisanalFabricClient"
+      "com.crispytwig.bbb.fabric.BuildingButBetterFabricClient"
     ]
   },
   "mixins": [

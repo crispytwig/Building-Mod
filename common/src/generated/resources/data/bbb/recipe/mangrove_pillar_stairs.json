@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "pillar_stairs",
+  "key": {
+    "#": {
+      "item": "bbb:mangrove_pillar"
+    }
+  },
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "result": {
+    "count": 4,
+    "id": "bbb:mangrove_pillar_stairs"
+  }
+}

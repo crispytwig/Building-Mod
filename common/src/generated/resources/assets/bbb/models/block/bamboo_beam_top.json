@@ -1,0 +1,8 @@
+{
+  "parent": "bbb:block/template/beam_top",
+  "textures": {
+    "end": "bbb:block/bamboo_pillar_top",
+    "particle": "bbb:block/bamboo_pillar",
+    "side": "bbb:block/bamboo_pillar"
+  }
+}

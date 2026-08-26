@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "end": "artisanal:block/spruce_boards",
-    "particle": "artisanal:block/spruce_boards",
-    "side": "artisanal:block/spruce_trim_single"
-  }
-}

@@ -1,8 +1,0 @@
-{
-  "parent": "artisanal:block/template/beam_top",
-  "textures": {
-    "end": "artisanal:block/bamboo_pillar_top",
-    "particle": "artisanal:block/bamboo_pillar",
-    "side": "artisanal:block/bamboo_pillar"
-  }
-}

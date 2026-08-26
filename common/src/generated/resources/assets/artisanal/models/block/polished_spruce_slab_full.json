@@ -1,8 +1,0 @@
-{
-  "parent": "artisanal:block/template/polished_slab_full",
-  "textures": {
-    "bottom": "artisanal:block/polished_spruce",
-    "particle": "artisanal:block/polished_spruce",
-    "side": "artisanal:block/spruce_pillar"
-  }
-}

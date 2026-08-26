@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab_top",
-  "textures": {
-    "bottom": "artisanal:block/spruce_pillar_top",
-    "side": "artisanal:block/spruce_pillar",
-    "top": "artisanal:block/spruce_pillar_top"
-  }
-}

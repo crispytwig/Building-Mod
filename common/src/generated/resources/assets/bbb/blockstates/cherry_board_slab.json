@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "bbb:block/cherry_board_slab"
+    },
+    "type=double": {
+      "model": "bbb:block/cherry_boards"
+    },
+    "type=top": {
+      "model": "bbb:block/cherry_board_slab_top"
+    }
+  }
+}

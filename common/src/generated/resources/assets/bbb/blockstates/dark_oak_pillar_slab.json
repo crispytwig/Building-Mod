@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "bbb:block/dark_oak_pillar_slab"
+    },
+    "type=double": {
+      "model": "bbb:block/dark_oak_pillar"
+    },
+    "type=top": {
+      "model": "bbb:block/dark_oak_pillar_slab_top"
+    }
+  }
+}

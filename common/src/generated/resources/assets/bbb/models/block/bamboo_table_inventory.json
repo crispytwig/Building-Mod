@@ -1,0 +1,7 @@
+{
+  "parent": "bbb:block/template/table_full",
+  "textures": {
+    "all": "bbb:block/bamboo_table",
+    "particle": "bbb:block/bamboo_boards"
+  }
+}

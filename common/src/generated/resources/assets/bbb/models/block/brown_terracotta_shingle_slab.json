@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "bbb:block/brown_terracotta_shingles",
+    "side": "bbb:block/brown_terracotta_shingles",
+    "top": "bbb:block/brown_terracotta_shingles"
+  }
+}

@@ -1,7 +1,0 @@
-{
-  "parent": "artisanal:block/template/table_full",
-  "textures": {
-    "all": "artisanal:block/birch_table",
-    "particle": "artisanal:block/birch_boards"
-  }
-}

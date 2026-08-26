@@ -1,7 +1,0 @@
-{
-  "parent": "artisanal:block/template/frame_bottom",
-  "textures": {
-    "all": "artisanal:block/cherry_frame",
-    "particle": "artisanal:block/cherry_frame"
-  }
-}

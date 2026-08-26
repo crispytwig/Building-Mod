@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_magenta_plaster": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bbb:magenta_plaster"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "bbb:magenta_plaster_slab"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_magenta_plaster"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "bbb:magenta_plaster_slab"
+    ]
+  }
+}

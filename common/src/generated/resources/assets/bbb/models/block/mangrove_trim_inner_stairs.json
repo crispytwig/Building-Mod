@@ -1,0 +1,9 @@
+{
+  "parent": "bbb:block/template/trim_inner_stairs",
+  "textures": {
+    "particle": "bbb:block/mangrove_boards",
+    "side": "bbb:block/mangrove_trim_top",
+    "stair": "bbb:block/polished_mangrove",
+    "top": "bbb:block/mangrove_boards"
+  }
+}

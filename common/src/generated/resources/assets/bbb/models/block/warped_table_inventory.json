@@ -1,0 +1,7 @@
+{
+  "parent": "bbb:block/template/table_full",
+  "textures": {
+    "all": "bbb:block/warped_table",
+    "particle": "bbb:block/warped_boards"
+  }
+}

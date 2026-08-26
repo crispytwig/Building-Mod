@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "terracotta_tile_stairs",
+  "key": {
+    "#": {
+      "item": "bbb:terracotta_tiles"
+    }
+  },
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "result": {
+    "count": 4,
+    "id": "bbb:terracotta_tile_stairs"
+  }
+}

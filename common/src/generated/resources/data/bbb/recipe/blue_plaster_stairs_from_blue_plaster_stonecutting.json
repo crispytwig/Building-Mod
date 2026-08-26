@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:stonecutting",
+  "group": "plaster_stairs",
+  "ingredient": {
+    "item": "bbb:blue_plaster"
+  },
+  "result": {
+    "count": 1,
+    "id": "bbb:blue_plaster_stairs"
+  }
+}

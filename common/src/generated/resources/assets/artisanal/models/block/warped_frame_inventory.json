@@ -1,7 +1,0 @@
-{
-  "parent": "artisanal:block/template/frame_inventory",
-  "textures": {
-    "all": "artisanal:block/warped_frame",
-    "particle": "artisanal:block/warped_frame"
-  }
-}

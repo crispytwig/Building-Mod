@@ -1,0 +1,7 @@
+{
+  "parent": "bbb:block/template/table_top",
+  "textures": {
+    "all": "bbb:block/jungle_table",
+    "particle": "bbb:block/jungle_boards"
+  }
+}

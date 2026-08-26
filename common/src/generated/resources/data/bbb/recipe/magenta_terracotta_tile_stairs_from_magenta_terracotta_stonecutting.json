@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:stonecutting",
+  "group": "terracotta_tile_stairs",
+  "ingredient": {
+    "item": "minecraft:magenta_terracotta"
+  },
+  "result": {
+    "count": 1,
+    "id": "bbb:magenta_terracotta_tile_stairs"
+  }
+}

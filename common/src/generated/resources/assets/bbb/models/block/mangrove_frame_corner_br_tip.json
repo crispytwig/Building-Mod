@@ -1,0 +1,7 @@
+{
+  "parent": "bbb:block/template/frame_corner_br_tip",
+  "textures": {
+    "all": "bbb:block/mangrove_frame",
+    "particle": "bbb:block/mangrove_frame"
+  }
+}

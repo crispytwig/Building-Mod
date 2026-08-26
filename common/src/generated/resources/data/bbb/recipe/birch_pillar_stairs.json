@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "pillar_stairs",
+  "key": {
+    "#": {
+      "item": "bbb:birch_pillar"
+    }
+  },
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "result": {
+    "count": 4,
+    "id": "bbb:birch_pillar_stairs"
+  }
+}

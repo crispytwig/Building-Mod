@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "plaster_stairs",
+  "key": {
+    "#": {
+      "item": "bbb:magenta_plaster"
+    }
+  },
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "result": {
+    "count": 4,
+    "id": "bbb:magenta_plaster_stairs"
+  }
+}

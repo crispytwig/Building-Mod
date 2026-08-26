@@ -1,7 +1,0 @@
-{
-  "parent": "artisanal:block/template/table_front_left_leg",
-  "textures": {
-    "all": "artisanal:block/oak_table",
-    "particle": "artisanal:block/oak_boards"
-  }
-}

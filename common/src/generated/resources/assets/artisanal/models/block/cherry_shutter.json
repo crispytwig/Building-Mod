@@ -1,8 +1,0 @@
-{
-  "parent": "artisanal:block/template/shutter",
-  "render_type": "minecraft:cutout",
-  "textures": {
-    "all": "artisanal:block/cherry_shutter",
-    "particle": "artisanal:block/cherry_shutter"
-  }
-}

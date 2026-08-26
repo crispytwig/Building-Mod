@@ -1,0 +1,7 @@
+{
+	"parent": "bbb:block/template/pillar_step_double",
+	"textures": {
+		"side": "bbb:block/oak_pillar",
+		"end": "bbb:block/oak_pillar_top"
+	}
+}

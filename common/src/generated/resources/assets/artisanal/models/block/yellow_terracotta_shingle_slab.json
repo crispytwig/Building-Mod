@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "bottom": "artisanal:block/yellow_terracotta_shingles",
-    "side": "artisanal:block/yellow_terracotta_shingles",
-    "top": "artisanal:block/yellow_terracotta_shingles"
-  }
-}

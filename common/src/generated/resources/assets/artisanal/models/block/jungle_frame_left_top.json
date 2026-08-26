@@ -1,7 +1,0 @@
-{
-  "parent": "artisanal:block/template/frame_left_top",
-  "textures": {
-    "all": "artisanal:block/jungle_frame",
-    "particle": "artisanal:block/jungle_frame"
-  }
-}

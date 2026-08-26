@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "cross=cross,type=bottom": {
+      "model": "bbb:block/bamboo_timber_frame_bottom"
+    },
+    "cross=cross,type=middle": {
+      "model": "bbb:block/bamboo_timber_frame_middle"
+    },
+    "cross=cross,type=single": {
+      "model": "bbb:block/bamboo_timber_frame_cross"
+    },
+    "cross=cross,type=top": {
+      "model": "bbb:block/bamboo_timber_frame_top"
+    },
+    "cross=left_cross,type=bottom": {
+      "model": "bbb:block/bamboo_timber_frame_bottom"
+    },
+    "cross=left_cross,type=middle": {
+      "model": "bbb:block/bamboo_timber_frame_middle"
+    },
+    "cross=left_cross,type=single": {
+      "model": "bbb:block/bamboo_timber_frame_left_cross"
+    },
+    "cross=left_cross,type=top": {
+      "model": "bbb:block/bamboo_timber_frame_top"
+    },
+    "cross=none,type=bottom": {
+      "model": "bbb:block/bamboo_timber_frame_bottom"
+    },
+    "cross=none,type=middle": {
+      "model": "bbb:block/bamboo_timber_frame_middle"
+    },
+    "cross=none,type=single": {
+      "model": "bbb:block/bamboo_timber_frame"
+    },
+    "cross=none,type=top": {
+      "model": "bbb:block/bamboo_timber_frame_top"
+    },
+    "cross=right_cross,type=bottom": {
+      "model": "bbb:block/bamboo_timber_frame_bottom"
+    },
+    "cross=right_cross,type=middle": {
+      "model": "bbb:block/bamboo_timber_frame_middle"
+    },
+    "cross=right_cross,type=single": {
+      "model": "bbb:block/bamboo_timber_frame_right_cross"
+    },
+    "cross=right_cross,type=top": {
+      "model": "bbb:block/bamboo_timber_frame_top"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_cherry_boards": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bbb:cherry_boards"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_cherry_boards"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "bbb:polished_cherry"
+    ]
+  }
+}

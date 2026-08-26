@@ -1,8 +1,0 @@
-{
-  "parent": "artisanal:block/template/polished_slab_top",
-  "textures": {
-    "bottom": "artisanal:block/polished_oak",
-    "particle": "artisanal:block/polished_oak",
-    "side": "artisanal:block/oak_pillar"
-  }
-}

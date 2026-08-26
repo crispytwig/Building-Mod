@@ -1,0 +1,39 @@
+{
+  "add": {
+    "/bbb:(?<stem>.+)_bricks/": [
+      "bbb:${stem}_brick_stairs",
+      "bbb:${stem}_brick_slab"
+    ],
+    "/bbb:(?<stem>.+)_tiles/": [
+      "bbb:${stem}_tile_stairs",
+      "bbb:${stem}_tile_slab"
+    ],
+    "/bbb:(?<stem>.+)_shingles/": [
+      "bbb:${stem}_shingle_stairs",
+      "bbb:${stem}_shingle_slab"
+    ],
+    "/bbb:(?<stem>.+)_boards/": [
+      "bbb:${stem}_board_stairs",
+      "bbb:${stem}_board_slab"
+    ],
+    "/bbb:(?<stem>.+)_plaster/": [
+      "bbb:${stem}_plaster_stairs",
+      "bbb:${stem}_plaster_slab"
+    ],
+    "/bbb:polished_(?<stem>.+)(?<!_slab)/": [
+      "bbb:polished_${stem}_slab"
+    ],
+    "/bbb:(?<stem>.+)_trim/": [
+      "bbb:${stem}_trim_stairs"
+    ],
+    "/bbb:(?<stem>.+)_pillar/": [
+      "bbb:${stem}_pillar_stairs",
+      "bbb:${stem}_pillar_slab"
+    ]
+  },
+  "remove": {
+    "/bbb:polished_(?<stem>.+)_slab/": [
+      "clutternomore:bbb/vertical_polished_${stem}_slab"
+    ]
+  }
+}

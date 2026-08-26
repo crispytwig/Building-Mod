@@ -1,9 +1,0 @@
-{
-  "parent": "artisanal:block/template/trim_inner_stairs_single",
-  "textures": {
-    "particle": "artisanal:block/dark_oak_boards",
-    "side": "artisanal:block/dark_oak_trim_single",
-    "stair": "artisanal:block/polished_dark_oak",
-    "top": "artisanal:block/dark_oak_boards"
-  }
-}

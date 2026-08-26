@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "terracotta_shingle_slab",
+  "key": {
+    "#": {
+      "item": "bbb:blue_terracotta_shingles"
+    }
+  },
+  "pattern": [
+    "###"
+  ],
+  "result": {
+    "count": 6,
+    "id": "bbb:blue_terracotta_shingle_slab"
+  }
+}

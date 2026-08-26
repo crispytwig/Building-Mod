@@ -1,7 +1,0 @@
-{
-	"parent": "artisanal:block/template/pillar_step_double",
-	"textures": {
-		"side": "artisanal:block/mangrove_pillar",
-		"end": "artisanal:block/mangrove_pillar_top"
-	}
-}

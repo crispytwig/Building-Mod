@@ -1,9 +1,0 @@
-{
-  "parent": "artisanal:block/template/trim_inner_stairs",
-  "textures": {
-    "particle": "artisanal:block/mangrove_boards",
-    "side": "artisanal:block/mangrove_trim_top",
-    "stair": "artisanal:block/polished_mangrove",
-    "top": "artisanal:block/mangrove_boards"
-  }
-}

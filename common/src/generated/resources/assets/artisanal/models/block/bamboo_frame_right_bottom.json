@@ -1,7 +1,0 @@
-{
-  "parent": "artisanal:block/template/frame_right_bottom",
-  "textures": {
-    "all": "artisanal:block/bamboo_frame",
-    "particle": "artisanal:block/bamboo_frame"
-  }
-}

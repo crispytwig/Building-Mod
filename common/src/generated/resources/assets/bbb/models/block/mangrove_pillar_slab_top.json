@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "bbb:block/mangrove_pillar_top",
+    "side": "bbb:block/mangrove_pillar",
+    "top": "bbb:block/mangrove_pillar_top"
+  }
+}

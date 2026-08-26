@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "cobbled_white_terracotta_slab",
+  "key": {
+    "#": {
+      "item": "bbb:cobbled_white_terracotta"
+    }
+  },
+  "pattern": [
+    "###"
+  ],
+  "result": {
+    "count": 6,
+    "id": "bbb:cobbled_white_terracotta_slab"
+  }
+}

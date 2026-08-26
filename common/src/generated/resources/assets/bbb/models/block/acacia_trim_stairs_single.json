@@ -1,0 +1,9 @@
+{
+  "parent": "bbb:block/template/trim_stairs_single",
+  "textures": {
+    "particle": "bbb:block/acacia_boards",
+    "side": "bbb:block/acacia_trim_single",
+    "stair": "bbb:block/acacia_pillar",
+    "top": "bbb:block/acacia_boards"
+  }
+}

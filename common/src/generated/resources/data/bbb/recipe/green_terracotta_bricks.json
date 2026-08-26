@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "terracotta_bricks",
+  "key": {
+    "#": {
+      "item": "bbb:green_terracotta_tiles"
+    }
+  },
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "result": {
+    "count": 4,
+    "id": "bbb:green_terracotta_bricks"
+  }
+}

@@ -1,7 +1,0 @@
-{
-  "parent": "artisanal:block/template/table_top",
-  "textures": {
-    "all": "artisanal:block/acacia_table",
-    "particle": "artisanal:block/acacia_boards"
-  }
-}

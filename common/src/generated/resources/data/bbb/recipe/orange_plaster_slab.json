@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "plaster_slab",
+  "key": {
+    "#": {
+      "item": "bbb:orange_plaster"
+    }
+  },
+  "pattern": [
+    "###"
+  ],
+  "result": {
+    "count": 6,
+    "id": "bbb:orange_plaster_slab"
+  }
+}

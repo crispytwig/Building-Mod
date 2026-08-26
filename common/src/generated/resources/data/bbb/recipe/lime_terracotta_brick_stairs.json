@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "terracotta_brick_stairs",
+  "key": {
+    "#": {
+      "item": "bbb:lime_terracotta_bricks"
+    }
+  },
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "result": {
+    "count": 4,
+    "id": "bbb:lime_terracotta_brick_stairs"
+  }
+}

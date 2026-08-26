@@ -1,0 +1,7 @@
+{
+  "parent": "bbb:block/template/table_top",
+  "textures": {
+    "all": "bbb:block/birch_table",
+    "particle": "bbb:block/birch_boards"
+  }
+}

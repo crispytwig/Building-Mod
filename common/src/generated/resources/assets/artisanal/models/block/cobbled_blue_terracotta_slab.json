@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "bottom": "artisanal:block/cobbled_blue_terracotta",
-    "side": "artisanal:block/cobbled_blue_terracotta",
-    "top": "artisanal:block/cobbled_blue_terracotta"
-  }
-}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_purple_terracotta_tiles": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bbb:purple_terracotta_tiles"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "bbb:purple_terracotta_bricks"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_purple_terracotta_tiles"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "bbb:purple_terracotta_bricks"
+    ]
+  }
+}

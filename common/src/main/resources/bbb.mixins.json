@@ -1,0 +1,21 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.crispytwig.bbb.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "BlockBehaviourMixin",
+    "BlockSetTypeMixin",
+    "PackRepositoryMixin",
+    "VillagerGoalPackagesMixin",
+    "WoodTypeMixin"
+  ],
+  "client": [
+    "BlockRenderDispatcherMixin",
+    "ParticleEngineMixin",
+    "ReloadableResourceManagerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

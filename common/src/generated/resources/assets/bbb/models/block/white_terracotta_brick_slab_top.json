@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "bbb:block/white_terracotta_bricks",
+    "side": "bbb:block/white_terracotta_bricks",
+    "top": "bbb:block/white_terracotta_bricks"
+  }
+}

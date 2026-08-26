@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "bbb:block/magenta_plaster",
+    "side": "bbb:block/magenta_plaster",
+    "top": "bbb:block/magenta_plaster"
+  }
+}

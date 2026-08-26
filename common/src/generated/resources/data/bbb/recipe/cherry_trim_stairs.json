@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "trim_stairs",
+  "key": {
+    "#": {
+      "item": "bbb:cherry_trim"
+    }
+  },
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "result": {
+    "count": 4,
+    "id": "bbb:cherry_trim_stairs"
+  }
+}

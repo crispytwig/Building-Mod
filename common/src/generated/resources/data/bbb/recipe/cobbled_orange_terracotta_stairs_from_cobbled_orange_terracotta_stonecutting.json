@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:stonecutting",
+  "group": "cobbled_orange_terracotta_stairs",
+  "ingredient": {
+    "item": "bbb:cobbled_orange_terracotta"
+  },
+  "result": {
+    "count": 1,
+    "id": "bbb:cobbled_orange_terracotta_stairs"
+  }
+}

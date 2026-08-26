@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/outer_stairs",
-  "textures": {
-    "bottom": "artisanal:block/purple_terracotta_shingles",
-    "side": "artisanal:block/purple_terracotta_shingles",
-    "top": "artisanal:block/purple_terracotta_shingles"
-  }
-}

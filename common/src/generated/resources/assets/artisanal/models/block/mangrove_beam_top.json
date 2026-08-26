@@ -1,8 +1,0 @@
-{
-  "parent": "artisanal:block/template/beam_top",
-  "textures": {
-    "end": "artisanal:block/mangrove_pillar_top",
-    "particle": "artisanal:block/mangrove_pillar",
-    "side": "artisanal:block/mangrove_pillar"
-  }
-}

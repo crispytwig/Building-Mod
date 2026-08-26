@@ -1,0 +1,25 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_oak_boards": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bbb:oak_boards"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_oak_boards"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "bbb:polished_oak"
+    ]
+  }
+}

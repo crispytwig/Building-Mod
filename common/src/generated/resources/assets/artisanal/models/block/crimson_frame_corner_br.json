@@ -1,7 +1,0 @@
-{
-  "parent": "artisanal:block/template/frame_corner_br",
-  "textures": {
-    "all": "artisanal:block/crimson_frame",
-    "particle": "artisanal:block/crimson_frame"
-  }
-}

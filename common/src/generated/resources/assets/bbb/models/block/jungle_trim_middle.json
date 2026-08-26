@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "bbb:block/jungle_boards",
+    "particle": "bbb:block/jungle_boards",
+    "side": "bbb:block/jungle_trim_middle"
+  }
+}

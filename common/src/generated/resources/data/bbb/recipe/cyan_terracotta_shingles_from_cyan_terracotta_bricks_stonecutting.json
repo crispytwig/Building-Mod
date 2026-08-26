@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:stonecutting",
+  "group": "terracotta_shingles",
+  "ingredient": {
+    "item": "bbb:cyan_terracotta_bricks"
+  },
+  "result": {
+    "count": 1,
+    "id": "bbb:cyan_terracotta_shingles"
+  }
+}

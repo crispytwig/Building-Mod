@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "bbb:block/mangrove_window_bottom"
+    },
+    "type=middle": {
+      "model": "bbb:block/mangrove_window_middle"
+    },
+    "type=single": {
+      "model": "bbb:block/mangrove_window"
+    },
+    "type=top": {
+      "model": "bbb:block/mangrove_window_top"
+    }
+  }
+}

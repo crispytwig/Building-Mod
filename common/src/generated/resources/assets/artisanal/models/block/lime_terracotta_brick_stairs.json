@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/stairs",
-  "textures": {
-    "bottom": "artisanal:block/lime_terracotta_bricks",
-    "side": "artisanal:block/lime_terracotta_bricks",
-    "top": "artisanal:block/lime_terracotta_bricks"
-  }
-}

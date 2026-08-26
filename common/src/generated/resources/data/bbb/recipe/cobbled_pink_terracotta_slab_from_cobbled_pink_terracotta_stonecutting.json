@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:stonecutting",
+  "group": "cobbled_pink_terracotta_slab",
+  "ingredient": {
+    "item": "bbb:cobbled_pink_terracotta"
+  },
+  "result": {
+    "count": 2,
+    "id": "bbb:cobbled_pink_terracotta_slab"
+  }
+}

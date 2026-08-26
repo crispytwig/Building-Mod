@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "bottom": "artisanal:block/jungle_pillar_top",
-    "side": "artisanal:block/jungle_pillar",
-    "top": "artisanal:block/jungle_pillar_top"
-  }
-}

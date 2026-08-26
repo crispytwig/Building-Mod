@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "artisanal:item/bamboo_window_pane"
-  }
-}

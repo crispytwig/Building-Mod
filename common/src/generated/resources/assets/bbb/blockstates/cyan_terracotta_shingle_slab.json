@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "bbb:block/cyan_terracotta_shingle_slab"
+    },
+    "type=double": {
+      "model": "bbb:block/cyan_terracotta_shingles"
+    },
+    "type=top": {
+      "model": "bbb:block/cyan_terracotta_shingle_slab_top"
+    }
+  }
+}

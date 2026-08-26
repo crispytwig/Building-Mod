@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "bbb:block/cherry_pillar_slab"
+    },
+    "type=double": {
+      "model": "bbb:block/cherry_pillar"
+    },
+    "type=top": {
+      "model": "bbb:block/cherry_pillar_slab_top"
+    }
+  }
+}

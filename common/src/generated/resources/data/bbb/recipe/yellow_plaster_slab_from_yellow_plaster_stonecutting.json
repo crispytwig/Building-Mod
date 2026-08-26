@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:stonecutting",
+  "group": "plaster_slab",
+  "ingredient": {
+    "item": "bbb:yellow_plaster"
+  },
+  "result": {
+    "count": 2,
+    "id": "bbb:yellow_plaster_slab"
+  }
+}

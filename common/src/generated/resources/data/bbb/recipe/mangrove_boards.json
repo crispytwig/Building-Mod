@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "boards",
+  "key": {
+    "P": {
+      "item": "minecraft:mangrove_planks"
+    }
+  },
+  "pattern": [
+    "P",
+    "P",
+    "P"
+  ],
+  "result": {
+    "count": 3,
+    "id": "bbb:mangrove_boards"
+  }
+}

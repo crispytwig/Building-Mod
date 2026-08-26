@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "bbb:block/oak_pillar_slab"
+    },
+    "type=double": {
+      "model": "bbb:block/oak_pillar"
+    },
+    "type=top": {
+      "model": "bbb:block/oak_pillar_slab_top"
+    }
+  }
+}

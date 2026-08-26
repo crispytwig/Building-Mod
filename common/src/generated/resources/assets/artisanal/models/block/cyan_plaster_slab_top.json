@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab_top",
-  "textures": {
-    "bottom": "artisanal:block/cyan_plaster",
-    "side": "artisanal:block/cyan_plaster",
-    "top": "artisanal:block/cyan_plaster"
-  }
-}

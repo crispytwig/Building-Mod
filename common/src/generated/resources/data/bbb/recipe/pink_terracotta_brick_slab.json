@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "terracotta_brick_slab",
+  "key": {
+    "#": {
+      "item": "bbb:pink_terracotta_bricks"
+    }
+  },
+  "pattern": [
+    "###"
+  ],
+  "result": {
+    "count": 6,
+    "id": "bbb:pink_terracotta_brick_slab"
+  }
+}

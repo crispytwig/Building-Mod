@@ -1,0 +1,49 @@
+{
+	"variants": {
+		"facing=north,type=bottom": {
+			"model": "clutternomore:block/bbb/cherry_pillar_step"
+		},
+		"facing=north,type=top": {
+			"model": "clutternomore:block/bbb/cherry_pillar_step_top"
+		},
+		"facing=north,type=double": {
+			"model": "clutternomore:block/bbb/cherry_pillar_step_double"
+		},
+		"facing=east,type=bottom": {
+			"model": "clutternomore:block/bbb/cherry_pillar_step",
+			"y": 90
+		},
+		"facing=east,type=top": {
+			"model": "clutternomore:block/bbb/cherry_pillar_step_top",
+			"y": 90
+		},
+		"facing=east,type=double": {
+			"model": "clutternomore:block/bbb/cherry_pillar_step_double",
+			"y": 90
+		},
+		"facing=south,type=bottom": {
+			"model": "clutternomore:block/bbb/cherry_pillar_step",
+			"y": 180
+		},
+		"facing=south,type=top": {
+			"model": "clutternomore:block/bbb/cherry_pillar_step_top",
+			"y": 180
+		},
+		"facing=south,type=double": {
+			"model": "clutternomore:block/bbb/cherry_pillar_step_double",
+			"y": 180
+		},
+		"facing=west,type=bottom": {
+			"model": "clutternomore:block/bbb/cherry_pillar_step",
+			"y": 270
+		},
+		"facing=west,type=top": {
+			"model": "clutternomore:block/bbb/cherry_pillar_step_top",
+			"y": 270
+		},
+		"facing=west,type=double": {
+			"model": "clutternomore:block/bbb/cherry_pillar_step_double",
+			"y": 270
+		}
+	}
+}

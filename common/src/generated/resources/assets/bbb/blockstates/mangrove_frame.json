@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "facing=east,waterlogged=false": {
+      "model": "bbb:block/mangrove_frame_inventory"
+    },
+    "facing=east,waterlogged=true": {
+      "model": "bbb:block/mangrove_frame_inventory"
+    },
+    "facing=north,waterlogged=false": {
+      "model": "bbb:block/mangrove_frame_inventory"
+    },
+    "facing=north,waterlogged=true": {
+      "model": "bbb:block/mangrove_frame_inventory"
+    },
+    "facing=south,waterlogged=false": {
+      "model": "bbb:block/mangrove_frame_inventory"
+    },
+    "facing=south,waterlogged=true": {
+      "model": "bbb:block/mangrove_frame_inventory"
+    },
+    "facing=west,waterlogged=false": {
+      "model": "bbb:block/mangrove_frame_inventory"
+    },
+    "facing=west,waterlogged=true": {
+      "model": "bbb:block/mangrove_frame_inventory"
+    }
+  }
+}

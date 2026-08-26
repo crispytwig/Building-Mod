@@ -1,0 +1,7 @@
+{
+  "parent": "bbb:block/template/table_top",
+  "textures": {
+    "all": "bbb:block/acacia_table",
+    "particle": "bbb:block/acacia_boards"
+  }
+}

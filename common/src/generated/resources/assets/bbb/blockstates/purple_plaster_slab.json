@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "bbb:block/purple_plaster_slab"
+    },
+    "type=double": {
+      "model": "bbb:block/purple_plaster"
+    },
+    "type=top": {
+      "model": "bbb:block/purple_plaster_slab_top"
+    }
+  }
+}

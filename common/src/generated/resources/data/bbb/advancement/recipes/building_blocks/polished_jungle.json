@@ -1,0 +1,25 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_jungle_boards": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bbb:jungle_boards"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_jungle_boards"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "bbb:polished_jungle"
+    ]
+  }
+}

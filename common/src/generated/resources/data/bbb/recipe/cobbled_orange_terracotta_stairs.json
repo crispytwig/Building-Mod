@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "cobbled_orange_terracotta_stairs",
+  "key": {
+    "#": {
+      "item": "bbb:cobbled_orange_terracotta"
+    }
+  },
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "result": {
+    "count": 4,
+    "id": "bbb:cobbled_orange_terracotta_stairs"
+  }
+}

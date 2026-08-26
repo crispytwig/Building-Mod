@@ -1,0 +1,25 @@
+{
+  "priority": 100,
+  "add": {
+    "/minecraft:(?<stem>.+)_slab/": {
+      "shapes": [
+        "bbb:${stem}_layer"
+      ],
+      "conditions": {
+        "exists": [
+          "bbb:${stem}_layer"
+        ]
+      }
+    },
+    "/(?!minecraft:)[^:]+:(?<stem>.+)_slab/": {
+      "shapes": [
+        "bbb:${ns}/${stem}_layer"
+      ],
+      "conditions": {
+        "exists": [
+          "bbb:${ns}/${stem}_layer"
+        ]
+      }
+    }
+  }
+}

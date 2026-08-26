@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "bbb:block/light_gray_terracotta_shingle_slab"
+    },
+    "type=double": {
+      "model": "bbb:block/light_gray_terracotta_shingles"
+    },
+    "type=top": {
+      "model": "bbb:block/light_gray_terracotta_shingle_slab_top"
+    }
+  }
+}

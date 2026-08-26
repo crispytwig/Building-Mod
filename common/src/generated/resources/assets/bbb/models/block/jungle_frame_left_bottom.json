@@ -1,0 +1,7 @@
+{
+  "parent": "bbb:block/template/frame_left_bottom",
+  "textures": {
+    "all": "bbb:block/jungle_frame",
+    "particle": "bbb:block/jungle_frame"
+  }
+}

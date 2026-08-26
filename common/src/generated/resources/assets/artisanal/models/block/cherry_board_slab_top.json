@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab_top",
-  "textures": {
-    "bottom": "artisanal:block/cherry_boards",
-    "side": "artisanal:block/cherry_boards",
-    "top": "artisanal:block/cherry_boards"
-  }
-}

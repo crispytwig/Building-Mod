@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "board_stairs",
+  "key": {
+    "#": {
+      "item": "bbb:bamboo_boards"
+    }
+  },
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "result": {
+    "count": 4,
+    "id": "bbb:bamboo_board_stairs"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "bbb:warped_frame"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_warped_boards": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bbb:warped_boards"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_warped_boards"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "bbb:warped_frame"
+    ]
+  }
+}

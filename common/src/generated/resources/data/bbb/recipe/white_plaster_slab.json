@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "plaster_slab",
+  "key": {
+    "#": {
+      "item": "bbb:white_plaster"
+    }
+  },
+  "pattern": [
+    "###"
+  ],
+  "result": {
+    "count": 6,
+    "id": "bbb:white_plaster_slab"
+  }
+}

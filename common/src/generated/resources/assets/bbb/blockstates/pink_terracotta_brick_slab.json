@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "bbb:block/pink_terracotta_brick_slab"
+    },
+    "type=double": {
+      "model": "bbb:block/pink_terracotta_bricks"
+    },
+    "type=top": {
+      "model": "bbb:block/pink_terracotta_brick_slab_top"
+    }
+  }
+}

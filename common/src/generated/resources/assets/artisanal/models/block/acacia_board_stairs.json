@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/stairs",
-  "textures": {
-    "bottom": "artisanal:block/acacia_boards",
-    "side": "artisanal:block/acacia_boards",
-    "top": "artisanal:block/acacia_boards"
-  }
-}

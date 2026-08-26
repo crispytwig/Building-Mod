@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "render_type": "minecraft:cutout",
-  "textures": {
-    "end": "artisanal:block/warped_timber_frame",
-    "side": "artisanal:block/warped_timber_frame_cross"
-  }
-}

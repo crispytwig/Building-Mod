@@ -1,8 +1,0 @@
-{
-  "parent": "artisanal:block/template/chair",
-  "render_type": "minecraft:cutout",
-  "textures": {
-    "all": "artisanal:block/mangrove_chair",
-    "particle": "artisanal:block/mangrove_boards"
-  }
-}

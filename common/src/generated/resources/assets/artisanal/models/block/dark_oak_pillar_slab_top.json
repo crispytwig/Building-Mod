@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab_top",
-  "textures": {
-    "bottom": "artisanal:block/dark_oak_pillar_top",
-    "side": "artisanal:block/dark_oak_pillar",
-    "top": "artisanal:block/dark_oak_pillar_top"
-  }
-}

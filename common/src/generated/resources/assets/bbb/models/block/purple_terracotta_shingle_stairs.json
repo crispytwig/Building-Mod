@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "bbb:block/purple_terracotta_shingles",
+    "side": "bbb:block/purple_terracotta_shingles",
+    "top": "bbb:block/purple_terracotta_shingles"
+  }
+}

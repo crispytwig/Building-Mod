@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_cyan_plaster": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bbb:cyan_plaster"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "bbb:cyan_plaster_stairs"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_cyan_plaster"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "bbb:cyan_plaster_stairs"
+    ]
+  }
+}

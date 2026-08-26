@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "cobbled_purple_terracotta_stairs",
+  "key": {
+    "#": {
+      "item": "bbb:cobbled_purple_terracotta"
+    }
+  },
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "result": {
+    "count": 4,
+    "id": "bbb:cobbled_purple_terracotta_stairs"
+  }
+}

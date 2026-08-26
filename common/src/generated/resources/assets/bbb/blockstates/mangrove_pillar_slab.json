@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "bbb:block/mangrove_pillar_slab"
+    },
+    "type=double": {
+      "model": "bbb:block/mangrove_pillar"
+    },
+    "type=top": {
+      "model": "bbb:block/mangrove_pillar_slab_top"
+    }
+  }
+}

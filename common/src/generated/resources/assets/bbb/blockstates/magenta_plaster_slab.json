@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "bbb:block/magenta_plaster_slab"
+    },
+    "type=double": {
+      "model": "bbb:block/magenta_plaster"
+    },
+    "type=top": {
+      "model": "bbb:block/magenta_plaster_slab_top"
+    }
+  }
+}

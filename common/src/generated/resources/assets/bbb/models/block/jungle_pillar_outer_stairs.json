@@ -1,0 +1,7 @@
+{
+  "parent": "bbb:block/template/pillar_outer_stairs",
+  "textures": {
+    "bottom": "bbb:block/jungle_pillar_top",
+    "side": "bbb:block/jungle_pillar"
+  }
+}

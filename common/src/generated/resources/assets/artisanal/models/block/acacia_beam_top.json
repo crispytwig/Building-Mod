@@ -1,8 +1,0 @@
-{
-  "parent": "artisanal:block/template/beam_top",
-  "textures": {
-    "end": "artisanal:block/acacia_pillar_top",
-    "particle": "artisanal:block/acacia_pillar",
-    "side": "artisanal:block/acacia_pillar"
-  }
-}

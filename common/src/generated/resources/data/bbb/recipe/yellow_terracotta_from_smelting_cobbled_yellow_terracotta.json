@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:smelting",
+  "category": "blocks",
+  "cookingtime": 200,
+  "experience": 0.1,
+  "group": "terracotta",
+  "ingredient": {
+    "item": "bbb:cobbled_yellow_terracotta"
+  },
+  "result": {
+    "count": 1,
+    "id": "minecraft:yellow_terracotta"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "table",
+  "key": {
+    "#": {
+      "item": "minecraft:dark_oak_slab"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "###",
+    "S S"
+  ],
+  "result": {
+    "count": 2,
+    "id": "bbb:dark_oak_table"
+  }
+}

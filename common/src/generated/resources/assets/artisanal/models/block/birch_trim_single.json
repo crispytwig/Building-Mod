@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "end": "artisanal:block/birch_boards",
-    "particle": "artisanal:block/birch_boards",
-    "side": "artisanal:block/birch_trim_single"
-  }
-}

@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "render_type": "minecraft:translucent",
-  "textures": {
-    "end": "artisanal:block/spruce_window",
-    "side": "artisanal:block/spruce_window_middle"
-  }
-}

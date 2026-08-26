@@ -1,0 +1,9 @@
+{
+  "parent": "bbb:block/template/trim_outer_stairs_single",
+  "textures": {
+    "particle": "bbb:block/cherry_boards",
+    "side": "bbb:block/cherry_trim_single",
+    "stair": "bbb:block/polished_cherry",
+    "top": "bbb:block/cherry_boards"
+  }
+}

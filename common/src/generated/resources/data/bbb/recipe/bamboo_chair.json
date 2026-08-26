@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "chair",
+  "key": {
+    "P": {
+      "item": "minecraft:bamboo_planks"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "P ",
+    "PP",
+    "SS"
+  ],
+  "result": {
+    "count": 1,
+    "id": "bbb:bamboo_chair"
+  }
+}

@@ -1,0 +1,59 @@
+{
+	"parent": "minecraft:block/block",
+	"textures": {
+		"all": "bbb:block/oak_frame",
+		"particle": "bbb:block/oak_frame"
+	},
+	"elements": [
+		{
+			"from": [
+				16,
+				11,
+				12
+			],
+			"to": [
+				20,
+				16,
+				16
+			],
+			"faces": {
+				"north": {
+					"uv": [
+						10,
+						0,
+						14,
+						5
+					],
+					"texture": "#all"
+				},
+				"east": {
+					"uv": [
+						10,
+						0,
+						14,
+						5
+					],
+					"texture": "#all"
+				},
+				"south": {
+					"uv": [
+						10,
+						0,
+						14,
+						5
+					],
+					"texture": "#all"
+				},
+				"west": {
+					"uv": [
+						10,
+						0,
+						14,
+						5
+					],
+					"texture": "#all"
+				}
+			}
+		}
+	]
+}

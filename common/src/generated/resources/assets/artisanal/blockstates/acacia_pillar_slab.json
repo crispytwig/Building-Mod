@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "artisanal:block/acacia_pillar_slab"
+    },
+    "type=double": {
+      "model": "artisanal:block/acacia_pillar"
+    },
+    "type=top": {
+      "model": "artisanal:block/acacia_pillar_slab_top"
+    }
+  }
+}

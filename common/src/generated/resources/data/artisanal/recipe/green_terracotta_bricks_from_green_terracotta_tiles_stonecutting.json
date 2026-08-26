@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:stonecutting",
+  "group": "terracotta_bricks",
+  "ingredient": {
+    "item": "artisanal:green_terracotta_tiles"
+  },
+  "result": {
+    "count": 1,
+    "id": "artisanal:green_terracotta_bricks"
+  }
+}

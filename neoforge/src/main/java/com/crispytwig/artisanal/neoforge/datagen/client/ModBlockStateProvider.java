@@ -32,43 +32,56 @@ import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.Map;
 
 public class ModBlockStateProvider extends BlockStateProvider {
+    private static final String[] SHAPES = {"", "_inner", "_outer"};
+
+
     public ModBlockStateProvider(PackOutput output, ExistingFileHelper helper) {
         super(output, Artisanal.MOD_ID, helper);
     }
 
     @Override
     protected void registerStatesAndModels() {
-        cube(ModBlocks.OAK_BOARDS.get());
-        cubeStairs(ModBlocks.OAK_BOARD_STAIRS.get(), Artisanal.location("block/oak_boards"));
-        cubeSlab(ModBlocks.OAK_BOARD_SLAB.get(), Artisanal.location("block/oak_boards"), Artisanal.location("block/oak_boards"));
-        cube(ModBlocks.POLISHED_OAK.get());
-        slab("polished_oak_slab", Artisanal.location("block/polished_oak_slab_full"), ModBlocks.POLISHED_OAK_SLAB.get());
-
-        trim("oak_trim", Artisanal.location("block/oak_boards"), ModBlocks.OAK_TRIM.get());
-        trimStairs("oak_trim", ModBlocks.OAK_TRIM_STAIRS.get());
-
-        pillar(ModBlocks.OAK_PILLAR.get(), Artisanal.location("block/oak_pillar"), Artisanal.location("block/oak_pillar_top"));
-        pillarStairs("oak_pillar", ModBlocks.OAK_PILLAR_STAIRS.get());
-        pillarSlab(ModBlocks.OAK_PILLAR_SLAB.get(), Artisanal.location("block/oak_pillar"), Artisanal.location("block/oak_pillar"), Artisanal.location("block/oak_pillar_top"));
-        beam(ModBlocks.OAK_BEAM.get(), Artisanal.location("block/oak_pillar"), Artisanal.location("block/oak_pillar_top"));
+        ModBlocks.WOOD.forEach(this::woodSet);
 
         cube(ModBlocks.PRISMARINE_TILES.get());
         cubeStairs(ModBlocks.PRISMARINE_TILE_STAIRS.get(), Artisanal.location("block/prismarine_tiles"));
         cubeSlab(ModBlocks.PRISMARINE_TILE_SLAB.get(), Artisanal.location("block/prismarine_tiles"), Artisanal.location("block/prismarine_tiles"));
 
-        table(ModBlocks.OAK_TABLE.get(), Artisanal.location("block/oak_boards"));
-        chair(ModBlocks.OAK_CHAIR.get(), Artisanal.location("block/oak_boards"));
-        frame(ModBlocks.OAK_FRAME.get());
-        shutter(ModBlocks.OAK_SHUTTER.get());
-        timberFrame(ModBlocks.OAK_TIMBER_FRAME.get());
-        window(ModBlocks.OAK_WINDOW.get());
-        windowPane(ModBlocks.OAK_WINDOW_PANE.get(), "oak_window", Artisanal.location("block/oak_trim_end"));
-
         ModBlocks.TERRACOTTA.forEach(colored -> colored.sets().forEach(this::cubeSet));
         ModBlocks.PLASTER.forEach(colored -> colored.sets().forEach(this::cubeSet));
+    }
+
+    private void woodSet(ModBlocks.WoodSet set) {
+        String wood = set.name();
+        ResourceLocation boards = Artisanal.location("block/" + wood + "_boards");
+        ResourceLocation pillar = Artisanal.location("block/" + wood + "_pillar");
+        ResourceLocation pillarTop = Artisanal.location("block/" + wood + "_pillar_top");
+
+        cube(set.boards().get());
+        cubeStairs(set.boardStairs().get(), boards);
+        cubeSlab(set.boardSlab().get(), boards, boards);
+        cube(set.polished().get());
+        polishedSlab(set.polishedSlab().get(), Artisanal.location("block/polished_" + wood), pillar);
+
+        trim(wood + "_trim", boards, set.trim().get());
+        trimStairs(wood + "_trim", set.trimStairs().get(), boards, pillar, Artisanal.location("block/polished_" + wood));
+
+        pillar(set.pillar().get(), pillar, pillarTop);
+        pillarStairs(wood + "_pillar", set.pillarStairs().get(), pillar, pillarTop);
+        pillarSlab(set.pillarSlab().get(), pillar, pillar, pillarTop);
+        beam(set.beam().get(), pillar, pillarTop);
+
+        table(set.table().get(), boards);
+        chair(set.chair().get(), boards);
+        frame(set.frame().get());
+        shutter(set.shutter().get());
+        timberFrame(set.timberFrame().get());
+        window(set.window().get());
+        windowPane(set.windowPane().get(), wood + "_window", Artisanal.location("block/" + wood + "_trim_end"));
     }
 
     private void cubeSet(ModBlocks.BlockSet set) {
@@ -124,13 +137,19 @@ public class ModBlockStateProvider extends BlockStateProvider {
         itemModels().withExistingParent(name, Artisanal.location("block/" + name));
     }
 
-    private void pillarStairs(String name, StairBlock block) {
+    private void pillarStairs(String name, StairBlock block, ResourceLocation side, ResourceLocation end) {
+        Map<String, ModelFile> models = new HashMap<>();
+        for (String shape : SHAPES) {
+            models.put(shape, models().withExistingParent(name + shape + "_stairs", Artisanal.location("block/template/pillar" + shape + "_stairs"))
+                    .texture("side", side)
+                    .texture("bottom", end));
+        }
         getVariantBuilder(block).forAllStatesExcept(state -> ConfiguredModel.builder()
-                .modelFile(existing(name + shape(state) + "_stairs"))
+                .modelFile(models.get(shape(state)))
                 .rotationX(state.getValue(StairBlock.HALF) == Half.TOP ? 180 : 0)
                 .rotationY(rotation(state))
                 .build(), StairBlock.WATERLOGGED);
-        simpleBlockItem(block, existing(name + "_stairs"));
+        simpleBlockItem(block, models.get(""));
     }
 
     private void pillarSlab(SlabBlock block, ResourceLocation full, ResourceLocation side, ResourceLocation end) {
@@ -271,13 +290,23 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(block, models.get(TrimType.SINGLE));
     }
 
-    private void trimStairs(String name, TrimStairBlock block) {
+    private void trimStairs(String name, TrimStairBlock block, ResourceLocation boards, ResourceLocation pillar, ResourceLocation polished) {
+        Map<String, ModelFile> models = new HashMap<>();
+        for (String shape : SHAPES) {
+            for (String type : new String[]{"", "_single"}) {
+                models.put(shape + type, models().withExistingParent(name + shape + "_stairs" + type, Artisanal.location("block/template/trim" + shape + "_stairs" + type))
+                        .texture("particle", boards)
+                        .texture("top", boards)
+                        .texture("side", Artisanal.location("block/" + name + (type.isEmpty() ? "_top" : "_single")))
+                        .texture("stair", shape.isEmpty() ? pillar : polished));
+            }
+        }
         getVariantBuilder(block).forAllStatesExcept(state -> ConfiguredModel.builder()
-                .modelFile(existing(name + shape(state) + "_stairs" + (state.getValue(TrimStairBlock.TYPE) == TrimType.SINGLE ? "_single" : "")))
+                .modelFile(models.get(shape(state) + (state.getValue(TrimStairBlock.TYPE) == TrimType.SINGLE ? "_single" : "")))
                 .rotationX(state.getValue(StairBlock.HALF) == Half.TOP ? 180 : 0)
                 .rotationY(rotation(state))
                 .build(), StairBlock.WATERLOGGED);
-        simpleBlockItem(block, existing(name + "_stairs_single"));
+        simpleBlockItem(block, models.get("_single"));
     }
 
     private void cube(Block block) {
@@ -297,10 +326,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
         itemModels().withExistingParent(name, Artisanal.location("block/" + name));
     }
 
-    private void slab(String name, ResourceLocation doubleModel, SlabBlock block) {
-        ModelFile bottom = existing(name);
-        ModelFile top = existing(name + "_top");
-        ModelFile full = models().getExistingFile(doubleModel);
+    private void polishedSlab(SlabBlock block, ResourceLocation polished, ResourceLocation side) {
+        String name = Artisanal.name(block);
+        ModelFile bottom = polishedSlabModel(name, "polished_slab", polished, side);
+        ModelFile top = polishedSlabModel(name + "_top", "polished_slab_top", polished, side);
+        ModelFile full = polishedSlabModel(name + "_full", "polished_slab_full", polished, side);
         getVariantBuilder(block).forAllStatesExcept(state -> ConfiguredModel.builder()
                 .modelFile(switch (state.getValue(SlabBlock.TYPE)) {
                     case BOTTOM -> bottom;
@@ -311,12 +341,15 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(block, bottom);
     }
 
-    private BlockModelBuilder templateModel(String name, String template, ResourceLocation texture, ResourceLocation particle) {
-        return models().withExistingParent(name, Artisanal.location("block/template/" + template)).texture("all", texture).texture("particle", particle);
+    private BlockModelBuilder polishedSlabModel(String name, String template, ResourceLocation polished, ResourceLocation side) {
+        return models().withExistingParent(name, Artisanal.location("block/template/" + template))
+                .texture("particle", polished)
+                .texture("bottom", polished)
+                .texture("side", side);
     }
 
-    private ModelFile existing(String name) {
-        return models().getExistingFile(Artisanal.location("block/" + name));
+    private BlockModelBuilder templateModel(String name, String template, ResourceLocation texture, ResourceLocation particle) {
+        return models().withExistingParent(name, Artisanal.location("block/template/" + template)).texture("all", texture).texture("particle", particle);
     }
 
     private static String suffix(TrimType type) {

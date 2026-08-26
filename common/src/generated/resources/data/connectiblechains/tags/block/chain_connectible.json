@@ -1,5 +1,15 @@
 {
   "values": [
-    "artisanal:oak_beam"
+    "artisanal:oak_beam",
+    "artisanal:spruce_beam",
+    "artisanal:birch_beam",
+    "artisanal:jungle_beam",
+    "artisanal:acacia_beam",
+    "artisanal:dark_oak_beam",
+    "artisanal:mangrove_beam",
+    "artisanal:cherry_beam",
+    "artisanal:bamboo_beam",
+    "artisanal:crimson_beam",
+    "artisanal:warped_beam"
   ]
 }

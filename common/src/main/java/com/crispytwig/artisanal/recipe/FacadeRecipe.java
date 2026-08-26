@@ -1,23 +1,31 @@
 package com.crispytwig.artisanal.recipe;
 
 import com.crispytwig.artisanal.item.FacadeItem;
+import com.crispytwig.artisanal.registry.ModItems;
 import com.crispytwig.artisanal.registry.ModRecipeSerializers;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.NonNullList;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.CraftingBookCategory;
 import net.minecraft.world.item.crafting.CraftingInput;
-import net.minecraft.world.item.crafting.CustomRecipe;
+import net.minecraft.world.item.crafting.CraftingRecipe;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class FacadeRecipe extends CustomRecipe {
+public class FacadeRecipe implements CraftingRecipe {
+    private static Ingredient materials;
+
+    private final CraftingBookCategory category;
+
     public FacadeRecipe(CraftingBookCategory category) {
-        super(category);
+        this.category = category;
     }
 
     @Nullable
@@ -52,6 +60,31 @@ public class FacadeRecipe extends CustomRecipe {
     public @NotNull ItemStack assemble(@NotNull CraftingInput input, HolderLookup.@NotNull Provider registries) {
         Block material = material(input);
         return material == null ? ItemStack.EMPTY : FacadeItem.of(material, 8);
+    }
+
+    private static Ingredient materials() {
+        if (materials == null) {
+            materials = Ingredient.of(BuiltInRegistries.BLOCK.stream()
+                    .filter(FacadeItem::isMaterial)
+                    .map(ItemStack::new)
+                    .filter(stack -> !stack.isEmpty()));
+        }
+        return materials;
+    }
+
+    @Override
+    public @NotNull NonNullList<Ingredient> getIngredients() {
+        return NonNullList.of(Ingredient.EMPTY, Ingredient.of(Items.PHANTOM_MEMBRANE), materials());
+    }
+
+    @Override
+    public @NotNull ItemStack getResultItem(HolderLookup.@NotNull Provider registries) {
+        return new ItemStack(ModItems.FACADE.get(), 8);
+    }
+
+    @Override
+    public @NotNull CraftingBookCategory category() {
+        return category;
     }
 
     @Override

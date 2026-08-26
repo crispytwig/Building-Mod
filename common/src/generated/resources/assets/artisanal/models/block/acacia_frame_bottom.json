@@ -1,0 +1,7 @@
+{
+  "parent": "artisanal:block/template/frame_bottom",
+  "textures": {
+    "all": "artisanal:block/acacia_frame",
+    "particle": "artisanal:block/acacia_frame"
+  }
+}

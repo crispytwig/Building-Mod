@@ -1,0 +1,9 @@
+{
+  "parent": "artisanal:block/template/trim_stairs",
+  "textures": {
+    "particle": "artisanal:block/warped_boards",
+    "side": "artisanal:block/warped_trim_top",
+    "stair": "artisanal:block/warped_pillar",
+    "top": "artisanal:block/warped_boards"
+  }
+}

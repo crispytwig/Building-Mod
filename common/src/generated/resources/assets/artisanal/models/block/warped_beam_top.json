@@ -1,0 +1,8 @@
+{
+  "parent": "artisanal:block/template/beam_top",
+  "textures": {
+    "end": "artisanal:block/warped_pillar_top",
+    "particle": "artisanal:block/warped_pillar",
+    "side": "artisanal:block/warped_pillar"
+  }
+}

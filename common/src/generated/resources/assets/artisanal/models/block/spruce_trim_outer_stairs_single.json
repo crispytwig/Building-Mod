@@ -1,0 +1,9 @@
+{
+  "parent": "artisanal:block/template/trim_outer_stairs_single",
+  "textures": {
+    "particle": "artisanal:block/spruce_boards",
+    "side": "artisanal:block/spruce_trim_single",
+    "stair": "artisanal:block/polished_spruce",
+    "top": "artisanal:block/spruce_boards"
+  }
+}

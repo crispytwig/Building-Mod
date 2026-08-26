@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "artisanal:birch_window_pane"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_window": {
+      "conditions": {
+        "items": [
+          {
+            "items": "artisanal:birch_window"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_window"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "artisanal:birch_window_pane"
+    ]
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_polished_birch": {
+      "conditions": {
+        "items": [
+          {
+            "items": "artisanal:polished_birch"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "artisanal:polished_birch_slab"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_polished_birch"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "artisanal:polished_birch_slab"
+    ]
+  }
+}

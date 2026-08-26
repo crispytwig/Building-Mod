@@ -1,0 +1,7 @@
+{
+  "parent": "artisanal:block/template/frame_corner_tr",
+  "textures": {
+    "all": "artisanal:block/bamboo_frame",
+    "particle": "artisanal:block/bamboo_frame"
+  }
+}

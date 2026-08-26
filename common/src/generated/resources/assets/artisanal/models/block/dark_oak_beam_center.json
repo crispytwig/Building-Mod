@@ -1,0 +1,8 @@
+{
+  "parent": "artisanal:block/template/beam_center",
+  "textures": {
+    "end": "artisanal:block/dark_oak_pillar_top",
+    "particle": "artisanal:block/dark_oak_pillar",
+    "side": "artisanal:block/dark_oak_pillar"
+  }
+}

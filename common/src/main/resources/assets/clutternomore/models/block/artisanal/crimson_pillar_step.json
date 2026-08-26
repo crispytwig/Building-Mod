@@ -1,0 +1,7 @@
+{
+	"parent": "artisanal:block/template/pillar_step",
+	"textures": {
+		"side": "artisanal:block/crimson_pillar",
+		"end": "artisanal:block/crimson_pillar_top"
+	}
+}

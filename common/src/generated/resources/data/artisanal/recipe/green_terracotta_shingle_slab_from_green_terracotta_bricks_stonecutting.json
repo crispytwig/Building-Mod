@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:stonecutting",
+  "group": "terracotta_shingle_slab",
+  "ingredient": {
+    "item": "artisanal:green_terracotta_bricks"
+  },
+  "result": {
+    "count": 2,
+    "id": "artisanal:green_terracotta_shingle_slab"
+  }
+}

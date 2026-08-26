@@ -4,7 +4,7 @@
   "group": "terracotta_bricks",
   "key": {
     "#": {
-      "item": "minecraft:cyan_terracotta"
+      "item": "artisanal:cyan_terracotta_tiles"
     }
   },
   "pattern": [

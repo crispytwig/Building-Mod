@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "artisanal:block/warped_boards",
+    "side": "artisanal:block/warped_boards",
+    "top": "artisanal:block/warped_boards"
+  }
+}

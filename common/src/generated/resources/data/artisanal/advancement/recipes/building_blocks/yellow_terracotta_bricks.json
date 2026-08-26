@@ -7,11 +7,11 @@
       },
       "trigger": "minecraft:recipe_unlocked"
     },
-    "has_yellow_terracotta": {
+    "has_yellow_terracotta_tiles": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:yellow_terracotta"
+            "items": "artisanal:yellow_terracotta_tiles"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_yellow_terracotta"
+      "has_yellow_terracotta_tiles"
     ]
   ],
   "rewards": {

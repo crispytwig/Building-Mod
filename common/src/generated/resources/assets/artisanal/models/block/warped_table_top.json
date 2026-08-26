@@ -1,0 +1,7 @@
+{
+  "parent": "artisanal:block/template/table_top",
+  "textures": {
+    "all": "artisanal:block/warped_table",
+    "particle": "artisanal:block/warped_boards"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "artisanal:block/template/pillar_stairs",
+  "textures": {
+    "bottom": "artisanal:block/birch_pillar_top",
+    "side": "artisanal:block/birch_pillar"
+  }
+}

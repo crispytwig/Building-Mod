@@ -4,7 +4,7 @@
   "group": "terracotta_bricks",
   "key": {
     "#": {
-      "item": "minecraft:black_terracotta"
+      "item": "artisanal:black_terracotta_tiles"
     }
   },
   "pattern": [

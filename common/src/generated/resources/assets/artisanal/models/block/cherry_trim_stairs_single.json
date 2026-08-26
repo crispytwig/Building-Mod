@@ -1,0 +1,9 @@
+{
+  "parent": "artisanal:block/template/trim_stairs_single",
+  "textures": {
+    "particle": "artisanal:block/cherry_boards",
+    "side": "artisanal:block/cherry_trim_single",
+    "stair": "artisanal:block/cherry_pillar",
+    "top": "artisanal:block/cherry_boards"
+  }
+}

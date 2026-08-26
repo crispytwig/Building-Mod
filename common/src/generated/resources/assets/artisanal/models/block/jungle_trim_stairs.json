@@ -1,0 +1,9 @@
+{
+  "parent": "artisanal:block/template/trim_stairs",
+  "textures": {
+    "particle": "artisanal:block/jungle_boards",
+    "side": "artisanal:block/jungle_trim_top",
+    "stair": "artisanal:block/jungle_pillar",
+    "top": "artisanal:block/jungle_boards"
+  }
+}

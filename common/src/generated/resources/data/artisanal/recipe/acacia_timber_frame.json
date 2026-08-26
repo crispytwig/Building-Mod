@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "timber_frame",
+  "key": {
+    "B": {
+      "item": "artisanal:acacia_boards"
+    }
+  },
+  "pattern": [
+    "B B",
+    " B ",
+    "B B"
+  ],
+  "result": {
+    "count": 4,
+    "id": "artisanal:acacia_timber_frame"
+  }
+}

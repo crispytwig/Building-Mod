@@ -1,0 +1,8 @@
+{
+  "parent": "artisanal:block/template/chair_tucked",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "all": "artisanal:block/jungle_chair",
+    "particle": "artisanal:block/jungle_boards"
+  }
+}

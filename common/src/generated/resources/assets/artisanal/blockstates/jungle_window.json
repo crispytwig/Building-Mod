@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "artisanal:block/jungle_window_bottom"
+    },
+    "type=middle": {
+      "model": "artisanal:block/jungle_window_middle"
+    },
+    "type=single": {
+      "model": "artisanal:block/jungle_window"
+    },
+    "type=top": {
+      "model": "artisanal:block/jungle_window_top"
+    }
+  }
+}

@@ -2,20 +2,28 @@ package com.crispytwig.artisanal.neoforge.datagen.server;
 
 import com.crispytwig.artisanal.Artisanal;
 import com.crispytwig.artisanal.recipe.FacadeRecipe;
+import com.crispytwig.artisanal.recipe.PolishingRecipe;
 import com.crispytwig.artisanal.registry.ModBlocks;
+import net.minecraft.advancements.Advancement;
+import net.minecraft.advancements.AdvancementRequirements;
+import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.NonNullList;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.data.PackOutput;
+import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
 import net.minecraft.data.recipes.SingleItemRecipeBuilder;
-import net.minecraft.data.recipes.SpecialRecipeBuilder;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.DyeItem;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.CraftingBookCategory;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
@@ -31,7 +39,7 @@ public class ModRecipeProvider extends RecipeProvider {
 
     @Override
     protected void buildRecipes(RecipeOutput output) {
-        SpecialRecipeBuilder.special(FacadeRecipe::new).save(output, Artisanal.location("facade"));
+        facadeRecipe(output);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.PRISMARINE_TILES.get(), 4)
                 .define('#', Blocks.PRISMARINE_BRICKS)
@@ -46,72 +54,187 @@ public class ModRecipeProvider extends RecipeProvider {
 
         slab(output, RecipeCategory.BUILDING_BLOCKS, ModBlocks.PRISMARINE_TILE_SLAB.get(), ModBlocks.PRISMARINE_TILES.get());
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.OAK_PILLAR.get(), 8)
-                .group("pillar")
-                .pattern("L")
-                .pattern("L")
-                .define('L', ItemTags.OAK_LOGS)
-                .unlockedBy("has_logs", has(ItemTags.OAK_LOGS))
-                .save(output);
+        ModBlocks.WOOD.forEach(set -> woodRecipes(output, set));
 
-        slab(output, RecipeCategory.BUILDING_BLOCKS, ModBlocks.POLISHED_OAK_SLAB.get(), ModBlocks.POLISHED_OAK.get());
-
-        stairBuilder(ModBlocks.OAK_PILLAR_STAIRS.get(), Ingredient.of(ModBlocks.OAK_PILLAR.get()))
-                .unlockedBy(getHasName(ModBlocks.OAK_PILLAR.get()), has(ModBlocks.OAK_PILLAR.get()))
-                .save(output);
-
-        slab(output, RecipeCategory.BUILDING_BLOCKS, ModBlocks.OAK_PILLAR_SLAB.get(), ModBlocks.OAK_PILLAR.get());
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.OAK_BEAM.get(), 8)
-                .group("beam")
-                .pattern("P")
-                .pattern("P")
-                .define('P', ModBlocks.OAK_PILLAR.get())
-                .unlockedBy(getHasName(ModBlocks.OAK_PILLAR.get()), has(ModBlocks.OAK_PILLAR.get()))
-                .save(output);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.OAK_TABLE.get(), 2)
-                .pattern("PPP")
-                .pattern("P P")
-                .define('P', Items.OAK_PLANKS)
-                .unlockedBy("has_planks", has(Items.OAK_PLANKS))
-                .save(output);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.OAK_CHAIR.get())
-                .pattern("P  ")
-                .pattern("PPP")
-                .pattern("P P")
-                .define('P', Items.OAK_PLANKS)
-                .unlockedBy("has_planks", has(Items.OAK_PLANKS))
-                .save(output);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.OAK_WINDOW.get(), 4)
-                .group("window")
-                .pattern("PGP")
-                .define('P', Items.OAK_PLANKS)
-                .define('G', Items.GLASS)
-                .unlockedBy("has_glass", has(Items.GLASS))
-                .save(output);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.OAK_WINDOW_PANE.get(), 16)
-                .group("window_pane")
-                .pattern("WWW")
-                .pattern("WWW")
-                .define('W', ModBlocks.OAK_WINDOW.get())
-                .unlockedBy("has_window", has(ModBlocks.OAK_WINDOW.get()))
-                .save(output);
-
-        for (ModBlocks.ColoredSet colored : ModBlocks.TERRACOTTA) {
-            Block source = ModBlocks.vanillaTerracotta(colored.color());
-            colored.sets().forEach(set -> terracottaRecipes(output, set, source));
-        }
+        ModBlocks.TERRACOTTA.forEach(colored -> terracottaRecipes(output, colored));
 
         for (ModBlocks.ColoredSet colored : ModBlocks.PLASTER) {
             colored.sets().forEach(set -> plasterRecipes(output, set, colored.color()));
         }
     }
 
-    private void terracottaRecipes(RecipeOutput output, ModBlocks.BlockSet set, Block source) {
+    private void woodRecipes(RecipeOutput output, ModBlocks.WoodSet set) {
+        Block boards = set.boards().get();
+        Block polished = set.polished().get();
+        Block trim = set.trim().get();
+        Block pillar = set.pillar().get();
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, boards, 3)
+                .group("boards")
+                .pattern("P")
+                .pattern("P")
+                .pattern("P")
+                .define('P', set.planks())
+                .unlockedBy("has_planks", has(set.planks()))
+                .save(output);
+
+        stairBuilder(set.boardStairs().get(), Ingredient.of(boards))
+                .group("board_stairs")
+                .unlockedBy(getHasName(boards), has(boards))
+                .save(output);
+
+        slab(output, RecipeCategory.BUILDING_BLOCKS, set.boardSlab().get(), boards);
+
+        polishing(output, polished, boards);
+
+        slab(output, RecipeCategory.BUILDING_BLOCKS, set.polishedSlab().get(), polished);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, trim)
+                .group("trim")
+                .pattern("S")
+                .pattern("S")
+                .define('S', set.boardSlab().get())
+                .unlockedBy(getHasName(set.boardSlab().get()), has(set.boardSlab().get()))
+                .save(output);
+
+        stairBuilder(set.trimStairs().get(), Ingredient.of(trim))
+                .group("trim_stairs")
+                .unlockedBy(getHasName(trim), has(trim))
+                .save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, pillar, 8)
+                .group("pillar")
+                .pattern("L")
+                .pattern("L")
+                .define('L', set.logs())
+                .unlockedBy("has_logs", has(set.logs()))
+                .save(output);
+
+        stairBuilder(set.pillarStairs().get(), Ingredient.of(pillar))
+                .group("pillar_stairs")
+                .unlockedBy(getHasName(pillar), has(pillar))
+                .save(output);
+
+        slab(output, RecipeCategory.BUILDING_BLOCKS, set.pillarSlab().get(), pillar);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, set.beam().get(), 8)
+                .group("beam")
+                .pattern("P")
+                .pattern("P")
+                .define('P', pillar)
+                .unlockedBy(getHasName(pillar), has(pillar))
+                .save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, set.frame().get(), 4)
+                .group("frame")
+                .pattern("BSB")
+                .pattern("S S")
+                .pattern("BSB")
+                .define('B', boards)
+                .define('S', Items.STICK)
+                .unlockedBy(getHasName(boards), has(boards))
+                .save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, set.timberFrame().get(), 4)
+                .group("timber_frame")
+                .pattern("B B")
+                .pattern(" B ")
+                .pattern("B B")
+                .define('B', boards)
+                .unlockedBy(getHasName(boards), has(boards))
+                .save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, set.shutter().get(), 2)
+                .group("shutter")
+                .pattern("BB")
+                .pattern("SS")
+                .pattern("BB")
+                .define('B', boards)
+                .define('S', Items.STICK)
+                .unlockedBy(getHasName(boards), has(boards))
+                .save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, set.table().get(), 2)
+                .group("table")
+                .pattern("###")
+                .pattern("S S")
+                .define('#', set.slab())
+                .define('S', Items.STICK)
+                .unlockedBy(getHasName(set.slab()), has(set.slab()))
+                .save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, set.chair().get())
+                .group("chair")
+                .pattern("P ")
+                .pattern("PP")
+                .pattern("SS")
+                .define('P', set.planks())
+                .define('S', Items.STICK)
+                .unlockedBy("has_planks", has(set.planks()))
+                .save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, set.window().get(), 4)
+                .group("window")
+                .pattern("PGP")
+                .define('P', set.planks())
+                .define('G', Items.GLASS)
+                .unlockedBy("has_glass", has(Items.GLASS))
+                .save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, set.windowPane().get(), 16)
+                .group("window_pane")
+                .pattern("WWW")
+                .pattern("WWW")
+                .define('W', set.window().get())
+                .unlockedBy("has_window", has(set.window().get()))
+                .save(output);
+    }
+
+    private void facadeRecipe(RecipeOutput output) {
+        ResourceLocation id = Artisanal.location("facade");
+        output.accept(id, new FacadeRecipe(CraftingBookCategory.BUILDING), Advancement.Builder.recipeAdvancement()
+                .parent(RecipeBuilder.ROOT_RECIPE_ADVANCEMENT)
+                .addCriterion(getHasName(Items.PHANTOM_MEMBRANE), has(Items.PHANTOM_MEMBRANE))
+                .rewards(AdvancementRewards.Builder.recipe(id))
+                .requirements(AdvancementRequirements.Strategy.OR)
+                .build(id.withPrefix("recipes/misc/")));
+    }
+
+    private void polishing(RecipeOutput output, Block result, Block ingredient) {
+        ResourceLocation id = Artisanal.location(getItemName(result));
+        PolishingRecipe recipe = new PolishingRecipe("polished_wood", CraftingBookCategory.BUILDING,
+                new ItemStack(result),
+                NonNullList.of(Ingredient.EMPTY, Ingredient.of(ingredient), Ingredient.of(Tags.Items.SANDS)));
+        output.accept(id, recipe, Advancement.Builder.recipeAdvancement()
+                .parent(RecipeBuilder.ROOT_RECIPE_ADVANCEMENT)
+                .addCriterion(getHasName(ingredient), has(ingredient))
+                .rewards(AdvancementRewards.Builder.recipe(id))
+                .requirements(AdvancementRequirements.Strategy.OR)
+                .build(id.withPrefix("recipes/building_blocks/")));
+    }
+
+    private void terracottaRecipes(RecipeOutput output, ModBlocks.ColoredSet colored) {
+        Block terracotta = ModBlocks.vanillaTerracotta(colored.color());
+        ModBlocks.BlockSet cobbled = colored.sets().get(0);
+        ModBlocks.BlockSet tiles = colored.sets().get(1);
+        ModBlocks.BlockSet bricks = colored.sets().get(2);
+        ModBlocks.BlockSet shingles = colored.sets().get(3);
+
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(cobbled.block().get()), RecipeCategory.BUILDING_BLOCKS, terracotta, 0.1F, 200)
+                .group(group(terracotta))
+                .unlockedBy(getHasName(cobbled.block().get()), has(cobbled.block().get()))
+                .save(output, Artisanal.location(getItemName(terracotta) + "_from_smelting_" + getItemName(cobbled.block().get())));
+
+        shapeRecipes(output, cobbled);
+        stonecutting(output, cobbled.block().get(), cobbled.stairs().get(), 1);
+        stonecutting(output, cobbled.block().get(), cobbled.slab().get(), 2);
+
+        terracottaShape(output, tiles, terracotta);
+        terracottaShape(output, bricks, tiles.block().get());
+        terracottaShape(output, shingles, bricks.block().get());
+    }
+
+    private void terracottaShape(RecipeOutput output, ModBlocks.BlockSet set, ItemLike source) {
         ItemLike block = set.block().get();
 
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, block, 4)

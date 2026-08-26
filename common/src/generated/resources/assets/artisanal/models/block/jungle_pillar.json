@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "artisanal:block/jungle_pillar_top",
+    "side": "artisanal:block/jungle_pillar"
+  }
+}

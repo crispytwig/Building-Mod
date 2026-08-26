@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "trim",
+  "key": {
+    "S": {
+      "item": "artisanal:dark_oak_board_slab"
+    }
+  },
+  "pattern": [
+    "S",
+    "S"
+  ],
+  "result": {
+    "count": 1,
+    "id": "artisanal:dark_oak_trim"
+  }
+}

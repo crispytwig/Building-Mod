@@ -1,0 +1,8 @@
+{
+  "parent": "artisanal:block/template/beam_bottom",
+  "textures": {
+    "end": "artisanal:block/crimson_pillar_top",
+    "particle": "artisanal:block/crimson_pillar",
+    "side": "artisanal:block/crimson_pillar"
+  }
+}

@@ -10,7 +10,6 @@ import com.crispytwig.artisanal.registry.ModLayers;
 import com.crispytwig.artisanal.platform.Services;
 import com.crispytwig.artisanal.registry.ModRecipeSerializers;
 import com.crispytwig.artisanal.registry.ModTags;
-import com.mojang.logging.LogUtils;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
@@ -21,14 +20,12 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SlabBlock;
-import org.slf4j.Logger;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
 public final class Artisanal {
     public static final String MOD_ID = "artisanal";
-    public static final Logger LOGGER = LogUtils.getLogger();
 
     private Artisanal() {
     }
@@ -64,7 +61,7 @@ public final class Artisanal {
     }
 
     public static void registerFlammability(FlammabilityRegistrar registrar) {
-        ModBlocks.woodenBlocks().forEach(holder -> registrar.register(holder.get(), 5, 20));
+        ModBlocks.burnableBlocks().forEach(holder -> registrar.register(holder.get(), 5, 20));
     }
 
     public static void registerLayerFlammability(FlammabilityRegistrar registrar) {
@@ -82,7 +79,7 @@ public final class Artisanal {
     }
 
     public static void registerFuels(FuelRegistrar registrar) {
-        ModBlocks.woodenBlocks().forEach(holder -> registrar.register(holder.get(), holder.get() instanceof SlabBlock ? 150 : 300));
+        ModBlocks.burnableBlocks().forEach(holder -> registrar.register(holder.get(), holder.get() instanceof SlabBlock ? 150 : 300));
     }
 
     @FunctionalInterface

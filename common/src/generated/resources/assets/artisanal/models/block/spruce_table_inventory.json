@@ -1,0 +1,7 @@
+{
+  "parent": "artisanal:block/template/table_full",
+  "textures": {
+    "all": "artisanal:block/spruce_table",
+    "particle": "artisanal:block/spruce_boards"
+  }
+}

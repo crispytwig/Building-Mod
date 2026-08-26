@@ -1,0 +1,25 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_dark_oak_boards": {
+      "conditions": {
+        "items": [
+          {
+            "items": "artisanal:dark_oak_boards"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_dark_oak_boards"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "artisanal:polished_dark_oak"
+    ]
+  }
+}

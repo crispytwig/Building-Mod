@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "artisanal:block/warped_window_bottom"
+    },
+    "type=middle": {
+      "model": "artisanal:block/warped_window_middle"
+    },
+    "type=single": {
+      "model": "artisanal:block/warped_window"
+    },
+    "type=top": {
+      "model": "artisanal:block/warped_window_top"
+    }
+  }
+}

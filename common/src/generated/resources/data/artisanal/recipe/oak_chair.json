@@ -1,15 +1,19 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "misc",
+  "group": "chair",
   "key": {
     "P": {
       "item": "minecraft:oak_planks"
+    },
+    "S": {
+      "item": "minecraft:stick"
     }
   },
   "pattern": [
-    "P  ",
-    "PPP",
-    "P P"
+    "P ",
+    "PP",
+    "SS"
   ],
   "result": {
     "count": 1,

@@ -1,0 +1,7 @@
+{
+  "parent": "artisanal:block/template/table_back_right_leg",
+  "textures": {
+    "all": "artisanal:block/dark_oak_table",
+    "particle": "artisanal:block/dark_oak_boards"
+  }
+}

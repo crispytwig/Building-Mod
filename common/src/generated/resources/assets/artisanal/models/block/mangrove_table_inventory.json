@@ -1,0 +1,7 @@
+{
+  "parent": "artisanal:block/template/table_full",
+  "textures": {
+    "all": "artisanal:block/mangrove_table",
+    "particle": "artisanal:block/mangrove_boards"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "timber_frame",
+  "key": {
+    "B": {
+      "item": "artisanal:jungle_boards"
+    }
+  },
+  "pattern": [
+    "B B",
+    " B ",
+    "B B"
+  ],
+  "result": {
+    "count": 4,
+    "id": "artisanal:jungle_timber_frame"
+  }
+}

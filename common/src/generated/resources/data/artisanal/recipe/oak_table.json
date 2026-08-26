@@ -1,14 +1,18 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "misc",
+  "group": "table",
   "key": {
-    "P": {
-      "item": "minecraft:oak_planks"
+    "#": {
+      "item": "minecraft:oak_slab"
+    },
+    "S": {
+      "item": "minecraft:stick"
     }
   },
   "pattern": [
-    "PPP",
-    "P P"
+    "###",
+    "S S"
   ],
   "result": {
     "count": 2,

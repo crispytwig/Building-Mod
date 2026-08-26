@@ -1,0 +1,25 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_birch_boards": {
+      "conditions": {
+        "items": [
+          {
+            "items": "artisanal:birch_boards"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_birch_boards"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "artisanal:polished_birch"
+    ]
+  }
+}

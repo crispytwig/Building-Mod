@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "artisanal:block/bamboo_pillar_top",
+    "side": "artisanal:block/bamboo_pillar",
+    "top": "artisanal:block/bamboo_pillar_top"
+  }
+}

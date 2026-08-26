@@ -1,0 +1,7 @@
+{
+  "parent": "artisanal:block/template/frame_inventory",
+  "textures": {
+    "all": "artisanal:block/jungle_frame",
+    "particle": "artisanal:block/jungle_frame"
+  }
+}

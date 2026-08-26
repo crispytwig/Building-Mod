@@ -1,0 +1,9 @@
+{
+  "parent": "artisanal:block/template/trim_inner_stairs_single",
+  "textures": {
+    "particle": "artisanal:block/bamboo_boards",
+    "side": "artisanal:block/bamboo_trim_single",
+    "stair": "artisanal:block/polished_bamboo",
+    "top": "artisanal:block/bamboo_boards"
+  }
+}

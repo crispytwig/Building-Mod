@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "artisanal:block/birch_window_bottom"
+    },
+    "type=middle": {
+      "model": "artisanal:block/birch_window_middle"
+    },
+    "type=single": {
+      "model": "artisanal:block/birch_window"
+    },
+    "type=top": {
+      "model": "artisanal:block/birch_window_top"
+    }
+  }
+}

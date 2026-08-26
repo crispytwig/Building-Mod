@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "artisanal:block/jungle_boards",
+    "side": "artisanal:block/jungle_boards",
+    "top": "artisanal:block/jungle_boards"
+  }
+}

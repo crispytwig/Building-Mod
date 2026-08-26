@@ -1,0 +1,7 @@
+{
+  "parent": "artisanal:block/template/frame_corner_tr_tip",
+  "textures": {
+    "all": "artisanal:block/mangrove_frame",
+    "particle": "artisanal:block/mangrove_frame"
+  }
+}

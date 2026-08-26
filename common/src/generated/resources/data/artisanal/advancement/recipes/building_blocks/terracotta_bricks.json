@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_terracotta": {
+    "has_terracotta_tiles": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:terracotta"
+            "items": "artisanal:terracotta_tiles"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_terracotta"
+      "has_terracotta_tiles"
     ]
   ],
   "rewards": {

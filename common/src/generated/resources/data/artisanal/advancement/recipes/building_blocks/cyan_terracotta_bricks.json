@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_cyan_terracotta": {
+    "has_cyan_terracotta_tiles": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:cyan_terracotta"
+            "items": "artisanal:cyan_terracotta_tiles"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_cyan_terracotta"
+      "has_cyan_terracotta_tiles"
     ]
   ],
   "rewards": {

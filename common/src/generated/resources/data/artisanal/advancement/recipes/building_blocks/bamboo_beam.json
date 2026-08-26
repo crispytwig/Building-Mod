@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_bamboo_pillar": {
+      "conditions": {
+        "items": [
+          {
+            "items": "artisanal:bamboo_pillar"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "artisanal:bamboo_beam"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_bamboo_pillar"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "artisanal:bamboo_beam"
+    ]
+  }
+}

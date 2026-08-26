@@ -1,0 +1,7 @@
+{
+  "parent": "artisanal:block/template/frame_left_top",
+  "textures": {
+    "all": "artisanal:block/birch_frame",
+    "particle": "artisanal:block/birch_frame"
+  }
+}

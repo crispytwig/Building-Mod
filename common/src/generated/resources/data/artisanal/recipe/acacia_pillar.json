@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "pillar",
+  "key": {
+    "L": {
+      "tag": "minecraft:acacia_logs"
+    }
+  },
+  "pattern": [
+    "L",
+    "L"
+  ],
+  "result": {
+    "count": 8,
+    "id": "artisanal:acacia_pillar"
+  }
+}

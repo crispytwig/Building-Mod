@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_polished_bamboo": {
+      "conditions": {
+        "items": [
+          {
+            "items": "artisanal:polished_bamboo"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "artisanal:polished_bamboo_slab"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_polished_bamboo"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "artisanal:polished_bamboo_slab"
+    ]
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "render_type": "minecraft:translucent",
+  "textures": {
+    "end": "artisanal:block/acacia_window",
+    "side": "artisanal:block/acacia_window_bottom"
+  }
+}

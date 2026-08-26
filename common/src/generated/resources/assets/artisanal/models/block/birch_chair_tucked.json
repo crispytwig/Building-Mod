@@ -1,0 +1,8 @@
+{
+  "parent": "artisanal:block/template/chair_tucked",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "all": "artisanal:block/birch_chair",
+    "particle": "artisanal:block/birch_boards"
+  }
+}

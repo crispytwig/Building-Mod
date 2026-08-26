@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "artisanal:block/polished_birch_slab"
+    },
+    "type=double": {
+      "model": "artisanal:block/polished_birch_slab_full"
+    },
+    "type=top": {
+      "model": "artisanal:block/polished_birch_slab_top"
+    }
+  }
+}

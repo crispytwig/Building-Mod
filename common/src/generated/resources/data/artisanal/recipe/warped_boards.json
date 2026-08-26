@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "boards",
+  "key": {
+    "P": {
+      "item": "minecraft:warped_planks"
+    }
+  },
+  "pattern": [
+    "P",
+    "P",
+    "P"
+  ],
+  "result": {
+    "count": 3,
+    "id": "artisanal:warped_boards"
+  }
+}

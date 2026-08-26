@@ -1,0 +1,17 @@
+{
+  "type": "artisanal:polishing",
+  "category": "building",
+  "group": "polished_wood",
+  "ingredients": [
+    {
+      "item": "artisanal:jungle_boards"
+    },
+    {
+      "tag": "c:sands"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "artisanal:polished_jungle"
+  }
+}

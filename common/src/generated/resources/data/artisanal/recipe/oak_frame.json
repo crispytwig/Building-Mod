@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "frame",
+  "key": {
+    "B": {
+      "item": "artisanal:oak_boards"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "BSB",
+    "S S",
+    "BSB"
+  ],
+  "result": {
+    "count": 4,
+    "id": "artisanal:oak_frame"
+  }
+}

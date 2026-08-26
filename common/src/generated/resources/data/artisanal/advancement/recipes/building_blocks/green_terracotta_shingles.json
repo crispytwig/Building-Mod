@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_green_terracotta": {
+    "has_green_terracotta_bricks": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:green_terracotta"
+            "items": "artisanal:green_terracotta_bricks"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_green_terracotta"
+      "has_green_terracotta_bricks"
     ]
   ],
   "rewards": {

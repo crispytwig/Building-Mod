@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "facing=east,waterlogged=false": {
+      "model": "artisanal:block/crimson_frame_inventory"
+    },
+    "facing=east,waterlogged=true": {
+      "model": "artisanal:block/crimson_frame_inventory"
+    },
+    "facing=north,waterlogged=false": {
+      "model": "artisanal:block/crimson_frame_inventory"
+    },
+    "facing=north,waterlogged=true": {
+      "model": "artisanal:block/crimson_frame_inventory"
+    },
+    "facing=south,waterlogged=false": {
+      "model": "artisanal:block/crimson_frame_inventory"
+    },
+    "facing=south,waterlogged=true": {
+      "model": "artisanal:block/crimson_frame_inventory"
+    },
+    "facing=west,waterlogged=false": {
+      "model": "artisanal:block/crimson_frame_inventory"
+    },
+    "facing=west,waterlogged=true": {
+      "model": "artisanal:block/crimson_frame_inventory"
+    }
+  }
+}

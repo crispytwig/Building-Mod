@@ -3,6 +3,7 @@
   "textures": {
     "bottom": "bbb:block/polished_warped",
     "particle": "bbb:block/polished_warped",
-    "side": "bbb:block/warped_pillar"
+    "side": "bbb:block/warped_pillar",
+    "top": "bbb:block/polished_warped"
   }
 }

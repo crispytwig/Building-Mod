@@ -43,6 +43,8 @@ public class ModRecipeProvider extends RecipeProvider {
     protected void buildRecipes(RecipeOutput output) {
         facadeRecipe(output);
 
+        stoneRecipes(output);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.PRISMARINE_TILES.get(), 4)
                 .define('#', Blocks.PRISMARINE_BRICKS)
                 .pattern("##")
@@ -65,6 +67,55 @@ public class ModRecipeProvider extends RecipeProvider {
         }
 
         ModBlocks.SOFAS.forEach((color, holder) -> sofaRecipe(output, color, holder.get()));
+    }
+
+    private void stoneRecipes(RecipeOutput output) {
+        Block tiles = ModBlocks.STONE_TILES.block().get();
+        Block slab = ModBlocks.STONE_TILES.slab().get();
+        Block pillar = ModBlocks.STONE_PILLAR.get();
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, tiles, 4)
+                .group(group(tiles))
+                .define('#', Blocks.STONE_BRICKS)
+                .pattern("##")
+                .pattern("##")
+                .unlockedBy(getHasName(Blocks.STONE_BRICKS), has(Blocks.STONE_BRICKS))
+                .save(output);
+
+        shapeRecipes(output, ModBlocks.STONE_TILES);
+
+        stonecutting(output, Blocks.STONE_BRICKS, tiles, 1);
+        stonecutting(output, Blocks.STONE_BRICKS, ModBlocks.STONE_TILES.stairs().get(), 1);
+        stonecutting(output, Blocks.STONE_BRICKS, slab, 2);
+        stonecutting(output, tiles, ModBlocks.STONE_TILES.stairs().get(), 1);
+        stonecutting(output, tiles, slab, 2);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, pillar)
+                .group(group(pillar))
+                .pattern("S")
+                .pattern("S")
+                .define('S', slab)
+                .unlockedBy(getHasName(slab), has(slab))
+                .save(output);
+
+        stairBuilder(ModBlocks.STONE_PILLAR_STAIRS.get(), Ingredient.of(pillar))
+                .group(group(ModBlocks.STONE_PILLAR_STAIRS.get()))
+                .unlockedBy(getHasName(pillar), has(pillar))
+                .save(output);
+
+        slabBuilder(RecipeCategory.BUILDING_BLOCKS, ModBlocks.STONE_PILLAR_SLAB.get(), Ingredient.of(pillar))
+                .group(group(ModBlocks.STONE_PILLAR_SLAB.get()))
+                .unlockedBy(getHasName(pillar), has(pillar))
+                .save(output);
+
+        stonecutting(output, Blocks.STONE_BRICKS, pillar, 1);
+        stonecutting(output, Blocks.STONE_BRICKS, ModBlocks.STONE_PILLAR_STAIRS.get(), 1);
+        stonecutting(output, Blocks.STONE_BRICKS, ModBlocks.STONE_PILLAR_SLAB.get(), 2);
+        stonecutting(output, tiles, pillar, 1);
+        stonecutting(output, tiles, ModBlocks.STONE_PILLAR_STAIRS.get(), 1);
+        stonecutting(output, tiles, ModBlocks.STONE_PILLAR_SLAB.get(), 2);
+        stonecutting(output, pillar, ModBlocks.STONE_PILLAR_STAIRS.get(), 1);
+        stonecutting(output, pillar, ModBlocks.STONE_PILLAR_SLAB.get(), 2);
     }
 
     private void woodRecipes(RecipeOutput output, ModBlocks.WoodSet set) {

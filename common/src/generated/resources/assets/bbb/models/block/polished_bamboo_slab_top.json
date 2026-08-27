@@ -3,6 +3,7 @@
   "textures": {
     "bottom": "bbb:block/polished_bamboo",
     "particle": "bbb:block/polished_bamboo",
-    "side": "bbb:block/bamboo_pillar"
+    "side": "bbb:block/bamboo_pillar",
+    "top": "bbb:block/polished_bamboo"
   }
 }

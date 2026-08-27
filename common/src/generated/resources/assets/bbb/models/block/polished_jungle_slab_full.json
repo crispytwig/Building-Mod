@@ -3,6 +3,7 @@
   "textures": {
     "bottom": "bbb:block/polished_jungle",
     "particle": "bbb:block/polished_jungle",
-    "side": "bbb:block/jungle_pillar"
+    "side": "bbb:block/jungle_pillar",
+    "top": "bbb:block/polished_jungle"
   }
 }

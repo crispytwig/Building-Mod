@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "stone_pillar_slab",
+  "key": {
+    "#": {
+      "item": "bbb:stone_pillar"
+    }
+  },
+  "pattern": [
+    "###"
+  ],
+  "result": {
+    "count": 6,
+    "id": "bbb:stone_pillar_slab"
+  }
+}

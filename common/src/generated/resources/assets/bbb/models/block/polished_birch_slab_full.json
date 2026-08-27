@@ -3,6 +3,7 @@
   "textures": {
     "bottom": "bbb:block/polished_birch",
     "particle": "bbb:block/polished_birch",
-    "side": "bbb:block/birch_pillar"
+    "side": "bbb:block/birch_pillar",
+    "top": "bbb:block/polished_birch"
   }
 }

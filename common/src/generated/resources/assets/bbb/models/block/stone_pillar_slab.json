@@ -1,0 +1,9 @@
+{
+  "parent": "bbb:block/template/polished_slab",
+  "textures": {
+    "bottom": "bbb:block/stone_tiles",
+    "particle": "bbb:block/stone_tiles",
+    "side": "bbb:block/stone_pillar_single",
+    "top": "bbb:block/stone_tiles"
+  }
+}

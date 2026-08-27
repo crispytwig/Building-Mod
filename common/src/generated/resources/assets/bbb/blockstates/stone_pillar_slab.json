@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "bbb:block/stone_pillar_slab"
+    },
+    "type=double": {
+      "model": "bbb:block/stone_pillar_slab_full"
+    },
+    "type=top": {
+      "model": "bbb:block/stone_pillar_slab_top"
+    }
+  }
+}

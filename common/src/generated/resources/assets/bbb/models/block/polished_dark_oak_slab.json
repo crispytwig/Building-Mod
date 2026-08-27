@@ -3,6 +3,7 @@
   "textures": {
     "bottom": "bbb:block/polished_dark_oak",
     "particle": "bbb:block/polished_dark_oak",
-    "side": "bbb:block/dark_oak_pillar"
+    "side": "bbb:block/dark_oak_pillar",
+    "top": "bbb:block/polished_dark_oak"
   }
 }

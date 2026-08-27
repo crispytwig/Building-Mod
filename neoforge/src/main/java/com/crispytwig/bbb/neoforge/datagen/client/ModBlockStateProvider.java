@@ -49,6 +49,12 @@ public class ModBlockStateProvider extends BlockStateProvider {
     protected void registerStatesAndModels() {
         ModBlocks.WOOD.forEach(this::woodSet);
 
+        ResourceLocation stoneTiles = BuildingButBetter.location("block/stone_tiles");
+        cubeSet(ModBlocks.STONE_TILES);
+        trim("stone_pillar", stoneTiles, ModBlocks.STONE_PILLAR.get());
+        trimStairs("stone_pillar", ModBlocks.STONE_PILLAR_STAIRS.get(), stoneTiles, stoneTiles, stoneTiles);
+        polishedSlab(ModBlocks.STONE_PILLAR_SLAB.get(), stoneTiles, BuildingButBetter.location("block/stone_pillar_single"));
+
         cube(ModBlocks.PRISMARINE_TILES.get());
         cubeStairs(ModBlocks.PRISMARINE_TILE_STAIRS.get(), BuildingButBetter.location("block/prismarine_tiles"));
         cubeSlab(ModBlocks.PRISMARINE_TILE_SLAB.get(), BuildingButBetter.location("block/prismarine_tiles"), BuildingButBetter.location("block/prismarine_tiles"));
@@ -381,6 +387,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         return models().withExistingParent(name, BuildingButBetter.location("block/template/" + template))
                 .texture("particle", polished)
                 .texture("bottom", polished)
+                .texture("top", polished)
                 .texture("side", side);
     }
 

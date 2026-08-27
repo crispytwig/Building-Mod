@@ -24,16 +24,18 @@ import java.util.Optional;
 public final class LayerAssets {
     private static final List<String> FACES = List.of("top", "side", "bottom");
     private static final int MAX_TEXTURE_DEPTH = 4;
+    private static final String SIDE_SUFFIX = "_side";
+    private static final String DOWN_SUFFIX = "_down";
 
     private static final Map<ResourceLocation, JsonObject> CACHE = new HashMap<>();
 
     private static final Map<Direction, int[]> ROTATIONS = Map.of(
             Direction.UP, new int[]{0, 0},
             Direction.DOWN, new int[]{180, 0},
-            Direction.NORTH, new int[]{90, 0},
-            Direction.SOUTH, new int[]{90, 180},
-            Direction.WEST, new int[]{90, 270},
-            Direction.EAST, new int[]{90, 90});
+            Direction.NORTH, new int[]{0, 0},
+            Direction.EAST, new int[]{0, 90},
+            Direction.SOUTH, new int[]{0, 180},
+            Direction.WEST, new int[]{0, 270});
 
     private LayerAssets() {
     }
@@ -61,21 +63,32 @@ public final class LayerAssets {
             return;
         }
 
+        JsonObject flipped = textures.deepCopy();
+        flipped.add("top", textures.get("bottom"));
+        flipped.add("bottom", textures.get("top"));
+
         String model = BuildingButBetter.MOD_ID + ":block/" + layerId.getPath();
         for (int layers = 1; layers <= LayerBlock.MAX_LAYERS; layers++) {
-            write("models/block/" + layerId.getPath() + "_" + layers, model(layers < LayerBlock.MAX_LAYERS
-                    ? BuildingButBetter.MOD_ID + ":block/template/layer_" + layers
-                    : "minecraft:block/cube_bottom_top", textures));
+            String name = "models/block/" + layerId.getPath() + "_" + layers;
+            if (layers < LayerBlock.MAX_LAYERS) {
+                String template = BuildingButBetter.MOD_ID + ":block/template/layer_" + layers;
+                write(name, model(template, textures));
+                write(name + DOWN_SUFFIX, model(template, flipped));
+                write(name + SIDE_SUFFIX, model(template + SIDE_SUFFIX, textures));
+            } else {
+                write(name, model("minecraft:block/cube_bottom_top", textures));
+            }
         }
         write("models/item/" + layerId.getPath(), model(model + "_1", null));
 
         JsonObject variants = new JsonObject();
         ROTATIONS.forEach((facing, rotation) -> {
             for (int layers = 1; layers <= LayerBlock.MAX_LAYERS; layers++) {
+                boolean shaped = layers < LayerBlock.MAX_LAYERS;
                 JsonObject variant = new JsonObject();
-                variant.addProperty("model", model + "_" + layers);
+                variant.addProperty("model", model + "_" + layers + (shaped ? suffix(facing) : ""));
                 variant.addProperty("uvlock", true);
-                if (layers < LayerBlock.MAX_LAYERS) {
+                if (shaped) {
                     if (rotation[0] != 0) {
                         variant.addProperty("x", rotation[0]);
                     }
@@ -90,6 +103,13 @@ public final class LayerAssets {
         JsonObject blockState = new JsonObject();
         blockState.add("variants", variants);
         write("blockstates/" + layerId.getPath(), blockState);
+    }
+
+    private static String suffix(Direction facing) {
+        if (facing.getAxis().isHorizontal()) {
+            return SIDE_SUFFIX;
+        }
+        return facing == Direction.DOWN ? DOWN_SUFFIX : "";
     }
 
     private static JsonObject model(String parent, @Nullable JsonObject textures) {

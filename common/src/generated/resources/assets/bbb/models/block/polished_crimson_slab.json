@@ -3,6 +3,7 @@
   "textures": {
     "bottom": "bbb:block/polished_crimson",
     "particle": "bbb:block/polished_crimson",
-    "side": "bbb:block/crimson_pillar"
+    "side": "bbb:block/crimson_pillar",
+    "top": "bbb:block/polished_crimson"
   }
 }

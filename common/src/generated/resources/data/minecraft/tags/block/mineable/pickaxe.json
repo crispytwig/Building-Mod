@@ -1,5 +1,11 @@
 {
   "values": [
+    "bbb:stone_tiles",
+    "bbb:stone_tile_stairs",
+    "bbb:stone_tile_slab",
+    "bbb:stone_pillar",
+    "bbb:stone_pillar_stairs",
+    "bbb:stone_pillar_slab",
     "bbb:prismarine_tiles",
     "bbb:prismarine_tile_stairs",
     "bbb:prismarine_tile_slab",

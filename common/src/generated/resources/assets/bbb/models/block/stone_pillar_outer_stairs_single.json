@@ -1,0 +1,9 @@
+{
+  "parent": "bbb:block/template/trim_outer_stairs_single",
+  "textures": {
+    "particle": "bbb:block/stone_tiles",
+    "side": "bbb:block/stone_pillar_single",
+    "stair": "bbb:block/stone_tiles",
+    "top": "bbb:block/stone_tiles"
+  }
+}

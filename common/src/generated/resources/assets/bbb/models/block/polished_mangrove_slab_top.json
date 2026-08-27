@@ -3,6 +3,7 @@
   "textures": {
     "bottom": "bbb:block/polished_mangrove",
     "particle": "bbb:block/polished_mangrove",
-    "side": "bbb:block/mangrove_pillar"
+    "side": "bbb:block/mangrove_pillar",
+    "top": "bbb:block/polished_mangrove"
   }
 }

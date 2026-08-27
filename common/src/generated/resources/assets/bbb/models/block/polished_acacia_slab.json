@@ -3,6 +3,7 @@
   "textures": {
     "bottom": "bbb:block/polished_acacia",
     "particle": "bbb:block/polished_acacia",
-    "side": "bbb:block/acacia_pillar"
+    "side": "bbb:block/acacia_pillar",
+    "top": "bbb:block/polished_acacia"
   }
 }

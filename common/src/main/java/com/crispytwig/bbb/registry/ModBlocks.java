@@ -48,6 +48,12 @@ public final class ModBlocks {
 
     public static final List<WoodSet> WOOD = createWood();
 
+    public static final BlockSet STONE_TILES = registerSet("stone_tiles", "stone_tile", ModBlocks::stoneTileProperties);
+    public static final DeferredHolder<Block, TrimBlock> STONE_PILLAR = register("stone_pillar", TrimBlock::new, stoneTileProperties());
+    public static final DeferredHolder<Block, TrimStairBlock> STONE_PILLAR_STAIRS = BLOCKS.register("stone_pillar_stairs",
+            () -> new TrimStairBlock(STONE_PILLAR.get().defaultBlockState(), stoneTileProperties()));
+    public static final DeferredHolder<Block, SlabBlock> STONE_PILLAR_SLAB = register("stone_pillar_slab", SlabBlock::new, stoneTileProperties());
+
     public static final DeferredHolder<Block, Block> PRISMARINE_TILES = register("prismarine_tiles", Block::new, prismarineProperties());
     public static final DeferredHolder<Block, ModStairBlock> PRISMARINE_TILE_STAIRS = registerStairs("prismarine_tile_stairs", PRISMARINE_TILES, prismarineProperties());
     public static final DeferredHolder<Block, SlabBlock> PRISMARINE_TILE_SLAB = register("prismarine_tile_slab", SlabBlock::new, prismarineProperties());
@@ -207,6 +213,10 @@ public final class ModBlocks {
 
     private static BlockBehaviour.Properties sofaProperties(MapColor mapColor) {
         return decorativeProperties(mapColor, SoundType.WOOL).strength(0.8F).dynamicShape();
+    }
+
+    private static BlockBehaviour.Properties stoneTileProperties() {
+        return BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICKS);
     }
 
     private static BlockBehaviour.Properties prismarineProperties() {

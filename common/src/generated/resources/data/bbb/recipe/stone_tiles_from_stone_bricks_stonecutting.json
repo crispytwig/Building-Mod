@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:stonecutting",
+  "group": "stone_tiles",
+  "ingredient": {
+    "item": "minecraft:stone_bricks"
+  },
+  "result": {
+    "count": 1,
+    "id": "bbb:stone_tiles"
+  }
+}

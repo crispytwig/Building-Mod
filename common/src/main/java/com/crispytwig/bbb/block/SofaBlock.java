@@ -1,7 +1,6 @@
 package com.crispytwig.bbb.block;
 
 import com.crispytwig.bbb.block.entity.SofaBlockEntity;
-import com.crispytwig.bbb.entity.SeatEntity;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -31,7 +30,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
-import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
@@ -43,7 +41,7 @@ import java.util.EnumMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class SofaBlock extends HorizontalDirectionalBlock implements EntityBlock, Seat {
+public class SofaBlock extends AbstractSeatBlock implements EntityBlock {
     public static final MapCodec<SofaBlock> CODEC = simpleCodec(SofaBlock::new);
 
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
@@ -100,11 +98,6 @@ public class SofaBlock extends HorizontalDirectionalBlock implements EntityBlock
     }
 
     @Override
-    protected boolean isPathfindable(BlockState state, PathComputationType type) {
-        return false;
-    }
-
-    @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(FACING, LEFT, RIGHT);
     }
@@ -148,16 +141,12 @@ public class SofaBlock extends HorizontalDirectionalBlock implements EntityBlock
         if (tryOpenCrevice(state, level, pos, player, hitResult)) {
             return InteractionResult.sidedSuccess(level.isClientSide);
         }
-        if (level.isClientSide) {
-            return InteractionResult.SUCCESS;
-        }
-        return SeatEntity.trySit(this, state, level, pos, player) ? InteractionResult.SUCCESS : InteractionResult.PASS;
+        return super.useWithoutItem(state, level, pos, player, hitResult);
     }
 
     @Override
     public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {
         if (!state.is(newState.getBlock())) {
-            SeatEntity.eject(level, pos);
             if (level.getBlockEntity(pos) instanceof SofaBlockEntity sofa) {
                 Containers.dropContents(level, pos, sofa);
                 sofa.clearContent();
@@ -179,11 +168,11 @@ public class SofaBlock extends HorizontalDirectionalBlock implements EntityBlock
         Direction facing = state.getValue(FACING);
         boolean left = state.getValue(LEFT);
         boolean right = state.getValue(RIGHT);
-        boolean behind = occupied(level, pos.relative(facing.getOpposite()));
-        boolean above = occupied(level, pos.above());
-        boolean front = occupied(level, pos.relative(facing));
-        boolean leftBlocked = !left && occupied(level, pos.relative(facing.getCounterClockWise()));
-        boolean rightBlocked = !right && occupied(level, pos.relative(facing.getClockWise()));
+        boolean behind = occupied(level, pos, facing.getOpposite());
+        boolean above = occupied(level, pos, Direction.UP);
+        boolean front = occupied(level, pos, facing);
+        boolean leftBlocked = !left && occupied(level, pos, facing.getCounterClockWise());
+        boolean rightBlocked = !right && occupied(level, pos, facing.getClockWise());
 
         int key = facing.get2DDataValue()
                 | (left ? 1 << 2 : 0) | (right ? 1 << 3 : 0)
@@ -203,13 +192,13 @@ public class SofaBlock extends HorizontalDirectionalBlock implements EntityBlock
         boolean left = state.getValue(LEFT);
         boolean right = state.getValue(RIGHT);
         boolean single = !left && !right;
-        boolean leftArmTucked = !single && !left && occupied(level, pos.relative(facing.getCounterClockWise()));
-        boolean rightArmTucked = !single && !right && occupied(level, pos.relative(facing.getClockWise()));
+        boolean leftArmTucked = !single && !left && occupied(level, pos, facing.getCounterClockWise());
+        boolean rightArmTucked = !single && !right && occupied(level, pos, facing.getClockWise());
 
         double armShift = TUCK_ARM_SIDE / 32.0;
         double x = 0.5 + (leftArmTucked ? armShift : 0.0) - (rightArmTucked ? armShift : 0.0);
-        double y = getSeatYOffset() + (occupied(level, pos.above()) ? TUCK_DOWN / 16.0 : 0.0);
-        double z = 5.0 / 16.0 + (occupied(level, pos.relative(facing)) ? TUCK_FRONT / 16.0 : 0.0);
+        double y = getSeatYOffset() + (occupied(level, pos, Direction.UP) ? TUCK_DOWN / 16.0 : 0.0);
+        double z = 5.0 / 16.0 + (occupied(level, pos, facing) ? TUCK_FRONT / 16.0 : 0.0);
 
         for (int i = 0; i < quarterTurns(facing); i++) {
             double rotated = 1.0 - z;
@@ -226,6 +215,9 @@ public class SofaBlock extends HorizontalDirectionalBlock implements EntityBlock
 
     @Override
     protected BlockState mirror(BlockState state, Mirror mirror) {
+        if (mirror == Mirror.NONE) {
+            return state;
+        }
         return state.setValue(FACING, mirror.mirror(state.getValue(FACING)))
                 .setValue(LEFT, state.getValue(RIGHT))
                 .setValue(RIGHT, state.getValue(LEFT));
@@ -246,8 +238,10 @@ public class SofaBlock extends HorizontalDirectionalBlock implements EntityBlock
         }
     }
 
-    public static boolean occupied(BlockGetter level, BlockPos pos) {
-        return !level.getBlockState(pos).isAir();
+    public static boolean occupied(BlockGetter level, BlockPos pos, Direction direction) {
+        BlockPos neighbor = pos.relative(direction);
+        BlockState state = level.getBlockState(neighbor);
+        return state.getBlock() instanceof SofaBlock || state.isFaceSturdy(level, neighbor, direction.getOpposite());
     }
 
     public static int quarterTurns(Direction facing) {
@@ -255,7 +249,7 @@ public class SofaBlock extends HorizontalDirectionalBlock implements EntityBlock
     }
 
     private boolean tryOpenCrevice(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
-        BlockPos owner = creviceOwner(state, pos, hitResult);
+        BlockPos owner = creviceOwner(state, level, pos, hitResult);
         if (owner == null) {
             return false;
         }
@@ -266,9 +260,15 @@ public class SofaBlock extends HorizontalDirectionalBlock implements EntityBlock
         return true;
     }
 
-    private BlockPos creviceOwner(BlockState state, BlockPos pos, BlockHitResult hitResult) {
+    private BlockPos creviceOwner(BlockState state, Level level, BlockPos pos, BlockHitResult hitResult) {
         Direction facing = state.getValue(FACING);
-        Vec3 local = hitResult.getLocation().subtract(pos.getX(), pos.getY(), pos.getZ());
+        Direction back = facing.getOpposite();
+        double tuck = occupied(level, pos, facing) ? TUCK_FRONT / 16.0 : 0.0;
+        double drop = occupied(level, pos, Direction.UP) ? TUCK_DOWN / 16.0 : 0.0;
+        Vec3 local = hitResult.getLocation().subtract(
+                pos.getX() + back.getStepX() * tuck,
+                pos.getY() + drop,
+                pos.getZ() + back.getStepZ() * tuck);
         if (state.getValue(RIGHT) && RIGHT_CREVICE.get(facing).inflate(0.05).contains(local)) {
             return pos;
         }

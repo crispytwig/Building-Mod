@@ -76,6 +76,7 @@ public class SofaBlockEntity extends BlockEntity implements Container, MenuProvi
     @Override
     public void clearContent() {
         items.set(0, ItemStack.EMPTY);
+        setChanged();
     }
 
     @Override

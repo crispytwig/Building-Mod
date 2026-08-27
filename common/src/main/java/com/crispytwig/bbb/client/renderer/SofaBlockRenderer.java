@@ -60,11 +60,11 @@ public class SofaBlockRenderer implements BlockEntityRenderer<SofaBlockEntity> {
         Direction facing = state.getValue(SofaBlock.FACING);
         boolean left = state.getValue(SofaBlock.LEFT);
         boolean right = state.getValue(SofaBlock.RIGHT);
-        boolean behind = SofaBlock.occupied(level, pos.relative(facing.getOpposite()));
-        boolean above = SofaBlock.occupied(level, pos.above());
-        boolean front = SofaBlock.occupied(level, pos.relative(facing));
-        boolean leftBlocked = SofaBlock.occupied(level, pos.relative(facing.getCounterClockWise()));
-        boolean rightBlocked = SofaBlock.occupied(level, pos.relative(facing.getClockWise()));
+        boolean behind = SofaBlock.occupied(level, pos, facing.getOpposite());
+        boolean above = SofaBlock.occupied(level, pos, Direction.UP);
+        boolean front = SofaBlock.occupied(level, pos, facing);
+        boolean leftBlocked = SofaBlock.occupied(level, pos, facing.getCounterClockWise());
+        boolean rightBlocked = SofaBlock.occupied(level, pos, facing.getClockWise());
 
         poseStack.pushPose();
         poseStack.translate(0.5, 0.0, 0.5);

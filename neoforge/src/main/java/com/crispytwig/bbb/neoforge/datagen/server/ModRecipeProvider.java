@@ -9,6 +9,7 @@ import net.minecraft.advancements.AdvancementRequirements;
 import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.data.PackOutput;
@@ -296,7 +297,7 @@ public class ModRecipeProvider extends RecipeProvider {
     }
 
     private void sofaRecipe(RecipeOutput output, DyeColor color, ItemLike sofa) {
-        Block wool = wool(color);
+        Block wool = BuiltInRegistries.BLOCK.get(ResourceLocation.withDefaultNamespace(color.getName() + "_wool"));
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, sofa)
                 .group(group(sofa))
                 .pattern("WWW")
@@ -305,27 +306,6 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('P', ItemTags.PLANKS)
                 .unlockedBy(getHasName(wool), has(wool))
                 .save(output);
-    }
-
-    private static Block wool(DyeColor color) {
-        return switch (color) {
-            case WHITE -> Blocks.WHITE_WOOL;
-            case ORANGE -> Blocks.ORANGE_WOOL;
-            case MAGENTA -> Blocks.MAGENTA_WOOL;
-            case LIGHT_BLUE -> Blocks.LIGHT_BLUE_WOOL;
-            case YELLOW -> Blocks.YELLOW_WOOL;
-            case LIME -> Blocks.LIME_WOOL;
-            case PINK -> Blocks.PINK_WOOL;
-            case GRAY -> Blocks.GRAY_WOOL;
-            case LIGHT_GRAY -> Blocks.LIGHT_GRAY_WOOL;
-            case CYAN -> Blocks.CYAN_WOOL;
-            case PURPLE -> Blocks.PURPLE_WOOL;
-            case BLUE -> Blocks.BLUE_WOOL;
-            case BROWN -> Blocks.BROWN_WOOL;
-            case GREEN -> Blocks.GREEN_WOOL;
-            case RED -> Blocks.RED_WOOL;
-            case BLACK -> Blocks.BLACK_WOOL;
-        };
     }
 
     static String group(ItemLike item) {

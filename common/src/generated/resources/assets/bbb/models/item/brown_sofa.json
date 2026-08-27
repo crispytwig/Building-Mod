@@ -1,0 +1,7 @@
+{
+  "parent": "bbb:block/template/sofa",
+  "textures": {
+    "all": "bbb:block/sofa/brown_sofa",
+    "particle": "minecraft:block/brown_wool"
+  }
+}

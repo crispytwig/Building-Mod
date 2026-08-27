@@ -2,6 +2,9 @@ package com.crispytwig.bbb.fabric.platform;
 
 import com.crispytwig.bbb.BuildingButBetter;
 import com.crispytwig.bbb.platform.services.IPlatformHelper;
+import net.minecraft.world.flag.FeatureFlags;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.MenuType;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.registry.OxidizableBlocksRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
@@ -19,6 +22,11 @@ import java.util.Map;
 import java.util.function.BiFunction;
 
 public class FabricPlatformHelper implements IPlatformHelper {
+    @Override
+    public <T extends AbstractContainerMenu> MenuType<T> createMenuType(MenuFactory<T> factory) {
+        return new MenuType<>(factory::create, FeatureFlags.VANILLA_SET);
+    }
+
     @Override
     public boolean isModLoaded(String modId) {
         return FabricLoader.getInstance().isModLoaded(modId);

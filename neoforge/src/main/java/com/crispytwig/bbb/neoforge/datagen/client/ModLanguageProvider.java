@@ -28,6 +28,8 @@ public class ModLanguageProvider extends LanguageProvider {
         add("bbb.configuration.prismarine_deepslate_sounds", "Prismarine Sounds");
         add("bbb.configuration.prismarine_deepslate_sounds.tooltip", "Makes every Prismarine block use Deepslate sounds");
 
+        add("container.bbb.sofa_crevice", "Sofa Crevice");
+
         add(ModItems.FACADE.get(), "Facade");
         add(ModItems.FACADE.get().getDescriptionId() + ".material", "%s Facade");
 

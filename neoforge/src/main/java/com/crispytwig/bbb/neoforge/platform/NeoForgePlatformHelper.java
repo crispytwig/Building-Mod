@@ -3,6 +3,9 @@ package com.crispytwig.bbb.neoforge.platform;
 import com.crispytwig.bbb.BuildingButBetter;
 import com.crispytwig.bbb.data.BuildingButBetterPack;
 import com.crispytwig.bbb.platform.services.IPlatformHelper;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.MenuType;
+import net.neoforged.neoforge.common.extensions.IMenuTypeExtension;
 import com.google.gson.JsonObject;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
@@ -21,6 +24,11 @@ import java.util.Map;
 import java.util.function.BiFunction;
 
 public class NeoForgePlatformHelper implements IPlatformHelper {
+    @Override
+    public <T extends AbstractContainerMenu> MenuType<T> createMenuType(MenuFactory<T> factory) {
+        return IMenuTypeExtension.create((containerId, playerInventory, buffer) -> factory.create(containerId, playerInventory));
+    }
+
     @Override
     public boolean isModLoaded(String modId) {
         return ModList.get().isLoaded(modId);

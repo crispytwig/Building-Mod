@@ -7,6 +7,7 @@ import com.crispytwig.bbb.registry.ModDataComponents;
 import com.crispytwig.bbb.registry.ModEntityTypes;
 import com.crispytwig.bbb.registry.ModItems;
 import com.crispytwig.bbb.registry.ModLayers;
+import com.crispytwig.bbb.registry.ModMenuTypes;
 import com.crispytwig.bbb.platform.Services;
 import com.crispytwig.bbb.registry.ModRecipeSerializers;
 import com.crispytwig.bbb.registry.ModTags;
@@ -40,6 +41,7 @@ public final class BuildingButBetter {
         ModDataComponents.init();
         ModItems.init();
         ModBlockEntities.init();
+        ModMenuTypes.init();
         ModRecipeSerializers.init();
         ModCreativeTabs.init();
     }

@@ -2,14 +2,18 @@ package com.crispytwig.bbb;
 
 import com.crispytwig.bbb.block.ChairBlock;
 import com.crispytwig.bbb.block.FrameBlock;
+import com.crispytwig.bbb.block.SofaBlock;
 import com.crispytwig.bbb.block.TableBlock;
 import com.crispytwig.bbb.block.TimberFrameBlock;
 import com.crispytwig.bbb.block.WindowBlock;
 import com.crispytwig.bbb.block.WindowPaneBlock;
 import com.crispytwig.bbb.client.renderer.FrameBlockRenderer;
 import com.crispytwig.bbb.client.renderer.SeatEntityRenderer;
+import com.crispytwig.bbb.client.renderer.SofaBlockRenderer;
 import com.crispytwig.bbb.client.renderer.TableBlockRenderer;
 import com.crispytwig.bbb.client.renderer.TimberFrameBlockRenderer;
+import com.crispytwig.bbb.client.screen.SofaScreen;
+import com.crispytwig.bbb.registry.ModMenuTypes;
 import com.crispytwig.bbb.platform.registry.DeferredHolder;
 import com.crispytwig.bbb.registry.ModBlockEntities;
 import com.crispytwig.bbb.registry.ModBlocks;
@@ -19,10 +23,16 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.gui.screens.inventory.MenuAccess;
 import net.minecraft.client.renderer.item.ClampedItemPropertyFunction;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -56,6 +66,16 @@ public final class BuildingButBetterClient {
     }
 
     @FunctionalInterface
+    public interface ScreenFactory<M extends AbstractContainerMenu, S extends Screen & MenuAccess<M>> {
+        S create(M menu, Inventory playerInventory, Component title);
+    }
+
+    @FunctionalInterface
+    public interface ScreenRegistrar {
+        <M extends AbstractContainerMenu, S extends Screen & MenuAccess<M>> void register(MenuType<? extends M> type, ScreenFactory<M, S> factory);
+    }
+
+    @FunctionalInterface
     public interface RenderTypeRegistrar {
         void register(RenderType type, Block block);
     }
@@ -71,6 +91,11 @@ public final class BuildingButBetterClient {
         registrar.register(ModBlockEntities.TABLE.get(), context -> new TableBlockRenderer());
         registrar.register(ModBlockEntities.FRAME.get(), context -> new FrameBlockRenderer());
         registrar.register(ModBlockEntities.TIMBER_FRAME.get(), context -> new TimberFrameBlockRenderer());
+        registrar.register(ModBlockEntities.SOFA.get(), context -> new SofaBlockRenderer());
+    }
+
+    public static void registerScreens(ScreenRegistrar registrar) {
+        registrar.register(ModMenuTypes.SOFA.get(), SofaScreen::new);
     }
 
     public static void registerRenderTypes(RenderTypeRegistrar registrar) {
@@ -92,6 +117,11 @@ public final class BuildingButBetterClient {
                 registrar.accept(TableBlockRenderer.partLocation(name, TableBlock.TOP_PART));
                 for (String part : TableBlock.LEG_PARTS) {
                     registrar.accept(TableBlockRenderer.partLocation(name, part));
+                }
+            } else if (holder.get() instanceof SofaBlock) {
+                SofaBlockRenderer.cachePartModels(holder.get(), name);
+                for (String part : SofaBlock.PARTS) {
+                    registrar.accept(SofaBlockRenderer.partLocation(name, part));
                 }
             } else if (holder.get() instanceof FrameBlock) {
                 FrameBlockRenderer.cachePartModels(holder.get(), name);

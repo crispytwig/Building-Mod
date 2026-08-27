@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "sofa",
+  "key": {
+    "P": {
+      "tag": "minecraft:planks"
+    },
+    "W": {
+      "item": "minecraft:lime_wool"
+    }
+  },
+  "pattern": [
+    "WWW",
+    "P P"
+  ],
+  "result": {
+    "count": 1,
+    "id": "bbb:lime_sofa"
+  }
+}

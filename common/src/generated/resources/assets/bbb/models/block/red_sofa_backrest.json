@@ -1,0 +1,7 @@
+{
+  "parent": "bbb:block/template/sofa_backrest",
+  "textures": {
+    "all": "bbb:block/sofa/red_sofa",
+    "particle": "minecraft:block/red_wool"
+  }
+}

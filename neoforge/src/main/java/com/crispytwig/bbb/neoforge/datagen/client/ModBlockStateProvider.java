@@ -5,6 +5,7 @@ import com.crispytwig.bbb.block.BeamBlock;
 import com.crispytwig.bbb.block.ChairBlock;
 import com.crispytwig.bbb.block.FrameBlock;
 import com.crispytwig.bbb.block.ShutterBlock;
+import com.crispytwig.bbb.block.SofaBlock;
 import com.crispytwig.bbb.block.CrossType;
 import com.crispytwig.bbb.block.TableBlock;
 import com.crispytwig.bbb.block.TimberFrameBlock;
@@ -15,6 +16,7 @@ import com.crispytwig.bbb.block.WindowBlock;
 import com.crispytwig.bbb.block.WindowPaneBlock;
 import com.crispytwig.bbb.registry.ModBlocks;
 import net.minecraft.core.Direction;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
@@ -53,6 +55,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         ModBlocks.TERRACOTTA.forEach(colored -> colored.sets().forEach(this::cubeSet));
         ModBlocks.PLASTER.forEach(colored -> colored.sets().forEach(this::cubeSet));
+
+        ModBlocks.SOFAS.forEach((color, holder) -> sofa(holder.get(), color));
     }
 
     private void woodSet(ModBlocks.WoodSet set) {
@@ -103,6 +107,38 @@ public class ModBlockStateProvider extends BlockStateProvider {
         for (String part : TableBlock.LEG_PARTS) {
             templateModel(name + "_" + part, "table_" + part, texture, particle);
         }
+    }
+
+    private void sofa(SofaBlock block, DyeColor color) {
+        String name = BuildingButBetter.name(block);
+        ResourceLocation texture = BuildingButBetter.location("block/sofa/" + name);
+        ResourceLocation particle = mcLoc("block/" + color.getName() + "_wool");
+
+        Map<String, ModelFile> parts = new HashMap<>();
+        for (String part : SofaBlock.PARTS) {
+            parts.put(part, templateModel(name + "_" + part, "sofa_" + part, texture, particle));
+        }
+
+        var builder = getMultipartBuilder(block);
+        for (Direction facing : Direction.Plane.HORIZONTAL) {
+            int yRot = Math.floorMod((int) facing.toYRot() + 180, 360);
+            builder.part().modelFile(parts.get("backrest")).rotationY(yRot).addModel()
+                    .condition(SofaBlock.FACING, facing).end();
+            builder.part().modelFile(parts.get("seat")).rotationY(yRot).addModel()
+                    .condition(SofaBlock.FACING, facing).end();
+            builder.part().modelFile(parts.get("legs_left")).rotationY(yRot).addModel()
+                    .condition(SofaBlock.FACING, facing).condition(SofaBlock.LEFT, false).end();
+            builder.part().modelFile(parts.get("arm_left")).rotationY(yRot).addModel()
+                    .condition(SofaBlock.FACING, facing).condition(SofaBlock.LEFT, false).end();
+            builder.part().modelFile(parts.get("legs_right")).rotationY(yRot).addModel()
+                    .condition(SofaBlock.FACING, facing).condition(SofaBlock.RIGHT, false).end();
+            builder.part().modelFile(parts.get("arm_right")).rotationY(yRot).addModel()
+                    .condition(SofaBlock.FACING, facing).condition(SofaBlock.RIGHT, false).end();
+        }
+
+        itemModels().withExistingParent(name, BuildingButBetter.location("block/template/sofa"))
+                .texture("all", texture)
+                .texture("particle", particle);
     }
 
     private void frame(FrameBlock block) {

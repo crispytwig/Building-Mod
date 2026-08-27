@@ -6,6 +6,7 @@ import com.crispytwig.bbb.block.ChairBlock;
 import com.crispytwig.bbb.block.FrameBlock;
 import com.crispytwig.bbb.block.ModStairBlock;
 import com.crispytwig.bbb.block.ShutterBlock;
+import com.crispytwig.bbb.block.SofaBlock;
 import com.crispytwig.bbb.block.TableBlock;
 import com.crispytwig.bbb.block.TimberFrameBlock;
 import com.crispytwig.bbb.block.TrimBlock;
@@ -29,7 +30,9 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -52,6 +55,8 @@ public final class ModBlocks {
     public static final List<ColoredSet> TERRACOTTA = createTerracotta();
 
     public static final List<ColoredSet> PLASTER = createPlaster();
+
+    public static final Map<DyeColor, DeferredHolder<Block, SofaBlock>> SOFAS = createSofas();
 
     public record BlockSet(DeferredHolder<Block, Block> block, DeferredHolder<Block, ModStairBlock> stairs, DeferredHolder<Block, SlabBlock> slab) {
     }
@@ -190,6 +195,18 @@ public final class ModBlocks {
             sets.add(new ColoredSet(color, List.of(registerSet(name, name, () -> stoneProperties(color.getMapColor(), SoundType.TUFF)))));
         }
         return List.copyOf(sets);
+    }
+
+    private static Map<DyeColor, DeferredHolder<Block, SofaBlock>> createSofas() {
+        EnumMap<DyeColor, DeferredHolder<Block, SofaBlock>> sofas = new EnumMap<>(DyeColor.class);
+        for (DyeColor color : COLOR_ORDER) {
+            sofas.put(color, register(color.getName() + "_sofa", SofaBlock::new, sofaProperties(color.getMapColor())));
+        }
+        return sofas;
+    }
+
+    private static BlockBehaviour.Properties sofaProperties(MapColor mapColor) {
+        return decorativeProperties(mapColor, SoundType.WOOL).strength(0.8F).dynamicShape();
     }
 
     private static BlockBehaviour.Properties prismarineProperties() {

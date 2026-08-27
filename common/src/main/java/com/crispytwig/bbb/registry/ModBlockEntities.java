@@ -2,6 +2,7 @@ package com.crispytwig.bbb.registry;
 
 import com.crispytwig.bbb.BuildingButBetter;
 import com.crispytwig.bbb.block.entity.FrameBlockEntity;
+import com.crispytwig.bbb.block.entity.SofaBlockEntity;
 import com.crispytwig.bbb.block.entity.TableBlockEntity;
 import com.crispytwig.bbb.block.entity.TimberFrameBlockEntity;
 import com.crispytwig.bbb.platform.registry.DeferredHolder;
@@ -24,6 +25,10 @@ public final class ModBlockEntities {
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TimberFrameBlockEntity>> TIMBER_FRAME =
             BLOCK_ENTITY_TYPES.register("timber_frame", () -> Services.PLATFORM.createBlockEntityType(TimberFrameBlockEntity::new, blocks(ModBlocks.WoodSet::timberFrame)));
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<SofaBlockEntity>> SOFA =
+            BLOCK_ENTITY_TYPES.register("sofa", () -> Services.PLATFORM.createBlockEntityType(SofaBlockEntity::new,
+                    ModBlocks.SOFAS.values().stream().map(DeferredHolder::get).toArray(Block[]::new)));
 
     private ModBlockEntities() {
     }

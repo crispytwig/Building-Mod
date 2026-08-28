@@ -2,12 +2,14 @@ package com.crispytwig.bbb.client;
 
 import com.crispytwig.bbb.common.BuildingButBetter;
 import com.crispytwig.bbb.common.block.ChairBlock;
+import com.crispytwig.bbb.common.block.CurtainBlock;
 import com.crispytwig.bbb.common.block.FrameBlock;
 import com.crispytwig.bbb.common.block.SofaBlock;
 import com.crispytwig.bbb.common.block.TableBlock;
 import com.crispytwig.bbb.common.block.TimberFrameBlock;
 import com.crispytwig.bbb.common.block.WindowBlock;
 import com.crispytwig.bbb.common.block.WindowPaneBlock;
+import com.crispytwig.bbb.client.renderer.CurtainBlockRenderer;
 import com.crispytwig.bbb.client.renderer.FrameBlockRenderer;
 import com.crispytwig.bbb.client.renderer.SeatEntityRenderer;
 import com.crispytwig.bbb.client.renderer.SofaBlockRenderer;
@@ -96,6 +98,7 @@ public final class BuildingButBetterClient {
         registrar.register(ModBlockEntities.FRAME.get(), context -> new FrameBlockRenderer());
         registrar.register(ModBlockEntities.TIMBER_FRAME.get(), context -> new TimberFrameBlockRenderer());
         registrar.register(ModBlockEntities.SOFA.get(), context -> new SofaBlockRenderer());
+        registrar.register(ModBlockEntities.CURTAIN.get(), context -> ClientServices.CLIENT.curtainRenderer());
     }
 
     public static void registerScreens(ScreenRegistrar registrar) {
@@ -105,7 +108,7 @@ public final class BuildingButBetterClient {
     public static void registerRenderTypes(RenderTypeRegistrar registrar) {
         for (DeferredHolder<Block, ? extends Block> holder : ModBlocks.BLOCKS.getEntries()) {
             Block block = holder.get();
-            if (block instanceof ChairBlock || block instanceof TimberFrameBlock) {
+            if (block instanceof ChairBlock || block instanceof TimberFrameBlock || block instanceof CurtainBlock) {
                 registrar.register(RenderType.cutout(), block);
             } else if (block instanceof WindowBlock || block instanceof WindowPaneBlock) {
                 registrar.register(RenderType.translucent(), block);
@@ -131,6 +134,11 @@ public final class BuildingButBetterClient {
                 FrameBlockRenderer.cachePartModels(holder.get(), name);
                 for (String part : FrameBlock.PARTS) {
                     registrar.accept(FrameBlockRenderer.partLocation(name, part));
+                }
+            } else if (holder.get() instanceof CurtainBlock) {
+                CurtainBlockRenderer.cachePartModels(holder.get(), name);
+                for (String part : CurtainBlock.PARTS) {
+                    registrar.accept(CurtainBlockRenderer.partLocation(name, part));
                 }
             }
         }

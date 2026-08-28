@@ -1,6 +1,8 @@
 package com.crispytwig.bbb.common.registry;
 
 import com.crispytwig.bbb.common.BuildingButBetter;
+import com.crispytwig.bbb.common.block.CurtainBlock;
+import com.crispytwig.bbb.common.item.CurtainBlockItem;
 import com.crispytwig.bbb.common.item.FacadeItem;
 import com.crispytwig.bbb.common.item.PaintBrushItem;
 import com.crispytwig.bbb.platform.registry.DeferredHolder;
@@ -30,6 +32,12 @@ public final class ModItems {
     }
 
     private static void registerBlockItem(DeferredHolder<Block, ? extends Block> holder) {
-        ITEMS.register(holder.getId().getPath(), () -> new BlockItem(holder.get(), new Item.Properties()));
+        ITEMS.register(holder.getId().getPath(), () -> {
+            Block block = holder.get();
+            if (block instanceof CurtainBlock) {
+                return new CurtainBlockItem(block, new Item.Properties());
+            }
+            return new BlockItem(block, new Item.Properties());
+        });
     }
 }

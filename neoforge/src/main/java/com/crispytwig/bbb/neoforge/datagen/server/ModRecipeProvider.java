@@ -67,6 +67,8 @@ public class ModRecipeProvider extends RecipeProvider {
         }
 
         ModBlocks.SOFAS.forEach((color, holder) -> sofaRecipe(output, color, holder.get()));
+
+        ModBlocks.CURTAINS.forEach((color, holder) -> curtainRecipe(output, color, holder.get()));
     }
 
     private void stoneRecipes(RecipeOutput output) {
@@ -345,6 +347,18 @@ public class ModRecipeProvider extends RecipeProvider {
                 .group(group(result))
                 .unlockedBy(getHasName(input), has(input))
                 .save(output, BuildingButBetter.location(getConversionRecipeName(result, input) + "_stonecutting"));
+    }
+
+    private void curtainRecipe(RecipeOutput output, DyeColor color, ItemLike curtain) {
+        Block wool = BuiltInRegistries.BLOCK.get(ResourceLocation.withDefaultNamespace(color.getName() + "_wool"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, curtain, 16)
+                .group(group(curtain))
+                .pattern("sss")
+                .pattern("WWW")
+                .define('s', Items.STICK)
+                .define('W', wool)
+                .unlockedBy(getHasName(wool), has(wool))
+                .save(output);
     }
 
     private void sofaRecipe(RecipeOutput output, DyeColor color, ItemLike sofa) {

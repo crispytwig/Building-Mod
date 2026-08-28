@@ -3,6 +3,7 @@ package com.crispytwig.bbb.neoforge.datagen.client;
 import com.crispytwig.bbb.common.BuildingButBetter;
 import com.crispytwig.bbb.common.block.BeamBlock;
 import com.crispytwig.bbb.common.block.ChairBlock;
+import com.crispytwig.bbb.common.block.CurtainBlock;
 import com.crispytwig.bbb.common.block.FrameBlock;
 import com.crispytwig.bbb.common.block.ShutterBlock;
 import com.crispytwig.bbb.common.block.SofaBlock;
@@ -63,6 +64,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         ModBlocks.PLASTER.forEach(colored -> colored.sets().forEach(this::cubeSet));
 
         ModBlocks.SOFAS.forEach((color, holder) -> sofa(holder.get(), color));
+
+        ModBlocks.CURTAINS.values().forEach(holder -> curtain(holder.get()));
     }
 
     private void woodSet(ModBlocks.WoodSet set) {
@@ -145,6 +148,26 @@ public class ModBlockStateProvider extends BlockStateProvider {
         itemModels().withExistingParent(name, BuildingButBetter.location("block/template/sofa"))
                 .texture("all", texture)
                 .texture("particle", particle);
+    }
+
+    private void curtain(CurtainBlock block) {
+        String name = BuildingButBetter.name(block);
+        ResourceLocation cloth = BuildingButBetter.location("block/curtain/" + name);
+        ResourceLocation rod = BuildingButBetter.location("block/curtain/curtain_rod");
+
+        for (String part : CurtainBlock.PARTS) {
+            models().withExistingParent(name + "_" + part, BuildingButBetter.location("block/template/curtain/curtain_" + part))
+                    .texture("cloth", cloth)
+                    .texture("rod", rod)
+                    .renderType("cutout");
+        }
+
+        ModelFile empty = models().withExistingParent(name + "_" + CurtainBlock.EMPTY_PART, BuildingButBetter.location("block/template/curtain/template_curtain_empty"))
+                .texture("cloth", cloth)
+                .renderType("cutout");
+        getVariantBuilder(block).forAllStates(state -> ConfiguredModel.builder().modelFile(empty).build());
+
+        itemModels().withExistingParent(name, mcLoc("item/generated")).texture("layer0", BuildingButBetter.location("item/" + name));
     }
 
     private void frame(FrameBlock block) {

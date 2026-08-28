@@ -7,5 +7,21 @@
         "type": "event"
       }
     ]
+  },
+  "curtain_open": {
+    "subtitle": "subtitles.bbb.curtain_open",
+    "sounds": [
+      "minecraft:item/bundle/insert1",
+      "minecraft:item/bundle/insert2",
+      "minecraft:item/bundle/insert3"
+    ]
+  },
+  "curtain_close": {
+    "subtitle": "subtitles.bbb.curtain_close",
+    "sounds": [
+      "minecraft:item/bundle/remove_one1",
+      "minecraft:item/bundle/remove_one2",
+      "minecraft:item/bundle/remove_one3"
+    ]
   }
 }

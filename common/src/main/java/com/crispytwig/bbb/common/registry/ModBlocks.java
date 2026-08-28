@@ -3,6 +3,7 @@ package com.crispytwig.bbb.common.registry;
 import com.crispytwig.bbb.common.BuildingButBetter;
 import com.crispytwig.bbb.common.block.BeamBlock;
 import com.crispytwig.bbb.common.block.ChairBlock;
+import com.crispytwig.bbb.common.block.CurtainBlock;
 import com.crispytwig.bbb.common.block.FrameBlock;
 import com.crispytwig.bbb.common.block.ModStairBlock;
 import com.crispytwig.bbb.common.block.ShutterBlock;
@@ -63,6 +64,8 @@ public final class ModBlocks {
     public static final List<ColoredSet> PLASTER = createPlaster();
 
     public static final Map<DyeColor, DeferredHolder<Block, SofaBlock>> SOFAS = createSofas();
+
+    public static final Map<DyeColor, DeferredHolder<Block, CurtainBlock>> CURTAINS = createCurtains();
 
     public record BlockSet(DeferredHolder<Block, Block> block, DeferredHolder<Block, ModStairBlock> stairs, DeferredHolder<Block, SlabBlock> slab) {
     }
@@ -209,6 +212,18 @@ public final class ModBlocks {
             sofas.put(color, register(color.getName() + "_sofa", SofaBlock::new, sofaProperties(color.getMapColor())));
         }
         return sofas;
+    }
+
+    private static Map<DyeColor, DeferredHolder<Block, CurtainBlock>> createCurtains() {
+        EnumMap<DyeColor, DeferredHolder<Block, CurtainBlock>> curtains = new EnumMap<>(DyeColor.class);
+        for (DyeColor color : COLOR_ORDER) {
+            curtains.put(color, register(color.getName() + "_curtain", CurtainBlock::new, curtainProperties(color.getMapColor())));
+        }
+        return curtains;
+    }
+
+    private static BlockBehaviour.Properties curtainProperties(MapColor mapColor) {
+        return decorativeProperties(mapColor, SoundType.WOOL).strength(0.8F).dynamicShape();
     }
 
     private static BlockBehaviour.Properties sofaProperties(MapColor mapColor) {

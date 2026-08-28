@@ -1,0 +1,7 @@
+{
+  "parent": "bbb:block/template/curtain/template_curtain_empty",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "cloth": "bbb:block/curtain/yellow_curtain"
+  }
+}

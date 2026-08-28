@@ -74,7 +74,8 @@ public final class ModCreativeTabs {
                                 .filter(colored -> colored.color() != null)
                                 .flatMap(colored -> colored.sets().stream())
                                 .flatMap(set -> Stream.of(set.block().get(), set.stairs().get(), set.slab().get())),
-                        ModBlocks.SOFAS.values().stream().map(holder -> (Block) holder.get()))
+                        Stream.concat(ModBlocks.SOFAS.values().stream(), ModBlocks.CURTAINS.values().stream())
+                                .map(holder -> (Block) holder.get()))
                 .collect(Collectors.toSet());
     }
 }

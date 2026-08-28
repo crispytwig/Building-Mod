@@ -1,0 +1,8 @@
+{
+  "parent": "bbb:block/template/curtain/curtain_closed_mid_middle",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "cloth": "bbb:block/curtain/cyan_curtain",
+    "rod": "bbb:block/curtain/curtain_rod"
+  }
+}

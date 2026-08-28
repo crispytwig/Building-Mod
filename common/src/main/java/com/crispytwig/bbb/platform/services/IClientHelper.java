@@ -1,9 +1,11 @@
 package com.crispytwig.bbb.platform.services;
 
+import com.crispytwig.bbb.common.block.entity.CurtainBlockEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.block.model.BakedQuad;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -14,6 +16,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import java.util.List;
 
 public interface IClientHelper {
+    BlockEntityRenderer<CurtainBlockEntity> curtainRenderer();
+
     void renderModel(Level level, BakedModel model, BlockState state, BlockPos pos, PoseStack poseStack, MultiBufferSource buffer, int packedOverlay, RandomSource random, long seed, boolean checkSides);
 
     List<RenderType> renderTypes(BakedModel model, BlockState state, RandomSource random);

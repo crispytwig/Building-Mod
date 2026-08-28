@@ -1,6 +1,7 @@
 package com.crispytwig.bbb.neoforge.datagen.server;
 
 import com.crispytwig.bbb.common.block.BeamBlock;
+import com.crispytwig.bbb.common.block.CurtainBlock;
 import com.crispytwig.bbb.common.registry.ModBlocks;
 import com.crispytwig.bbb.common.registry.ModEntityTypes;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
@@ -45,6 +46,8 @@ public class ModLootTableProvider extends LootTableProvider {
                     add(block, createSlabItemTable(block));
                 } else if (block instanceof BeamBlock) {
                     add(block, createBeamTable(block));
+                } else if (block instanceof CurtainBlock) {
+                    add(block, noDrop());
                 } else {
                     dropSelf(block);
                 }

@@ -33,6 +33,8 @@ public class ModLanguageProvider extends LanguageProvider {
         add(ModItems.FACADE.get(), "Facade");
         add(ModItems.PAINT_BRUSH.get(), "Paint Brush");
         add("subtitles.bbb.block_painted", "Block painted");
+        add("subtitles.bbb.curtain_open", "Curtain opens");
+        add("subtitles.bbb.curtain_close", "Curtain closes");
         add(ModItems.FACADE.get().getDescriptionId() + ".material", "%s Facade");
 
         addTag(ModTags.LAYERS.location(), "Layers");

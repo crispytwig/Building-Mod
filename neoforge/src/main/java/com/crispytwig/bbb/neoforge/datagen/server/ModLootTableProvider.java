@@ -1,8 +1,8 @@
 package com.crispytwig.bbb.neoforge.datagen.server;
 
-import com.crispytwig.bbb.block.BeamBlock;
-import com.crispytwig.bbb.registry.ModBlocks;
-import com.crispytwig.bbb.registry.ModEntityTypes;
+import com.crispytwig.bbb.common.block.BeamBlock;
+import com.crispytwig.bbb.common.registry.ModBlocks;
+import com.crispytwig.bbb.common.registry.ModEntityTypes;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;

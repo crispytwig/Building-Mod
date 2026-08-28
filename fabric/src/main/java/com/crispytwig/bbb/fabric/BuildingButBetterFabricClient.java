@@ -1,12 +1,17 @@
 package com.crispytwig.bbb.fabric;
 
-import com.crispytwig.bbb.BuildingButBetterClient;
+import com.crispytwig.bbb.client.BuildingButBetterClient;
 import com.crispytwig.bbb.client.FacadeClient;
-import com.crispytwig.bbb.network.FacadePayload;
+import com.crispytwig.bbb.client.paint.PaintBrushClient;
+import com.crispytwig.bbb.common.network.FacadePayload;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.model.loading.v1.ModelLoadingPlugin;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderEvents;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredicateProviderRegistry;
@@ -35,5 +40,13 @@ public class BuildingButBetterFabricClient implements ClientModInitializer {
         ModelLoadingPlugin.register(context -> BuildingButBetterClient.registerExtraModels(context::addModels));
 
         ClientPlayNetworking.registerGlobalReceiver(FacadePayload.TYPE, (payload, context) -> FacadeClient.handle(payload));
+
+        ClientTickEvents.END_CLIENT_TICK.register(client -> PaintBrushClient.tick());
+        ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> PaintBrushClient.clear());
+        WorldRenderEvents.AFTER_TRANSLUCENT.register(context -> {
+            if (context.consumers() instanceof MultiBufferSource.BufferSource bufferSource) {
+                PaintBrushClient.render(context.matrixStack(), bufferSource);
+            }
+        });
     }
 }

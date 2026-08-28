@@ -1,7 +1,7 @@
 package com.crispytwig.bbb.neoforge.mixin;
 
-import com.crispytwig.bbb.block.Contents;
-import com.crispytwig.bbb.block.TimberFrameBlock;
+import com.crispytwig.bbb.common.block.Contents;
+import com.crispytwig.bbb.common.block.TimberFrameBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.LevelReader;

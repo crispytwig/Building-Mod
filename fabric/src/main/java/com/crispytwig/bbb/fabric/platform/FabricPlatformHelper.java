@@ -1,6 +1,6 @@
 package com.crispytwig.bbb.fabric.platform;
 
-import com.crispytwig.bbb.BuildingButBetter;
+import com.crispytwig.bbb.common.BuildingButBetter;
 import com.crispytwig.bbb.platform.services.IPlatformHelper;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.inventory.AbstractContainerMenu;

@@ -1,7 +1,7 @@
 package com.crispytwig.bbb.neoforge.platform;
 
-import com.crispytwig.bbb.BuildingButBetter;
-import com.crispytwig.bbb.data.BuildingButBetterPack;
+import com.crispytwig.bbb.common.BuildingButBetter;
+import com.crispytwig.bbb.common.data.BuildingButBetterPack;
 import com.crispytwig.bbb.platform.services.IPlatformHelper;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;

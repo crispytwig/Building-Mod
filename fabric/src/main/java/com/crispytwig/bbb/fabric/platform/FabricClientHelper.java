@@ -18,8 +18,8 @@ import java.util.List;
 
 public class FabricClientHelper implements IClientHelper {
     @Override
-    public void renderModel(Level level, BakedModel model, BlockState state, BlockPos pos, PoseStack poseStack, MultiBufferSource buffer, int packedOverlay, RandomSource random, long seed) {
-        Minecraft.getInstance().getBlockRenderer().getModelRenderer().tesselateBlock(level, model, state, pos, poseStack, buffer.getBuffer(ItemBlockRenderTypes.getRenderType(state, false)), false, random, seed, packedOverlay);
+    public void renderModel(Level level, BakedModel model, BlockState state, BlockPos pos, PoseStack poseStack, MultiBufferSource buffer, int packedOverlay, RandomSource random, long seed, boolean checkSides) {
+        Minecraft.getInstance().getBlockRenderer().getModelRenderer().tesselateBlock(level, model, state, pos, poseStack, buffer.getBuffer(ItemBlockRenderTypes.getRenderType(state, false)), checkSides, random, seed, packedOverlay);
     }
 
     @Override

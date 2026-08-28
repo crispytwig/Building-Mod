@@ -1,6 +1,6 @@
 package com.crispytwig.bbb.platform.services;
 
-import com.crispytwig.bbb.BuildingButBetter;
+import com.crispytwig.bbb.common.BuildingButBetter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;

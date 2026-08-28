@@ -1,10 +1,10 @@
 package com.crispytwig.bbb.neoforge.datagen.client;
 
-import com.crispytwig.bbb.BuildingButBetter;
+import com.crispytwig.bbb.common.BuildingButBetter;
 import com.crispytwig.bbb.platform.registry.DeferredHolder;
-import com.crispytwig.bbb.registry.ModBlocks;
-import com.crispytwig.bbb.registry.ModItems;
-import com.crispytwig.bbb.registry.ModTags;
+import com.crispytwig.bbb.common.registry.ModBlocks;
+import com.crispytwig.bbb.common.registry.ModItems;
+import com.crispytwig.bbb.common.registry.ModTags;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
@@ -31,6 +31,8 @@ public class ModLanguageProvider extends LanguageProvider {
         add("container.bbb.sofa_crevice", "Sofa Crevice");
 
         add(ModItems.FACADE.get(), "Facade");
+        add(ModItems.PAINT_BRUSH.get(), "Paint Brush");
+        add("subtitles.bbb.block_painted", "Block painted");
         add(ModItems.FACADE.get().getDescriptionId() + ".material", "%s Facade");
 
         addTag(ModTags.LAYERS.location(), "Layers");

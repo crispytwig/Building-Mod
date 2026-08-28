@@ -1,9 +1,9 @@
 package com.crispytwig.bbb.client.assets;
 
-import com.crispytwig.bbb.BuildingButBetter;
-import com.crispytwig.bbb.block.LayerBlock;
-import com.crispytwig.bbb.data.BuildingButBetterPack;
-import com.crispytwig.bbb.registry.ModLayers;
+import com.crispytwig.bbb.common.BuildingButBetter;
+import com.crispytwig.bbb.common.block.LayerBlock;
+import com.crispytwig.bbb.common.data.BuildingButBetterPack;
+import com.crispytwig.bbb.common.registry.ModLayers;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;

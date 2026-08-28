@@ -1,10 +1,12 @@
 package com.crispytwig.bbb.fabric;
 
-import com.crispytwig.bbb.BuildingButBetter;
-import com.crispytwig.bbb.block.TimberFrameBlock;
-import com.crispytwig.bbb.item.FacadeItem;
-import com.crispytwig.bbb.network.FacadePayload;
-import com.crispytwig.bbb.registry.ModLayers;
+import com.crispytwig.bbb.common.BuildingButBetter;
+import com.crispytwig.bbb.common.block.TimberFrameBlock;
+import com.crispytwig.bbb.common.item.FacadeItem;
+import com.crispytwig.bbb.common.network.FacadePayload;
+import com.crispytwig.bbb.common.network.PaintSelectionPayload;
+import com.crispytwig.bbb.common.registry.ModLayers;
+import com.crispytwig.bbb.common.paint.PaintJobs;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.entity.event.v1.ServerEntityWorldChangeEvents;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
@@ -12,6 +14,9 @@ import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
@@ -30,6 +35,11 @@ public class BuildingButBetterFabric implements ModInitializer {
         BuildingButBetter.registerFuelTags(FuelRegistry.INSTANCE::add);
 
         PayloadTypeRegistry.playS2C().register(FacadePayload.TYPE, FacadePayload.STREAM_CODEC);
+        PayloadTypeRegistry.playC2S().register(PaintSelectionPayload.TYPE, PaintSelectionPayload.STREAM_CODEC);
+        ServerPlayNetworking.registerGlobalReceiver(PaintSelectionPayload.TYPE,
+                (payload, context) -> PaintJobs.start(context.player(), payload.from(), payload.to()));
+        ServerTickEvents.END_SERVER_TICK.register(server -> PaintJobs.tick());
+        ServerWorldEvents.UNLOAD.register((server, world) -> PaintJobs.clear(world));
 
         UseBlockCallback.EVENT.register(FacadeItem::tryRemove);
         UseBlockCallback.EVENT.register(TimberFrameBlock::tryCycleCross);

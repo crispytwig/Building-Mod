@@ -1,8 +1,8 @@
 package com.crispytwig.bbb.client.renderer;
 
-import com.crispytwig.bbb.BuildingButBetter;
-import com.crispytwig.bbb.block.SofaBlock;
-import com.crispytwig.bbb.block.entity.SofaBlockEntity;
+import com.crispytwig.bbb.common.BuildingButBetter;
+import com.crispytwig.bbb.common.block.SofaBlock;
+import com.crispytwig.bbb.common.block.entity.SofaBlockEntity;
 import com.crispytwig.bbb.client.ClientServices;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;

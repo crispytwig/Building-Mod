@@ -1,8 +1,8 @@
 package com.crispytwig.bbb.client.renderer;
 
-import com.crispytwig.bbb.BuildingButBetter;
-import com.crispytwig.bbb.block.FrameBlock;
-import com.crispytwig.bbb.block.entity.FrameBlockEntity;
+import com.crispytwig.bbb.common.BuildingButBetter;
+import com.crispytwig.bbb.common.block.FrameBlock;
+import com.crispytwig.bbb.common.block.entity.FrameBlockEntity;
 import com.crispytwig.bbb.client.ClientServices;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;

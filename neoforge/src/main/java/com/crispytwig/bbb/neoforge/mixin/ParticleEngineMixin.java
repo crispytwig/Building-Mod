@@ -1,6 +1,6 @@
 package com.crispytwig.bbb.neoforge.mixin;
 
-import com.crispytwig.bbb.block.Contents;
+import com.crispytwig.bbb.common.block.Contents;
 import net.minecraft.client.particle.ParticleEngine;
 import net.minecraft.client.particle.TerrainParticle;
 import net.minecraft.core.BlockPos;

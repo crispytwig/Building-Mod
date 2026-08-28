@@ -1,8 +1,8 @@
 package com.crispytwig.bbb.client.renderer;
 
-import com.crispytwig.bbb.BuildingButBetter;
-import com.crispytwig.bbb.block.TableBlock;
-import com.crispytwig.bbb.block.entity.TableBlockEntity;
+import com.crispytwig.bbb.common.BuildingButBetter;
+import com.crispytwig.bbb.common.block.TableBlock;
+import com.crispytwig.bbb.common.block.entity.TableBlockEntity;
 import com.crispytwig.bbb.client.ClientServices;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
@@ -52,10 +52,10 @@ public class TableBlockRenderer implements BlockEntityRenderer<TableBlockEntity>
         long seed = state.getSeed(pos);
         int legs = TableBlock.legMask(level, pos);
 
-        ClientServices.CLIENT.renderModel(level, modelManager.getModel(models[0]), state, pos, poseStack, buffer, packedOverlay, random, seed);
+        ClientServices.CLIENT.renderModel(level, modelManager.getModel(models[0]), state, pos, poseStack, buffer, packedOverlay, random, seed, false);
         for (int i = 0; i < TableBlock.LEG_PARTS.length; i++) {
             if (TableBlock.hasLeg(legs, i)) {
-                ClientServices.CLIENT.renderModel(level, modelManager.getModel(models[i + 1]), state, pos, poseStack, buffer, packedOverlay, random, seed);
+                ClientServices.CLIENT.renderModel(level, modelManager.getModel(models[i + 1]), state, pos, poseStack, buffer, packedOverlay, random, seed, false);
             }
         }
     }

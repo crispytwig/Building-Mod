@@ -1,0 +1,11 @@
+{
+  "block_painted": {
+    "subtitle": "subtitles.bbb.block_painted",
+    "sounds": [
+      {
+        "name": "minecraft:block.honey_block.place",
+        "type": "event"
+      }
+    ]
+  }
+}

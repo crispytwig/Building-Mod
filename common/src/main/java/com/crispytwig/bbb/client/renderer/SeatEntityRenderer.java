@@ -1,6 +1,6 @@
 package com.crispytwig.bbb.client.renderer;
 
-import com.crispytwig.bbb.entity.SeatEntity;
+import com.crispytwig.bbb.common.entity.SeatEntity;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;

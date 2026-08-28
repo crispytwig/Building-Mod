@@ -1,6 +1,6 @@
 package com.crispytwig.bbb.fabric.config;
 
-import com.crispytwig.bbb.BuildingButBetter;
+import com.crispytwig.bbb.common.BuildingButBetter;
 import com.crispytwig.bbb.platform.services.IConfigHelper;
 import net.fabricmc.loader.api.FabricLoader;
 

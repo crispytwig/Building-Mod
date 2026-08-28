@@ -1,13 +1,15 @@
 package com.crispytwig.bbb.neoforge;
 
-import com.crispytwig.bbb.BuildingButBetter;
-import com.crispytwig.bbb.block.TimberFrameBlock;
+import com.crispytwig.bbb.common.BuildingButBetter;
+import com.crispytwig.bbb.common.block.TimberFrameBlock;
 import com.crispytwig.bbb.client.FacadeClient;
-import com.crispytwig.bbb.item.FacadeItem;
-import com.crispytwig.bbb.network.FacadePayload;
+import com.crispytwig.bbb.common.item.FacadeItem;
+import com.crispytwig.bbb.common.network.FacadePayload;
+import com.crispytwig.bbb.common.network.PaintSelectionPayload;
 import com.crispytwig.bbb.neoforge.config.NeoForgeBuildingButBetterConfig;
 import com.crispytwig.bbb.neoforge.platform.NeoForgeRegistrationProvider;
-import com.crispytwig.bbb.registry.ModLayers;
+import com.crispytwig.bbb.common.registry.ModLayers;
+import com.crispytwig.bbb.common.paint.PaintJobs;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -28,6 +30,8 @@ import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
+import net.neoforged.neoforge.event.level.LevelEvent;
+import net.neoforged.neoforge.event.tick.ServerTickEvent;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import net.neoforged.neoforge.registries.RegisterEvent;
@@ -51,6 +55,12 @@ public class BuildingButBetterNeoForge {
         NeoForge.EVENT_BUS.addListener((PlayerEvent.PlayerRespawnEvent event) -> syncFacades(event.getEntity()));
         NeoForge.EVENT_BUS.addListener((PlayerEvent.PlayerChangedDimensionEvent event) -> syncFacades(event.getEntity()));
         NeoForge.EVENT_BUS.addListener(BuildingButBetterNeoForge::onFurnaceFuelBurnTime);
+        NeoForge.EVENT_BUS.addListener((ServerTickEvent.Post event) -> PaintJobs.tick());
+        NeoForge.EVENT_BUS.addListener((LevelEvent.Unload event) -> {
+            if (event.getLevel() instanceof ServerLevel level) {
+                PaintJobs.clear(level);
+            }
+        });
 
         if (FMLEnvironment.dist == Dist.CLIENT) {
             BuildingButBetterNeoForgeClient.init(modEventBus, modContainer);
@@ -91,6 +101,12 @@ public class BuildingButBetterNeoForge {
         PayloadRegistrar registrar = event.registrar("1");
         registrar.playToClient(FacadePayload.TYPE, FacadePayload.STREAM_CODEC,
                 (payload, context) -> FacadeClient.handle(payload));
+        registrar.playToServer(PaintSelectionPayload.TYPE, PaintSelectionPayload.STREAM_CODEC,
+                (payload, context) -> context.enqueueWork(() -> {
+                    if (context.player() instanceof ServerPlayer player) {
+                        PaintJobs.start(player, payload.from(), payload.to());
+                    }
+                }));
     }
 
     private static void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {

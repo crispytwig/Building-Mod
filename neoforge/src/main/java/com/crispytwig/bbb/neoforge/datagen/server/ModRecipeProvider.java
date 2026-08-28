@@ -1,9 +1,9 @@
 package com.crispytwig.bbb.neoforge.datagen.server;
 
-import com.crispytwig.bbb.BuildingButBetter;
-import com.crispytwig.bbb.recipe.FacadeRecipe;
-import com.crispytwig.bbb.recipe.PolishingRecipe;
-import com.crispytwig.bbb.registry.ModBlocks;
+import com.crispytwig.bbb.common.BuildingButBetter;
+import com.crispytwig.bbb.common.recipe.FacadeRecipe;
+import com.crispytwig.bbb.common.recipe.PolishingRecipe;
+import com.crispytwig.bbb.common.registry.ModBlocks;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementRequirements;
 import net.minecraft.advancements.AdvancementRewards;

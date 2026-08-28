@@ -1,6 +1,6 @@
 package com.crispytwig.bbb.client.renderer;
 
-import com.crispytwig.bbb.block.entity.TimberFrameBlockEntity;
+import com.crispytwig.bbb.common.block.entity.TimberFrameBlockEntity;
 import com.crispytwig.bbb.client.ClientServices;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
@@ -28,8 +28,8 @@ public class TimberFrameBlockRenderer implements BlockEntityRenderer<TimberFrame
         BlockRenderDispatcher dispatcher = Minecraft.getInstance().getBlockRenderer();
 
         ClientServices.CLIENT.renderModel(level, dispatcher.getBlockModel(held), held, pos,
-                poseStack, buffer, packedOverlay, random, held.getSeed(pos));
+                poseStack, buffer, packedOverlay, random, held.getSeed(pos), false);
         ClientServices.CLIENT.renderModel(level, dispatcher.getBlockModel(state), state, pos,
-                poseStack, buffer, packedOverlay, random, state.getSeed(pos));
+                poseStack, buffer, packedOverlay, random, state.getSeed(pos), false);
     }
 }

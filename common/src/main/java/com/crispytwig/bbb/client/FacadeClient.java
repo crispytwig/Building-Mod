@@ -1,7 +1,7 @@
 package com.crispytwig.bbb.client;
 
-import com.crispytwig.bbb.block.FacadeEntry;
-import com.crispytwig.bbb.network.FacadePayload;
+import com.crispytwig.bbb.common.block.FacadeEntry;
+import com.crispytwig.bbb.common.network.FacadePayload;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

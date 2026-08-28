@@ -20,10 +20,10 @@ import java.util.List;
 
 public class NeoForgeClientHelper implements IClientHelper {
     @Override
-    public void renderModel(Level level, BakedModel model, BlockState state, BlockPos pos, PoseStack poseStack, MultiBufferSource buffer, int packedOverlay, RandomSource random, long seed) {
+    public void renderModel(Level level, BakedModel model, BlockState state, BlockPos pos, PoseStack poseStack, MultiBufferSource buffer, int packedOverlay, RandomSource random, long seed, boolean checkSides) {
         ModelBlockRenderer renderer = Minecraft.getInstance().getBlockRenderer().getModelRenderer();
         for (RenderType type : model.getRenderTypes(state, random, ModelData.EMPTY)) {
-            renderer.tesselateBlock(level, model, state, pos, poseStack, buffer.getBuffer(type), false, random, seed, packedOverlay, ModelData.EMPTY, type);
+            renderer.tesselateBlock(level, model, state, pos, poseStack, buffer.getBuffer(type), checkSides, random, seed, packedOverlay, ModelData.EMPTY, type);
         }
     }
 

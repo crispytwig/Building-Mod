@@ -1,6 +1,6 @@
 package com.crispytwig.bbb.neoforge.config;
 
-import com.crispytwig.bbb.BuildingButBetter;
+import com.crispytwig.bbb.common.BuildingButBetter;
 import com.crispytwig.bbb.platform.services.IConfigHelper;
 import com.electronwill.nightconfig.core.file.FileConfig;
 import net.neoforged.fml.loading.FMLPaths;

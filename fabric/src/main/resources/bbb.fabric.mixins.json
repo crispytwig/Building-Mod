@@ -1,7 +1,7 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "com.crispytwig.bbb.mixin",
+  "package": "com.crispytwig.bbb.common.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "BuiltInRegistriesMixin",
@@ -9,8 +9,8 @@
     "LivingEntityMixin"
   ],
   "client": [
-    "LevelRendererMixin",
-    "MultiPlayerGameModeMixin"
+    "client.LevelRendererMixin",
+    "client.MultiPlayerGameModeMixin"
   ],
   "injectors": {
     "defaultRequire": 1

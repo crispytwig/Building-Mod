@@ -1,6 +1,7 @@
 package com.crispytwig.bbb.neoforge;
 
-import com.crispytwig.bbb.BuildingButBetterClient;
+import com.crispytwig.bbb.client.BuildingButBetterClient;
+import com.crispytwig.bbb.client.paint.PaintBrushClient;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.MenuAccess;
 import net.minecraft.client.renderer.item.ItemProperties;
@@ -15,6 +16,11 @@ import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.ModelEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
+import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent;
+import net.neoforged.neoforge.client.event.ClientTickEvent;
+import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
+import net.neoforged.neoforge.common.NeoForge;
+import net.minecraft.client.Minecraft;
 
 public final class BuildingButBetterNeoForgeClient {
     private BuildingButBetterNeoForgeClient() {
@@ -28,6 +34,16 @@ public final class BuildingButBetterNeoForgeClient {
         modEventBus.addListener(BuildingButBetterNeoForgeClient::registerAdditionalModels);
         modEventBus.addListener(BuildingButBetterNeoForgeClient::registerScreens);
         modEventBus.addListener(BuildingButBetterNeoForgeClient::clientSetup);
+
+        NeoForge.EVENT_BUS.addListener((ClientTickEvent.Post event) -> PaintBrushClient.tick());
+        NeoForge.EVENT_BUS.addListener(BuildingButBetterNeoForgeClient::renderLevelStage);
+        NeoForge.EVENT_BUS.addListener((ClientPlayerNetworkEvent.LoggingOut event) -> PaintBrushClient.clear());
+    }
+
+    private static void renderLevelStage(RenderLevelStageEvent event) {
+        if (event.getStage() == RenderLevelStageEvent.Stage.AFTER_PARTICLES) {
+            PaintBrushClient.render(event.getPoseStack(), Minecraft.getInstance().renderBuffers().bufferSource());
+        }
     }
 
     private static void registerAdditionalModels(ModelEvent.RegisterAdditional event) {

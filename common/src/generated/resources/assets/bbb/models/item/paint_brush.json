@@ -1,0 +1,104 @@
+{
+  "parent": "minecraft:item/generated",
+  "overrides": [
+    {
+      "model": "bbb:item/paint_brushes/white_paint_brush",
+      "predicate": {
+        "bbb:color": 0.05882353
+      }
+    },
+    {
+      "model": "bbb:item/paint_brushes/orange_paint_brush",
+      "predicate": {
+        "bbb:color": 0.11764706
+      }
+    },
+    {
+      "model": "bbb:item/paint_brushes/magenta_paint_brush",
+      "predicate": {
+        "bbb:color": 0.1764706
+      }
+    },
+    {
+      "model": "bbb:item/paint_brushes/light_blue_paint_brush",
+      "predicate": {
+        "bbb:color": 0.23529412
+      }
+    },
+    {
+      "model": "bbb:item/paint_brushes/yellow_paint_brush",
+      "predicate": {
+        "bbb:color": 0.29411766
+      }
+    },
+    {
+      "model": "bbb:item/paint_brushes/lime_paint_brush",
+      "predicate": {
+        "bbb:color": 0.3529412
+      }
+    },
+    {
+      "model": "bbb:item/paint_brushes/pink_paint_brush",
+      "predicate": {
+        "bbb:color": 0.4117647
+      }
+    },
+    {
+      "model": "bbb:item/paint_brushes/gray_paint_brush",
+      "predicate": {
+        "bbb:color": 0.47058824
+      }
+    },
+    {
+      "model": "bbb:item/paint_brushes/light_gray_paint_brush",
+      "predicate": {
+        "bbb:color": 0.5294118
+      }
+    },
+    {
+      "model": "bbb:item/paint_brushes/cyan_paint_brush",
+      "predicate": {
+        "bbb:color": 0.5882353
+      }
+    },
+    {
+      "model": "bbb:item/paint_brushes/purple_paint_brush",
+      "predicate": {
+        "bbb:color": 0.64705884
+      }
+    },
+    {
+      "model": "bbb:item/paint_brushes/blue_paint_brush",
+      "predicate": {
+        "bbb:color": 0.7058824
+      }
+    },
+    {
+      "model": "bbb:item/paint_brushes/brown_paint_brush",
+      "predicate": {
+        "bbb:color": 0.7647059
+      }
+    },
+    {
+      "model": "bbb:item/paint_brushes/green_paint_brush",
+      "predicate": {
+        "bbb:color": 0.8235294
+      }
+    },
+    {
+      "model": "bbb:item/paint_brushes/red_paint_brush",
+      "predicate": {
+        "bbb:color": 0.88235295
+      }
+    },
+    {
+      "model": "bbb:item/paint_brushes/black_paint_brush",
+      "predicate": {
+        "bbb:color": 0.9411765
+      }
+    }
+  ],
+  "textures": {
+    "layer0": "bbb:item/paint_brush"
+  }
+}

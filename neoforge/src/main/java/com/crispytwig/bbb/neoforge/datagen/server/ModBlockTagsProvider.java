@@ -1,10 +1,10 @@
 package com.crispytwig.bbb.neoforge.datagen.server;
 
-import com.crispytwig.bbb.BuildingButBetter;
-import com.crispytwig.bbb.block.BeamBlock;
+import com.crispytwig.bbb.common.BuildingButBetter;
+import com.crispytwig.bbb.common.block.BeamBlock;
 import com.crispytwig.bbb.platform.registry.DeferredHolder;
-import com.crispytwig.bbb.registry.ModBlocks;
-import com.crispytwig.bbb.registry.ModTags;
+import com.crispytwig.bbb.common.registry.ModBlocks;
+import com.crispytwig.bbb.common.registry.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;

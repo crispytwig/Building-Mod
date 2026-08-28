@@ -1,7 +1,7 @@
 package com.crispytwig.bbb.client.screen;
 
-import com.crispytwig.bbb.BuildingButBetter;
-import com.crispytwig.bbb.menu.SofaMenu;
+import com.crispytwig.bbb.common.BuildingButBetter;
+import com.crispytwig.bbb.common.menu.SofaMenu;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;

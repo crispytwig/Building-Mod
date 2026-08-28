@@ -8,7 +8,10 @@ public enum CrossType implements StringRepresentable {
     NONE,
     CROSS,
     LEFT_CROSS,
-    RIGHT_CROSS;
+    RIGHT_CROSS,
+    VERTICAL,
+    HORIZONTAL,
+    PLUS;
 
     public CrossType next() {
         return values()[(ordinal() + 1) % values().length];

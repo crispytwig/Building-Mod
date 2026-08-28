@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "end": "bbb:block/acacia_timber_frame",
+    "side": "bbb:block/acacia_timber_frame_middle_cross"
+  }
+}

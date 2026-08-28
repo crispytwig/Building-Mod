@@ -285,26 +285,19 @@ public class ModBlockStateProvider extends BlockStateProvider {
         String name = BuildingButBetter.name(block);
         ResourceLocation end = BuildingButBetter.location("block/" + name);
 
-        Map<TrimType, ModelFile> models = new EnumMap<>(TrimType.class);
+        Map<TrimType, Map<CrossType, ModelFile>> models = new EnumMap<>(TrimType.class);
         for (TrimType type : TrimType.values()) {
-            models.put(type, models().cubeColumn(name + suffix(type), BuildingButBetter.location("block/" + name + suffix(type)), end).renderType("cutout"));
-        }
-
-        Map<CrossType, ModelFile> crossModels = new EnumMap<>(CrossType.class);
-        for (CrossType cross : CrossType.values()) {
-            if (cross != CrossType.NONE) {
-                String crossName = name + "_" + cross.getSerializedName();
-                crossModels.put(cross, models().cubeColumn(crossName, BuildingButBetter.location("block/" + crossName), end).renderType("cutout"));
+            Map<CrossType, ModelFile> byCross = new EnumMap<>(CrossType.class);
+            for (CrossType cross : CrossType.values()) {
+                String variant = name + suffix(type) + suffix(cross);
+                byCross.put(cross, models().cubeColumn(variant, BuildingButBetter.location("block/" + variant), end).renderType("cutout"));
             }
+            models.put(type, byCross);
         }
 
-        getVariantBuilder(block).forAllStatesExcept(state -> {
-            TrimType type = state.getValue(TimberFrameBlock.TYPE);
-            CrossType cross = state.getValue(TimberFrameBlock.CROSS);
-            return ConfiguredModel.builder()
-                    .modelFile(type == TrimType.SINGLE && cross != CrossType.NONE ? crossModels.get(cross) : models.get(type))
-                    .build();
-        }, TimberFrameBlock.FILLED);
+        getVariantBuilder(block).forAllStatesExcept(state -> ConfiguredModel.builder()
+                .modelFile(models.get(state.getValue(TimberFrameBlock.TYPE)).get(state.getValue(TimberFrameBlock.CROSS)))
+                .build(), TimberFrameBlock.FILLED);
         itemModels().withExistingParent(name, BuildingButBetter.location("block/" + name + "_" + CrossType.CROSS.getSerializedName()));
     }
 
@@ -433,6 +426,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     private static String suffix(TrimType type) {
         return type == TrimType.SINGLE ? "" : "_" + type.getSerializedName();
+    }
+
+    private static String suffix(CrossType cross) {
+        return cross == CrossType.NONE ? "" : "_" + cross.getSerializedName();
     }
 
     private static String shape(BlockState state) {

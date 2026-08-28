@@ -177,7 +177,7 @@ public class TimberFrameBlock extends Block implements EntityBlock, Contents {
 
         BlockPos pos = hit.getBlockPos();
         BlockState state = level.getBlockState(pos);
-        if (!(state.getBlock() instanceof TimberFrameBlock) || state.getValue(TYPE) != TrimType.SINGLE) {
+        if (!(state.getBlock() instanceof TimberFrameBlock)) {
             return InteractionResult.PASS;
         }
 

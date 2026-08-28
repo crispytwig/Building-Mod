@@ -13,6 +13,7 @@
   "client": [
     "client.BlockRenderDispatcherMixin",
     "client.ParticleEngineMixin",
+    "client.RenderChunkRegionMixin",
     "client.ReloadableResourceManagerMixin"
   ],
   "injectors": {

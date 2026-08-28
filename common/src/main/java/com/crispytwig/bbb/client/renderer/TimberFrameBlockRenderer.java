@@ -1,5 +1,6 @@
 package com.crispytwig.bbb.client.renderer;
 
+import com.crispytwig.bbb.client.paint.PaintOverride;
 import com.crispytwig.bbb.common.block.entity.TimberFrameBlockEntity;
 import com.crispytwig.bbb.client.ClientServices;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -24,7 +25,7 @@ public class TimberFrameBlockRenderer implements BlockEntityRenderer<TimberFrame
         }
 
         BlockPos pos = blockEntity.getBlockPos();
-        BlockState state = blockEntity.getBlockState();
+        BlockState state = PaintOverride.apply(pos, blockEntity.getBlockState());
         BlockRenderDispatcher dispatcher = Minecraft.getInstance().getBlockRenderer();
 
         ClientServices.CLIENT.renderModel(level, dispatcher.getBlockModel(held), held, pos,

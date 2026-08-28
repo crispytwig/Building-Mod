@@ -1,5 +1,6 @@
 package com.crispytwig.bbb.client.renderer;
 
+import com.crispytwig.bbb.client.paint.PaintOverride;
 import com.crispytwig.bbb.client.ClientServices;
 import com.crispytwig.bbb.common.BuildingButBetter;
 import com.crispytwig.bbb.common.block.CurtainBlock;
@@ -52,7 +53,7 @@ public class CurtainBlockRenderer implements BlockEntityRenderer<CurtainBlockEnt
         if (level == null) {
             return;
         }
-        renderParts(level, blockEntity.getBlockState(), blockEntity.getBlockPos(), blockEntity.getLength(),
+        renderParts(level, PaintOverride.apply(blockEntity.getBlockPos(), blockEntity.getBlockState()), blockEntity.getBlockPos(), blockEntity.getLength(),
                 poseStack, buffer, packedOverlay, random);
     }
 

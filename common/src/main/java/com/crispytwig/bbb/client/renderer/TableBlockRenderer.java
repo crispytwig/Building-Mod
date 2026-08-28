@@ -1,5 +1,6 @@
 package com.crispytwig.bbb.client.renderer;
 
+import com.crispytwig.bbb.client.paint.PaintOverride;
 import com.crispytwig.bbb.common.BuildingButBetter;
 import com.crispytwig.bbb.common.block.TableBlock;
 import com.crispytwig.bbb.common.block.entity.TableBlockEntity;
@@ -41,7 +42,7 @@ public class TableBlockRenderer implements BlockEntityRenderer<TableBlockEntity>
     @Override
     public void render(TableBlockEntity blockEntity, float partialTick, PoseStack poseStack, MultiBufferSource buffer, int packedLight, int packedOverlay) {
         Level level = blockEntity.getLevel();
-        BlockState state = blockEntity.getBlockState();
+        BlockState state = PaintOverride.apply(blockEntity.getBlockPos(), blockEntity.getBlockState());
         ModelResourceLocation[] models = PART_MODELS.get(state.getBlock());
         if (level == null || models == null) {
             return;

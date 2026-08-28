@@ -1,5 +1,6 @@
 package com.crispytwig.bbb.client.renderer;
 
+import com.crispytwig.bbb.client.paint.PaintOverride;
 import com.crispytwig.bbb.common.BuildingButBetter;
 import com.crispytwig.bbb.common.block.FrameBlock;
 import com.crispytwig.bbb.common.block.entity.FrameBlockEntity;
@@ -50,7 +51,7 @@ public class FrameBlockRenderer implements BlockEntityRenderer<FrameBlockEntity>
     @Override
     public void render(FrameBlockEntity blockEntity, float partialTick, PoseStack poseStack, MultiBufferSource buffer, int packedLight, int packedOverlay) {
         Level level = blockEntity.getLevel();
-        BlockState state = blockEntity.getBlockState();
+        BlockState state = PaintOverride.apply(blockEntity.getBlockPos(), blockEntity.getBlockState());
         Map<String, ModelResourceLocation> models = PART_MODELS.get(state.getBlock());
         if (level == null || models == null) {
             return;

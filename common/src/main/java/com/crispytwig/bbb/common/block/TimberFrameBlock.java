@@ -93,7 +93,7 @@ public class TimberFrameBlock extends Block implements EntityBlock, Contents {
 
     @Override
     public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {
-        if (!state.is(newState.getBlock())) {
+        if (!(newState.getBlock() instanceof TimberFrameBlock)) {
             updateConnections(level, pos, state, false);
         }
         super.onRemove(state, level, pos, newState, movedByPiston);

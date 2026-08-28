@@ -1,5 +1,6 @@
 package com.crispytwig.bbb.common.block.entity;
 
+import com.crispytwig.bbb.common.paint.KeepsDataWhenPainted;
 import com.crispytwig.bbb.common.registry.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
@@ -17,7 +18,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class TimberFrameBlockEntity extends BlockEntity {
+public class TimberFrameBlockEntity extends BlockEntity implements KeepsDataWhenPainted {
     private static final String HELD_BLOCK = "held_block";
 
     private static final int REMOVED_MEMORY = 16;

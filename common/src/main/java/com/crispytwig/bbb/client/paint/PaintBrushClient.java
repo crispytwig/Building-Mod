@@ -1,6 +1,5 @@
 package com.crispytwig.bbb.client.paint;
 
-import com.crispytwig.bbb.client.renderer.paint.PaintPreview;
 import com.crispytwig.bbb.client.renderer.paint.SelectionOutline;
 import com.crispytwig.bbb.common.item.PaintBrushItem;
 import com.crispytwig.bbb.common.network.PaintSelectionPayload;
@@ -22,8 +21,6 @@ import java.util.Objects;
 
 public final class PaintBrushClient {
     private static final int CANCEL_COLOR = 0xC5B548;
-
-    private static final PaintPreview PREVIEW = new PaintPreview();
 
     private static @Nullable BlockPos corner;
     private static @Nullable BlockPos hovered;
@@ -63,7 +60,7 @@ public final class PaintBrushClient {
             builtHovered = hovered;
             builtColor = color;
             builtFilter = held.filter();
-            PREVIEW.build(player.level(), corner, hovered, color, held.filter());
+            PaintOverride.set(corner, hovered, color, held.filter());
         }
     }
 
@@ -73,7 +70,6 @@ public final class PaintBrushClient {
         }
         SelectionOutline.draw(poseStack, buffers, AABB.encapsulatingFullBlocks(corner, hovered),
                 cancelling ? CANCEL_COLOR : color.getFireworkColor());
-        PREVIEW.draw(poseStack, buffers);
     }
 
     public static boolean onRightClick() {
@@ -118,7 +114,7 @@ public final class PaintBrushClient {
         builtHovered = null;
         builtColor = null;
         builtFilter = null;
-        PREVIEW.clear();
+        PaintOverride.clear();
     }
 
     private static boolean changed(BlockPos hovered, DyeColor color, @Nullable BlockState filter) {

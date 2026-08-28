@@ -6,12 +6,12 @@ import java.util.Locale;
 
 public enum CrossType implements StringRepresentable {
     NONE,
-    CROSS,
-    LEFT_CROSS,
-    RIGHT_CROSS,
     VERTICAL,
+    RIGHT_CROSS,
     HORIZONTAL,
-    PLUS;
+    LEFT_CROSS,
+    PLUS,
+    CROSS;
 
     public CrossType next() {
         return values()[(ordinal() + 1) % values().length];

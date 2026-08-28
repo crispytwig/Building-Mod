@@ -5,6 +5,7 @@ import com.crispytwig.bbb.common.block.BeamBlock;
 import com.crispytwig.bbb.common.block.ChairBlock;
 import com.crispytwig.bbb.common.block.CurtainBlock;
 import com.crispytwig.bbb.common.block.FrameBlock;
+import com.crispytwig.bbb.common.block.ModLanternBlock;
 import com.crispytwig.bbb.common.block.ModStairBlock;
 import com.crispytwig.bbb.common.block.ShutterBlock;
 import com.crispytwig.bbb.common.block.SofaBlock;
@@ -90,6 +91,7 @@ public final class ModBlocks {
                           DeferredHolder<Block, FrameBlock> frame,
                           DeferredHolder<Block, TimberFrameBlock> timberFrame,
                           DeferredHolder<Block, ShutterBlock> shutter,
+                          DeferredHolder<Block, ModLanternBlock> lantern,
                           DeferredHolder<Block, WindowBlock> window,
                           DeferredHolder<Block, WindowPaneBlock> windowPane) {
         public List<DeferredHolder<Block, ? extends Block>> blocks() {
@@ -110,6 +112,10 @@ public final class ModBlocks {
 
     public static List<DeferredHolder<Block, ? extends Block>> woodenBlocks() {
         return WOOD.stream().flatMap(set -> set.blocks().stream()).toList();
+    }
+
+    public static List<DeferredHolder<Block, ModLanternBlock>> lanterns() {
+        return WOOD.stream().map(WoodSet::lantern).toList();
     }
 
     public static List<DeferredHolder<Block, ? extends Block>> burnableBlocks() {
@@ -169,6 +175,7 @@ public final class ModBlocks {
                 register(name + "_frame", FrameBlock::new, properties.get().noOcclusion()),
                 register(name + "_timber_frame", TimberFrameBlock::new, properties.get().noOcclusion().sound(SoundType.SCAFFOLDING)),
                 register(name + "_shutter", ShutterBlock::new, properties.get().noOcclusion()),
+                register(name + "_lantern", ModLanternBlock::new, lanternProperties(planks)),
                 register(name + "_window", WindowBlock::new, windowProperties(planks.defaultMapColor())),
                 register(name + "_window_pane", WindowPaneBlock::new, windowProperties(planks.defaultMapColor())));
     }
@@ -220,6 +227,10 @@ public final class ModBlocks {
             curtains.put(color, register(color.getName() + "_curtain", CurtainBlock::new, curtainProperties(color.getMapColor())));
         }
         return curtains;
+    }
+
+    private static BlockBehaviour.Properties lanternProperties(Block planks) {
+        return decorativeProperties(planks.defaultMapColor(), SoundType.LANTERN).strength(2.0F).lightLevel(state -> 15);
     }
 
     private static BlockBehaviour.Properties curtainProperties(MapColor mapColor) {

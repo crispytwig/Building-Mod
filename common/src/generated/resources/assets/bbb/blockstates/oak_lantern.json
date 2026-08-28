@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "bbb:block/oak_lantern"
+    },
+    "hanging=true": {
+      "model": "bbb:block/oak_lantern_hanging"
+    }
+  }
+}

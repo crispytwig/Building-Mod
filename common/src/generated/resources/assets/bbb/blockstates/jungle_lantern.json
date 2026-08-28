@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "bbb:block/jungle_lantern"
+    },
+    "hanging=true": {
+      "model": "bbb:block/jungle_lantern_hanging"
+    }
+  }
+}

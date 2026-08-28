@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "lantern",
+  "key": {
+    "P": {
+      "item": "minecraft:spruce_planks"
+    },
+    "T": {
+      "item": "minecraft:torch"
+    }
+  },
+  "pattern": [
+    "T",
+    "P"
+  ],
+  "result": {
+    "count": 1,
+    "id": "bbb:spruce_lantern"
+  }
+}

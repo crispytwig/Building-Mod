@@ -1,6 +1,7 @@
 package com.crispytwig.bbb.neoforge.datagen.client;
 
 import com.crispytwig.bbb.common.BuildingButBetter;
+import com.crispytwig.bbb.common.registry.ModBlocks;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.DyeColor;
@@ -17,6 +18,10 @@ public class ModItemModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
         withExistingParent("facade", mcLoc("item/generated")).texture("layer0", mcLoc("item/flower_banner_pattern"));
+        ModBlocks.lanterns().forEach(holder -> {
+            String name = holder.getId().getPath();
+            generated(name, modLoc("item/" + name));
+        });
         paintBrush();
     }
 

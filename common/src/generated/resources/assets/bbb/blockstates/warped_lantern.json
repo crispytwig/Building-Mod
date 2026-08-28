@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "bbb:block/warped_lantern"
+    },
+    "hanging=true": {
+      "model": "bbb:block/warped_lantern_hanging"
+    }
+  }
+}

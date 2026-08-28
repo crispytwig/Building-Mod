@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "bbb:block/bamboo_lantern"
+    },
+    "hanging=true": {
+      "model": "bbb:block/bamboo_lantern_hanging"
+    }
+  }
+}

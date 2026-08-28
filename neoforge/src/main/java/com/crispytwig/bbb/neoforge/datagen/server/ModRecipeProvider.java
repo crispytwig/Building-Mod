@@ -230,6 +230,15 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_planks", has(set.planks()))
                 .save(output);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, set.lantern().get())
+                .group("lantern")
+                .pattern("T")
+                .pattern("P")
+                .define('T', Blocks.TORCH)
+                .define('P', set.planks())
+                .unlockedBy(getHasName(Blocks.TORCH), has(Blocks.TORCH))
+                .save(output);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, set.window().get(), 4)
                 .group("window")
                 .pattern("PGP")

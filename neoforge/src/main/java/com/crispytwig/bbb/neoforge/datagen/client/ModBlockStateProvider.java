@@ -5,6 +5,7 @@ import com.crispytwig.bbb.common.block.BeamBlock;
 import com.crispytwig.bbb.common.block.ChairBlock;
 import com.crispytwig.bbb.common.block.CurtainBlock;
 import com.crispytwig.bbb.common.block.FrameBlock;
+import com.crispytwig.bbb.common.block.ModLanternBlock;
 import com.crispytwig.bbb.common.block.ShutterBlock;
 import com.crispytwig.bbb.common.block.SofaBlock;
 import com.crispytwig.bbb.common.block.CrossType;
@@ -92,6 +93,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         chair(set.chair().get(), boards);
         frame(set.frame().get());
         shutter(set.shutter().get());
+        lantern(set.lantern().get());
         timberFrame(set.timberFrame().get());
         window(set.window().get());
         windowPane(set.windowPane().get(), wood + "_window", BuildingButBetter.location("block/" + wood + "_trim_end"));
@@ -249,6 +251,17 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 .texture("side", side)
                 .texture("end", end)
                 .texture("particle", side);
+    }
+
+    private void lantern(ModLanternBlock block) {
+        String name = BuildingButBetter.name(block);
+        ResourceLocation texture = blockTexture(block);
+        ModelFile standing = templateModel(name, "wooden_lantern", texture, texture).renderType("cutout");
+        ModelFile hanging = templateModel(name + "_hanging", "wooden_lantern_hanging", texture, texture).renderType("cutout");
+
+        getVariantBuilder(block).forAllStatesExcept(state -> ConfiguredModel.builder()
+                .modelFile(state.getValue(ModLanternBlock.HANGING) ? hanging : standing)
+                .build(), ModLanternBlock.WATERLOGGED);
     }
 
     private void shutter(ShutterBlock block) {

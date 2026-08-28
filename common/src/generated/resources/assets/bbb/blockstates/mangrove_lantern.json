@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "bbb:block/mangrove_lantern"
+    },
+    "hanging=true": {
+      "model": "bbb:block/mangrove_lantern_hanging"
+    }
+  }
+}

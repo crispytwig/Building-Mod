@@ -39,6 +39,7 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
 
         ModBlocks.woodenBlocks().forEach(holder -> tag(BlockTags.MINEABLE_WITH_AXE).add(holder.get()));
         ModBlocks.WOOD.forEach(set -> set.windows().forEach(holder -> tag(BlockTags.MINEABLE_WITH_AXE).add(holder.get())));
+        ModBlocks.lanterns().forEach(holder -> tag(BlockTags.MINEABLE_WITH_AXE).add(holder.get()));
 
         addPickaxeSet(ModBlocks.STONE_TILES);
         tag(BlockTags.MINEABLE_WITH_PICKAXE).add(ModBlocks.STONE_PILLAR.get(), ModBlocks.STONE_PILLAR_STAIRS.get(), ModBlocks.STONE_PILLAR_SLAB.get());

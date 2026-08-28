@@ -29,7 +29,7 @@ public class TimberFrameBlockRenderer implements BlockEntityRenderer<TimberFrame
 
         ClientServices.CLIENT.renderModel(level, dispatcher.getBlockModel(held), held, pos,
                 poseStack, buffer, packedOverlay, random, held.getSeed(pos), false);
-        ClientServices.CLIENT.renderModel(level, dispatcher.getBlockModel(state), state, pos,
+        ClientServices.CLIENT.renderModel(level, FacadeModel.wrap(dispatcher.getBlockModel(state), state, pos), state, pos,
                 poseStack, buffer, packedOverlay, random, state.getSeed(pos), false);
     }
 }

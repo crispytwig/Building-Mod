@@ -43,6 +43,10 @@ public class FacadeModel implements BakedModel {
         return CACHE.computeIfAbsent(new ModelKey(model, state, facades), key -> new FacadeModel(key.parent(), key.state(), key.facades()));
     }
 
+    public static BakedModel unwrap(BakedModel model) {
+        return model instanceof FacadeModel facade ? facade.parent : model;
+    }
+
     private FacadeModel(BakedModel parent, BlockState state, Map<Direction, Block> facades) {
         this.parent = parent;
         RandomSource random = RandomSource.create();

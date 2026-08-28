@@ -68,6 +68,9 @@ public final class BlockRecolor {
             }
             String swapped = path.substring(0, index) + target + path.substring(index + wood.length());
             Optional<Block> found = getBlock(namespace, swapped);
+            if (found.isEmpty()) {
+                found = getBlock(namespace, BuildingButBetter.MOD_ID + "/" + swapped);
+            }
             if (found.isEmpty() && !namespace.equals(BuildingButBetter.MOD_ID)) {
                 found = getBlock(BuildingButBetter.MOD_ID, swapped);
             }
@@ -126,7 +129,9 @@ public final class BlockRecolor {
         while (index >= 0) {
             String left = path.substring(0, index);
             String right = path.substring(index + token.length());
-            if (left.endsWith("_") && right.startsWith("_")) {
+            if (left.endsWith("/") && right.startsWith("_")) {
+                right = right.substring(1);
+            } else if (left.endsWith("_") && right.startsWith("_")) {
                 right = right.substring(1);
             } else if (left.endsWith("_") && right.isEmpty()) {
                 left = left.substring(0, left.length() - 1);
@@ -153,12 +158,16 @@ public final class BlockRecolor {
         return path;
     }
 
+    private static boolean isBoundary(char character) {
+        return character == '_' || character == '/';
+    }
+
     private static int findWord(String path, String token) {
         int index = path.indexOf(token);
         while (index >= 0) {
             int end = index + token.length();
-            boolean leftBoundary = index == 0 || path.charAt(index - 1) == '_';
-            boolean rightBoundary = end == path.length() || path.charAt(end) == '_';
+            boolean leftBoundary = index == 0 || isBoundary(path.charAt(index - 1));
+            boolean rightBoundary = end == path.length() || isBoundary(path.charAt(end));
             if (leftBoundary && rightBoundary) {
                 return index;
             }
@@ -170,14 +179,14 @@ public final class BlockRecolor {
     private static int[] wordStarts(String path) {
         int count = 1;
         for (int i = 0; i < path.length() - 1; i++) {
-            if (path.charAt(i) == '_') {
+            if (isBoundary(path.charAt(i))) {
                 count++;
             }
         }
         int[] positions = new int[count];
         int next = 1;
         for (int i = 0; i < path.length() - 1; i++) {
-            if (path.charAt(i) == '_') {
+            if (isBoundary(path.charAt(i))) {
                 positions[next++] = i + 1;
             }
         }

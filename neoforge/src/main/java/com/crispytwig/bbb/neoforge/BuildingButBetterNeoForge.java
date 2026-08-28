@@ -4,6 +4,7 @@ import com.crispytwig.bbb.common.BuildingButBetter;
 import com.crispytwig.bbb.common.block.TimberFrameBlock;
 import com.crispytwig.bbb.client.FacadeClient;
 import com.crispytwig.bbb.common.item.FacadeItem;
+import com.crispytwig.bbb.common.item.PaintBrushItem;
 import com.crispytwig.bbb.common.network.FacadePayload;
 import com.crispytwig.bbb.common.network.PaintSelectionPayload;
 import com.crispytwig.bbb.neoforge.config.NeoForgeBuildingButBetterConfig;
@@ -110,7 +111,10 @@ public class BuildingButBetterNeoForge {
     }
 
     private static void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
-        InteractionResult result = FacadeItem.tryRemove(event.getEntity(), event.getLevel(), event.getHand(), event.getHitVec());
+        InteractionResult result = PaintBrushItem.tryPaint(event.getEntity(), event.getLevel(), event.getHand(), event.getHitVec());
+        if (result == InteractionResult.PASS) {
+            result = FacadeItem.tryRemove(event.getEntity(), event.getLevel(), event.getHand(), event.getHitVec());
+        }
         if (result == InteractionResult.PASS) {
             result = TimberFrameBlock.tryCycleCross(event.getEntity(), event.getLevel(), event.getHand(), event.getHitVec());
         }

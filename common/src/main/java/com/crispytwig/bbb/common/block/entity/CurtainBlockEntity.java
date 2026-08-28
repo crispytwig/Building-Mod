@@ -1,5 +1,6 @@
 package com.crispytwig.bbb.common.block.entity;
 
+import com.crispytwig.bbb.common.paint.KeepsDataWhenPainted;
 import com.crispytwig.bbb.common.registry.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
@@ -12,7 +13,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
-public class CurtainBlockEntity extends BlockEntity {
+public class CurtainBlockEntity extends BlockEntity implements KeepsDataWhenPainted {
     public static final int MAX_LENGTH = 32;
 
     private int length = 1;
@@ -26,7 +27,7 @@ public class CurtainBlockEntity extends BlockEntity {
     }
 
     public void setLength(int length) {
-        int clamped = Math.max(1, Math.min(MAX_LENGTH, length));
+        int clamped = Math.clamp(length, 1, MAX_LENGTH);
         if (clamped == this.length) {
             return;
         }
@@ -47,7 +48,7 @@ public class CurtainBlockEntity extends BlockEntity {
     @Override
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
-        length = Math.max(1, Math.min(MAX_LENGTH, tag.getInt("Length")));
+        length = Math.clamp(tag.getInt("Length"), 1, MAX_LENGTH);
     }
 
     @Override

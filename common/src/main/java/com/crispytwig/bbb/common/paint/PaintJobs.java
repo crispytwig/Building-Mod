@@ -3,11 +3,14 @@ package com.crispytwig.bbb.common.paint;
 import com.crispytwig.bbb.common.item.PaintBrushItem;
 import com.crispytwig.bbb.common.registry.ModSounds;
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
@@ -113,9 +116,26 @@ public final class PaintJobs {
             BlockRecolor.paint(state, color)
                     .filter(painted -> painted != state)
                     .ifPresent(painted -> {
+                        BlockEntity old = state.hasBlockEntity() ? level.getBlockEntity(pos) : null;
+                        CompoundTag kept = old instanceof KeepsDataWhenPainted
+                                ? old.saveWithoutMetadata(level.registryAccess()) : null;
+                        BlockEntityType<?> keptType = old == null ? null : old.getType();
                         level.setBlock(pos, painted, Block.UPDATE_ALL);
+                        if (kept != null) {
+                            restore(pos, painted, kept, keptType);
+                        }
                         playSound();
                     });
+        }
+
+        private void restore(BlockPos pos, BlockState painted, CompoundTag kept, BlockEntityType<?> keptType) {
+            BlockEntity fresh = level.getBlockEntity(pos);
+            if (fresh == null || fresh.getType() != keptType) {
+                return;
+            }
+            fresh.loadWithComponents(kept, level.registryAccess());
+            fresh.setChanged();
+            level.sendBlockUpdated(pos, painted, painted, Block.UPDATE_CLIENTS);
         }
     }
 }

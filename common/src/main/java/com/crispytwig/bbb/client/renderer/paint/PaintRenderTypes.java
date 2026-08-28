@@ -12,7 +12,7 @@ public final class PaintRenderTypes extends RenderType {
             "bbb_paint_preview",
             DefaultVertexFormat.BLOCK,
             256 * 256,
-            List.of(BLOCK_SHEET_MIPPED, RENDERTYPE_SOLID_SHADER, NO_TRANSPARENCY,
+            List.of(BLOCK_SHEET_MIPPED, RENDERTYPE_CUTOUT_MIPPED_SHADER, NO_TRANSPARENCY,
                     LEQUAL_DEPTH_TEST, CULL, LIGHTMAP, POLYGON_OFFSET_LAYERING,
                     COLOR_DEPTH_WRITE));
 

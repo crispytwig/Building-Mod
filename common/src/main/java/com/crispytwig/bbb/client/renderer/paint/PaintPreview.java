@@ -1,6 +1,9 @@
 package com.crispytwig.bbb.client.renderer.paint;
 
 import com.crispytwig.bbb.client.ClientServices;
+import com.crispytwig.bbb.client.renderer.CurtainBlockRenderer;
+import com.crispytwig.bbb.common.block.CurtainBlock;
+import com.crispytwig.bbb.common.block.entity.CurtainBlockEntity;
 import com.crispytwig.bbb.common.paint.BlockRecolor;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -67,6 +70,10 @@ public final class PaintPreview implements VertexConsumer {
             pose.translate(pos.getX() - from.getX(), pos.getY() - from.getY(), pos.getZ() - from.getZ());
             ClientServices.CLIENT.renderModel(level, blocks.getBlockModel(painted), painted, pos, pose,
                     type -> this, OverlayTexture.NO_OVERLAY, RandomSource.create(seed), seed, true);
+            if (painted.getBlock() instanceof CurtainBlock && level.getBlockEntity(pos) instanceof CurtainBlockEntity curtain) {
+                CurtainBlockRenderer.renderParts(level, painted, pos, curtain.getLength(), pose,
+                        type -> this, OverlayTexture.NO_OVERLAY, RandomSource.create(seed));
+            }
             pose.popPose();
         }
     }

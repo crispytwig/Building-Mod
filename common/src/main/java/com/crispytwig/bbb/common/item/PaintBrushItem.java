@@ -6,6 +6,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.SlotAccess;
 import net.minecraft.world.entity.player.Player;
@@ -19,6 +20,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -72,6 +74,17 @@ public class PaintBrushItem extends Item {
             return InteractionResultHolder.success(stack);
         }
         return InteractionResultHolder.pass(stack);
+    }
+
+    public static InteractionResult tryPaint(Player player, Level level, InteractionHand hand, BlockHitResult hit) {
+        if (!(player.getItemInHand(hand).getItem() instanceof PaintBrushItem)) {
+            return InteractionResult.PASS;
+        }
+        if (!level.isClientSide) {
+            return InteractionResult.CONSUME;
+        }
+        PaintBrushClient.onRightClick();
+        return InteractionResult.SUCCESS;
     }
 
     @Override

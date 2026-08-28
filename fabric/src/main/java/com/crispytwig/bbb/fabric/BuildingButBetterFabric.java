@@ -3,6 +3,7 @@ package com.crispytwig.bbb.fabric;
 import com.crispytwig.bbb.common.BuildingButBetter;
 import com.crispytwig.bbb.common.block.TimberFrameBlock;
 import com.crispytwig.bbb.common.item.FacadeItem;
+import com.crispytwig.bbb.common.item.PaintBrushItem;
 import com.crispytwig.bbb.common.network.FacadePayload;
 import com.crispytwig.bbb.common.network.PaintSelectionPayload;
 import com.crispytwig.bbb.common.registry.ModLayers;
@@ -41,6 +42,7 @@ public class BuildingButBetterFabric implements ModInitializer {
         ServerTickEvents.END_SERVER_TICK.register(server -> PaintJobs.tick());
         ServerWorldEvents.UNLOAD.register((server, world) -> PaintJobs.clear(world));
 
+        UseBlockCallback.EVENT.register(PaintBrushItem::tryPaint);
         UseBlockCallback.EVENT.register(FacadeItem::tryRemove);
         UseBlockCallback.EVENT.register(TimberFrameBlock::tryCycleCross);
         PlayerBlockBreakEvents.AFTER.register((level, player, pos, state, blockEntity) -> {

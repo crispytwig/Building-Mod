@@ -49,9 +49,17 @@ public class CurtainBlockRenderer implements BlockEntityRenderer<CurtainBlockEnt
     @Override
     public void render(CurtainBlockEntity blockEntity, float partialTick, PoseStack poseStack, MultiBufferSource buffer, int packedLight, int packedOverlay) {
         Level level = blockEntity.getLevel();
-        BlockState state = blockEntity.getBlockState();
+        if (level == null) {
+            return;
+        }
+        renderParts(level, blockEntity.getBlockState(), blockEntity.getBlockPos(), blockEntity.getLength(),
+                poseStack, buffer, packedOverlay, random);
+    }
+
+    public static void renderParts(Level level, BlockState state, BlockPos pos, int length,
+                                   PoseStack poseStack, MultiBufferSource buffer, int packedOverlay, RandomSource random) {
         Map<String, ModelResourceLocation> models = PART_MODELS.get(state.getBlock());
-        if (level == null || models == null) {
+        if (models == null) {
             return;
         }
 
@@ -59,9 +67,6 @@ public class CurtainBlockRenderer implements BlockEntityRenderer<CurtainBlockEnt
         CurtainSide side = state.getValue(CurtainBlock.SIDE);
         Direction facing = state.getValue(CurtainBlock.FACING);
         int yRot = Math.floorMod(180 - (int) facing.toYRot(), 360);
-        int length = blockEntity.getLength();
-
-        BlockPos pos = blockEntity.getBlockPos();
 
         for (int i = 0; i < length; i++) {
             String part = partFor(open, side, i, length);

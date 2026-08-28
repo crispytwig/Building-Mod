@@ -269,7 +269,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                     .modelFile(type == TrimType.SINGLE && cross != CrossType.NONE ? crossModels.get(cross) : models.get(type))
                     .build();
         }, TimberFrameBlock.FILLED);
-        itemModels().withExistingParent(name, BuildingButBetter.location("block/" + name));
+        itemModels().withExistingParent(name, BuildingButBetter.location("block/" + name + "_" + CrossType.CROSS.getSerializedName()));
     }
 
     private void window(WindowBlock block) {

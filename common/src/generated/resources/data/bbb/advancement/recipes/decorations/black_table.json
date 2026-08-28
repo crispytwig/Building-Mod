@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_black_slab": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bbb:black_slab"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "bbb:black_table"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_black_slab"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "bbb:black_table"
+    ]
+  }
+}

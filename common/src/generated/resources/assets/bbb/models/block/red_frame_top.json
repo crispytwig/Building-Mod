@@ -1,0 +1,7 @@
+{
+  "parent": "bbb:block/template/frame_top",
+  "textures": {
+    "all": "bbb:block/red_frame",
+    "particle": "bbb:block/red_frame"
+  }
+}

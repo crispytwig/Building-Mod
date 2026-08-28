@@ -1,0 +1,7 @@
+{
+  "parent": "bbb:block/template/frame_inventory",
+  "textures": {
+    "all": "bbb:block/gray_frame",
+    "particle": "bbb:block/gray_frame"
+  }
+}

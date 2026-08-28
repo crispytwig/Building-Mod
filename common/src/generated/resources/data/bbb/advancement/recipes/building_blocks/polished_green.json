@@ -1,0 +1,25 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_green_boards": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bbb:green_boards"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_green_boards"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "bbb:polished_green"
+    ]
+  }
+}

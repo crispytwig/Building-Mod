@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "group": "shutter",
+  "key": {
+    "B": {
+      "item": "bbb:green_boards"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "BB",
+    "SS",
+    "BB"
+  ],
+  "result": {
+    "count": 2,
+    "id": "bbb:green_shutter"
+  }
+}

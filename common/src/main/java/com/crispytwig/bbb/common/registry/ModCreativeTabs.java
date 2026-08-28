@@ -69,13 +69,15 @@ public final class ModCreativeTabs {
     }
 
     private static Set<Block> coloredBlocks() {
-        return Stream.concat(
+        return Stream.of(
                         Stream.concat(ModBlocks.TERRACOTTA.stream(), ModBlocks.PLASTER.stream())
                                 .filter(colored -> colored.color() != null)
                                 .flatMap(colored -> colored.sets().stream())
                                 .flatMap(set -> Stream.of(set.block().get(), set.stairs().get(), set.slab().get())),
+                        ModBlocks.coloredWoodBlocks().stream().map(holder -> (Block) holder.get()),
                         Stream.concat(ModBlocks.SOFAS.values().stream(), ModBlocks.CURTAINS.values().stream())
                                 .map(holder -> (Block) holder.get()))
+                .flatMap(stream -> stream)
                 .collect(Collectors.toSet());
     }
 }

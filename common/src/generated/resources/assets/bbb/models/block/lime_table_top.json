@@ -1,0 +1,7 @@
+{
+  "parent": "bbb:block/template/table_top",
+  "textures": {
+    "all": "bbb:block/lime_table",
+    "particle": "bbb:block/lime_boards"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "boards",
+  "key": {
+    "P": {
+      "item": "bbb:pink_planks"
+    }
+  },
+  "pattern": [
+    "P",
+    "P",
+    "P"
+  ],
+  "result": {
+    "count": 3,
+    "id": "bbb:pink_boards"
+  }
+}

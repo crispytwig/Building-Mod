@@ -4,6 +4,7 @@ import com.crispytwig.bbb.common.BuildingButBetter;
 import com.crispytwig.bbb.platform.registry.DeferredHolder;
 import com.crispytwig.bbb.platform.registry.DeferredRegister;
 import com.crispytwig.bbb.common.recipe.FacadeRecipe;
+import com.crispytwig.bbb.common.recipe.PaintingRecipe;
 import com.crispytwig.bbb.common.recipe.PolishingRecipe;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -15,6 +16,9 @@ public final class ModRecipeSerializers {
 
     public static final DeferredHolder<RecipeSerializer<?>, SimpleCraftingRecipeSerializer<FacadeRecipe>> FACADE =
             RECIPE_SERIALIZERS.register("facade", () -> new SimpleCraftingRecipeSerializer<>(FacadeRecipe::new));
+
+    public static final DeferredHolder<RecipeSerializer<?>, SimpleCraftingRecipeSerializer<PaintingRecipe>> PAINTING =
+            RECIPE_SERIALIZERS.register("painting", () -> new SimpleCraftingRecipeSerializer<>(PaintingRecipe::new));
 
     public static final DeferredHolder<RecipeSerializer<?>, PolishingRecipe.Serializer> POLISHING =
             RECIPE_SERIALIZERS.register("polishing", PolishingRecipe.Serializer::new);

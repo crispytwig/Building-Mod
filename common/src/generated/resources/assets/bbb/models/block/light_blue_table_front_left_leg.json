@@ -1,0 +1,7 @@
+{
+  "parent": "bbb:block/template/table_front_left_leg",
+  "textures": {
+    "all": "bbb:block/light_blue_table",
+    "particle": "bbb:block/light_blue_boards"
+  }
+}

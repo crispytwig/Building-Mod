@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "window_pane",
+  "key": {
+    "W": {
+      "item": "bbb:red_window"
+    }
+  },
+  "pattern": [
+    "WWW",
+    "WWW"
+  ],
+  "result": {
+    "count": 16,
+    "id": "bbb:red_window_pane"
+  }
+}

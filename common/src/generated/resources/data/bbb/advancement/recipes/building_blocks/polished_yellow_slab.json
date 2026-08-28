@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_polished_yellow": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bbb:polished_yellow"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "bbb:polished_yellow_slab"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_polished_yellow"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "bbb:polished_yellow_slab"
+    ]
+  }
+}

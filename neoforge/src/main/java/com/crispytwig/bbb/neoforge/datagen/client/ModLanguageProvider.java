@@ -7,11 +7,14 @@ import com.crispytwig.bbb.common.registry.ModItems;
 import com.crispytwig.bbb.common.registry.ModTags;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 
 
 public class ModLanguageProvider extends LanguageProvider {
+    private static final String POLISHED = "polished_";
+
     public ModLanguageProvider(PackOutput output) {
         super(output, BuildingButBetter.MOD_ID, "en_us");
     }
@@ -51,6 +54,23 @@ public class ModLanguageProvider extends LanguageProvider {
     }
 
     private void addTitleCased(DeferredHolder<Block, ? extends Block> holder) {
-        add(holder.get(), BuildingButBetter.titleCase(holder.getId().getPath()));
+        String path = holder.getId().getPath();
+        add(holder.get(), BuildingButBetter.titleCase(polishedColorName(path)));
+    }
+
+    private static String polishedColorName(String path) {
+        if (!path.startsWith(POLISHED)) {
+            return path;
+        }
+        String rest = path.substring(POLISHED.length());
+        for (DyeColor color : DyeColor.values()) {
+            if (rest.equals(color.getName())) {
+                return path + "_wood";
+            }
+            if (rest.equals(color.getName() + "_slab")) {
+                return POLISHED + color.getName() + "_wood_slab";
+            }
+        }
+        return path;
     }
 }

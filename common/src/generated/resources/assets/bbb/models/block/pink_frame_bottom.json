@@ -1,0 +1,7 @@
+{
+  "parent": "bbb:block/template/frame_bottom",
+  "textures": {
+    "all": "bbb:block/pink_frame",
+    "particle": "bbb:block/pink_frame"
+  }
+}

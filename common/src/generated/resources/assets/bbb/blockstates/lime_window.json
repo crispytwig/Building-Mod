@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "bbb:block/lime_window_bottom"
+    },
+    "type=middle": {
+      "model": "bbb:block/lime_window_middle"
+    },
+    "type=single": {
+      "model": "bbb:block/lime_window"
+    },
+    "type=top": {
+      "model": "bbb:block/lime_window_top"
+    }
+  }
+}

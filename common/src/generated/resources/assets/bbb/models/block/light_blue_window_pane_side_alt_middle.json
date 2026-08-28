@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/template_glass_pane_side_alt",
+  "render_type": "minecraft:translucent",
+  "textures": {
+    "edge": "bbb:block/light_blue_trim_end",
+    "pane": "bbb:block/light_blue_window_middle"
+  }
+}

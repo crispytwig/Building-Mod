@@ -1,0 +1,25 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_cyan_boards": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bbb:cyan_boards"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_cyan_boards"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "bbb:polished_cyan"
+    ]
+  }
+}

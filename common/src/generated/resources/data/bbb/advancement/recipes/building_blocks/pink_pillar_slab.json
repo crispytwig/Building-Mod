@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_pink_pillar": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bbb:pink_pillar"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "bbb:pink_pillar_slab"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_pink_pillar"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "bbb:pink_pillar_slab"
+    ]
+  }
+}

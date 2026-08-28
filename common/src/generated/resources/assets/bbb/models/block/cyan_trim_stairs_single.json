@@ -1,0 +1,9 @@
+{
+  "parent": "bbb:block/template/trim_stairs_single",
+  "textures": {
+    "particle": "bbb:block/cyan_boards",
+    "side": "bbb:block/cyan_trim_single",
+    "stair": "bbb:block/cyan_pillar",
+    "top": "bbb:block/cyan_boards"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "bbb:block/red_boards",
+    "side": "bbb:block/red_boards",
+    "top": "bbb:block/red_boards"
+  }
+}

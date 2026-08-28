@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "bbb:block/light_gray_board_slab"
+    },
+    "type=double": {
+      "model": "bbb:block/light_gray_boards"
+    },
+    "type=top": {
+      "model": "bbb:block/light_gray_board_slab_top"
+    }
+  }
+}

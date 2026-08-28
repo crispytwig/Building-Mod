@@ -1,0 +1,25 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_gray_boards": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bbb:gray_boards"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_gray_boards"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "bbb:polished_gray"
+    ]
+  }
+}

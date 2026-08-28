@@ -1,0 +1,8 @@
+{
+  "parent": "bbb:block/template/chair_tucked",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "all": "bbb:block/magenta_chair",
+    "particle": "bbb:block/magenta_boards"
+  }
+}

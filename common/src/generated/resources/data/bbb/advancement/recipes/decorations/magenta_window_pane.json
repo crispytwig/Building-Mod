@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "bbb:magenta_window_pane"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_window": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bbb:magenta_window"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_window"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "bbb:magenta_window_pane"
+    ]
+  }
+}

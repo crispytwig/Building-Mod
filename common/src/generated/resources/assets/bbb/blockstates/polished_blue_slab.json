@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "bbb:block/polished_blue_slab"
+    },
+    "type=double": {
+      "model": "bbb:block/polished_blue_slab_full"
+    },
+    "type=top": {
+      "model": "bbb:block/polished_blue_slab_top"
+    }
+  }
+}

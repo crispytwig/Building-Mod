@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "bbb:block/black_pillar_top",
+    "side": "bbb:block/black_pillar"
+  }
+}

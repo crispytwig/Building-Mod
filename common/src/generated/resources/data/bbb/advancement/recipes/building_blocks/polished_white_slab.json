@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_polished_white": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bbb:polished_white"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "bbb:polished_white_slab"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_polished_white"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "bbb:polished_white_slab"
+    ]
+  }
+}

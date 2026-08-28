@@ -1,0 +1,8 @@
+{
+  "parent": "bbb:block/template/shutter",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "all": "bbb:block/light_gray_shutter",
+    "particle": "bbb:block/light_gray_shutter"
+  }
+}

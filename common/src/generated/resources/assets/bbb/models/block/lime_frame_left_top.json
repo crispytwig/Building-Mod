@@ -1,0 +1,7 @@
+{
+  "parent": "bbb:block/template/frame_left_top",
+  "textures": {
+    "all": "bbb:block/lime_frame",
+    "particle": "bbb:block/lime_frame"
+  }
+}

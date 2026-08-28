@@ -25,9 +25,28 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Map;
 
 public class PaintBrushItem extends Item {
     public static final int MAX_RANGE = 24;
+
+    private static final Map<DyeColor, Integer> BAR_COLORS = Map.ofEntries(
+            Map.entry(DyeColor.WHITE, 0xFFEAEAEA),
+            Map.entry(DyeColor.LIGHT_GRAY, 0xFFC8C8C8),
+            Map.entry(DyeColor.GRAY, 0xFF979797),
+            Map.entry(DyeColor.BLACK, 0xFF383751),
+            Map.entry(DyeColor.BROWN, 0xFF995D33),
+            Map.entry(DyeColor.RED, 0xFFD2443F),
+            Map.entry(DyeColor.ORANGE, 0xFFE69E34),
+            Map.entry(DyeColor.YELLOW, 0xFFE7E72A),
+            Map.entry(DyeColor.LIME, 0xFF83D41C),
+            Map.entry(DyeColor.GREEN, 0xFF4A6B18),
+            Map.entry(DyeColor.CYAN, 0xFF3C8EB0),
+            Map.entry(DyeColor.LIGHT_BLUE, 0xFF8FB9F4),
+            Map.entry(DyeColor.BLUE, 0xFF5A82E2),
+            Map.entry(DyeColor.PURPLE, 0xFFCA8ED1),
+            Map.entry(DyeColor.MAGENTA, 0xFFDB7AD5),
+            Map.entry(DyeColor.PINK, 0xFFF7B4D6));
 
     public PaintBrushItem(Properties properties) {
         super(properties);
@@ -65,6 +84,15 @@ public class PaintBrushItem extends Item {
             tooltip.add(Component.translatable("color.minecraft." + color.getName())
                     .setStyle(Style.EMPTY.withColor(color.getTextureDiffuseColor())));
         }
+    }
+
+    @Override
+    public int getBarColor(@NotNull ItemStack stack) {
+        DyeColor color = getColor(stack);
+        if (color == null) {
+            return super.getBarColor(stack);
+        }
+        return BAR_COLORS.getOrDefault(color, color.getTextureDiffuseColor());
     }
 
     @Override
@@ -108,10 +136,11 @@ public class PaintBrushItem extends Item {
             return false;
         }
         DyeColor color = dyeItem.getDyeColor();
-        if (color == getColor(brush)) {
+        if (color == getColor(brush) && !brush.isDamaged()) {
             return false;
         }
         brush.set(ModDataComponents.PAINT_COLOR.get(), color);
+        brush.setDamageValue(0);
         dye.shrink(1);
         player.playSound(SoundEvents.DYE_USE, 0.8F, 1.0F);
         return true;

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "bbb:block/pink_board_slab"
+    },
+    "type=double": {
+      "model": "bbb:block/pink_boards"
+    },
+    "type=top": {
+      "model": "bbb:block/pink_board_slab_top"
+    }
+  }
+}

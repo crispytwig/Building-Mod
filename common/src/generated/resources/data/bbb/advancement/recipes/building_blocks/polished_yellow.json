@@ -1,0 +1,25 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_yellow_boards": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bbb:yellow_boards"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_yellow_boards"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "bbb:polished_yellow"
+    ]
+  }
+}

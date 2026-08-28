@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "trim_stairs",
+  "key": {
+    "#": {
+      "item": "bbb:blue_trim"
+    }
+  },
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "result": {
+    "count": 4,
+    "id": "bbb:blue_trim_stairs"
+  }
+}

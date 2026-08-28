@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_polished_green": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bbb:polished_green"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "bbb:polished_green_slab"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_polished_green"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "bbb:polished_green_slab"
+    ]
+  }
+}

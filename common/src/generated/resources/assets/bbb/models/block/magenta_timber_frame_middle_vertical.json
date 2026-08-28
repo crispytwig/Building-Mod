@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "end": "bbb:block/magenta_timber_frame",
+    "side": "bbb:block/magenta_timber_frame_middle_vertical"
+  }
+}

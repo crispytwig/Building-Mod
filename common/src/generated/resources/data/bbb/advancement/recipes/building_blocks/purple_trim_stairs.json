@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_purple_trim": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bbb:purple_trim"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "bbb:purple_trim_stairs"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_purple_trim"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "bbb:purple_trim_stairs"
+    ]
+  }
+}

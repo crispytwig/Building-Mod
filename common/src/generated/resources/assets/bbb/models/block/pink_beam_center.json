@@ -1,0 +1,8 @@
+{
+  "parent": "bbb:block/template/beam_center",
+  "textures": {
+    "end": "bbb:block/pink_pillar_top",
+    "particle": "bbb:block/pink_pillar",
+    "side": "bbb:block/pink_pillar"
+  }
+}

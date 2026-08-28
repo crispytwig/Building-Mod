@@ -1,0 +1,7 @@
+{
+  "parent": "bbb:block/template/frame_corner_tl_tip",
+  "textures": {
+    "all": "bbb:block/purple_frame",
+    "particle": "bbb:block/purple_frame"
+  }
+}

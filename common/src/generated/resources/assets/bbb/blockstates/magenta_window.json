@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "bbb:block/magenta_window_bottom"
+    },
+    "type=middle": {
+      "model": "bbb:block/magenta_window_middle"
+    },
+    "type=single": {
+      "model": "bbb:block/magenta_window"
+    },
+    "type=top": {
+      "model": "bbb:block/magenta_window_top"
+    }
+  }
+}

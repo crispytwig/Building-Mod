@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "bbb:block/white_window_bottom"
+    },
+    "type=middle": {
+      "model": "bbb:block/white_window_middle"
+    },
+    "type=single": {
+      "model": "bbb:block/white_window"
+    },
+    "type=top": {
+      "model": "bbb:block/white_window_top"
+    }
+  }
+}

@@ -1,0 +1,340 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "bbb:block/light_gray_window_pane_post"
+      },
+      "when": {
+        "type": "single"
+      }
+    },
+    {
+      "apply": {
+        "model": "bbb:block/light_gray_window_pane_side"
+      },
+      "when": {
+        "type": "single",
+        "north": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "bbb:block/light_gray_window_pane_noside"
+      },
+      "when": {
+        "type": "single",
+        "north": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "bbb:block/light_gray_window_pane_side",
+        "y": 90
+      },
+      "when": {
+        "type": "single",
+        "east": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "bbb:block/light_gray_window_pane_noside_alt"
+      },
+      "when": {
+        "type": "single",
+        "east": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "bbb:block/light_gray_window_pane_side_alt"
+      },
+      "when": {
+        "type": "single",
+        "south": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "bbb:block/light_gray_window_pane_noside_alt",
+        "y": 90
+      },
+      "when": {
+        "type": "single",
+        "south": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "bbb:block/light_gray_window_pane_side_alt",
+        "y": 90
+      },
+      "when": {
+        "type": "single",
+        "west": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "bbb:block/light_gray_window_pane_noside",
+        "y": 270
+      },
+      "when": {
+        "type": "single",
+        "west": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "bbb:block/light_gray_window_pane_post_bottom"
+      },
+      "when": {
+        "type": "bottom"
+      }
+    },
+    {
+      "apply": {
+        "model": "bbb:block/light_gray_window_pane_side_bottom"
+      },
+      "when": {
+        "type": "bottom",
+        "north": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "bbb:block/light_gray_window_pane_noside_bottom"
+      },
+      "when": {
+        "type": "bottom",
+        "north": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "bbb:block/light_gray_window_pane_side_bottom",
+        "y": 90
+      },
+      "when": {
+        "type": "bottom",
+        "east": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "bbb:block/light_gray_window_pane_noside_alt_bottom"
+      },
+      "when": {
+        "type": "bottom",
+        "east": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "bbb:block/light_gray_window_pane_side_alt_bottom"
+      },
+      "when": {
+        "type": "bottom",
+        "south": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "bbb:block/light_gray_window_pane_noside_alt_bottom",
+        "y": 90
+      },
+      "when": {
+        "type": "bottom",
+        "south": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "bbb:block/light_gray_window_pane_side_alt_bottom",
+        "y": 90
+      },
+      "when": {
+        "type": "bottom",
+        "west": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "bbb:block/light_gray_window_pane_noside_bottom",
+        "y": 270
+      },
+      "when": {
+        "type": "bottom",
+        "west": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "bbb:block/light_gray_window_pane_post_middle"
+      },
+      "when": {
+        "type": "middle"
+      }
+    },
+    {
+      "apply": {
+        "model": "bbb:block/light_gray_window_pane_side_middle"
+      },
+      "when": {
+        "type": "middle",
+        "north": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "bbb:block/light_gray_window_pane_noside_middle"
+      },
+      "when": {
+        "type": "middle",
+        "north": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "bbb:block/light_gray_window_pane_side_middle",
+        "y": 90
+      },
+      "when": {
+        "type": "middle",
+        "east": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "bbb:block/light_gray_window_pane_noside_alt_middle"
+      },
+      "when": {
+        "type": "middle",
+        "east": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "bbb:block/light_gray_window_pane_side_alt_middle"
+      },
+      "when": {
+        "type": "middle",
+        "south": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "bbb:block/light_gray_window_pane_noside_alt_middle",
+        "y": 90
+      },
+      "when": {
+        "type": "middle",
+        "south": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "bbb:block/light_gray_window_pane_side_alt_middle",
+        "y": 90
+      },
+      "when": {
+        "type": "middle",
+        "west": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "bbb:block/light_gray_window_pane_noside_middle",
+        "y": 270
+      },
+      "when": {
+        "type": "middle",
+        "west": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "bbb:block/light_gray_window_pane_post_top"
+      },
+      "when": {
+        "type": "top"
+      }
+    },
+    {
+      "apply": {
+        "model": "bbb:block/light_gray_window_pane_side_top"
+      },
+      "when": {
+        "type": "top",
+        "north": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "bbb:block/light_gray_window_pane_noside_top"
+      },
+      "when": {
+        "type": "top",
+        "north": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "bbb:block/light_gray_window_pane_side_top",
+        "y": 90
+      },
+      "when": {
+        "type": "top",
+        "east": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "bbb:block/light_gray_window_pane_noside_alt_top"
+      },
+      "when": {
+        "type": "top",
+        "east": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "bbb:block/light_gray_window_pane_side_alt_top"
+      },
+      "when": {
+        "type": "top",
+        "south": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "bbb:block/light_gray_window_pane_noside_alt_top",
+        "y": 90
+      },
+      "when": {
+        "type": "top",
+        "south": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "bbb:block/light_gray_window_pane_side_alt_top",
+        "y": 90
+      },
+      "when": {
+        "type": "top",
+        "west": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "bbb:block/light_gray_window_pane_noside_top",
+        "y": 270
+      },
+      "when": {
+        "type": "top",
+        "west": "false"
+      }
+    }
+  ]
+}

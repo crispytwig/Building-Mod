@@ -23,7 +23,7 @@ public final class ModItems {
             () -> new FacadeItem(new Item.Properties()));
 
     public static final DeferredHolder<Item, PaintBrushItem> PAINT_BRUSH = ITEMS.register("paint_brush",
-            () -> new PaintBrushItem(new Item.Properties().stacksTo(1)));
+            () -> new PaintBrushItem(new Item.Properties().stacksTo(1).durability(256)));
 
     private ModItems() {
     }

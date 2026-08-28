@@ -1,0 +1,7 @@
+{
+  "parent": "bbb:block/template/frame_inventory",
+  "textures": {
+    "all": "bbb:block/magenta_frame",
+    "particle": "bbb:block/magenta_frame"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_brown_boards": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bbb:brown_boards"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_brown_boards"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "bbb:polished_brown"
+    ]
+  }
+}

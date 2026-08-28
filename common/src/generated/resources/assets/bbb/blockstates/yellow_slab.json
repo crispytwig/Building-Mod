@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "bbb:block/yellow_slab"
+    },
+    "type=double": {
+      "model": "bbb:block/yellow_planks"
+    },
+    "type=top": {
+      "model": "bbb:block/yellow_slab_top"
+    }
+  }
+}

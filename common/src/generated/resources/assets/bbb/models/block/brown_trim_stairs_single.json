@@ -1,0 +1,9 @@
+{
+  "parent": "bbb:block/template/trim_stairs_single",
+  "textures": {
+    "particle": "bbb:block/brown_boards",
+    "side": "bbb:block/brown_trim_single",
+    "stair": "bbb:block/brown_pillar",
+    "top": "bbb:block/brown_boards"
+  }
+}

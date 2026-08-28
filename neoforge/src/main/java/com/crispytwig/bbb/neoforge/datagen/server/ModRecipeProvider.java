@@ -2,6 +2,7 @@ package com.crispytwig.bbb.neoforge.datagen.server;
 
 import com.crispytwig.bbb.common.BuildingButBetter;
 import com.crispytwig.bbb.common.recipe.FacadeRecipe;
+import com.crispytwig.bbb.common.recipe.PaintingRecipe;
 import com.crispytwig.bbb.common.recipe.PolishingRecipe;
 import com.crispytwig.bbb.common.registry.ModBlocks;
 import net.minecraft.advancements.Advancement;
@@ -18,6 +19,7 @@ import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.data.recipes.SpecialRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
 import net.minecraft.data.recipes.SingleItemRecipeBuilder;
@@ -43,6 +45,8 @@ public class ModRecipeProvider extends RecipeProvider {
     protected void buildRecipes(RecipeOutput output) {
         facadeRecipe(output);
 
+        SpecialRecipeBuilder.special(PaintingRecipe::new).save(output, BuildingButBetter.location("painting"));
+
         stoneRecipes(output);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.PRISMARINE_TILES.get(), 4)
@@ -58,7 +62,9 @@ public class ModRecipeProvider extends RecipeProvider {
 
         slab(output, RecipeCategory.BUILDING_BLOCKS, ModBlocks.PRISMARINE_TILE_SLAB.get(), ModBlocks.PRISMARINE_TILES.get());
 
-        ModBlocks.WOOD.forEach(set -> woodRecipes(output, set));
+        ModBlocks.allWood().forEach(set -> woodRecipes(output, set));
+
+        ModBlocks.COLORED_WOOD.forEach(set -> coloredPlankRecipes(output, set));
 
         ModBlocks.TERRACOTTA.forEach(colored -> terracottaRecipes(output, colored));
 
@@ -120,7 +126,7 @@ public class ModRecipeProvider extends RecipeProvider {
         stonecutting(output, pillar, ModBlocks.STONE_PILLAR_SLAB.get(), 2);
     }
 
-    private void woodRecipes(RecipeOutput output, ModBlocks.WoodSet set) {
+    private void woodRecipes(RecipeOutput output, ModBlocks.WoodVariant set) {
         Block boards = set.boards().get();
         Block polished = set.polished().get();
         Block trim = set.trim().get();
@@ -159,13 +165,23 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy(getHasName(trim), has(trim))
                 .save(output);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, pillar, 8)
-                .group("pillar")
-                .pattern("L")
-                .pattern("L")
-                .define('L', set.logs())
-                .unlockedBy("has_logs", has(set.logs()))
-                .save(output);
+        if (set.logs() != null) {
+            ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, pillar, 8)
+                    .group("pillar")
+                    .pattern("L")
+                    .pattern("L")
+                    .define('L', set.logs())
+                    .unlockedBy("has_logs", has(set.logs()))
+                    .save(output);
+        } else {
+            ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, pillar, 2)
+                    .group("pillar")
+                    .pattern("P")
+                    .pattern("P")
+                    .define('P', set.planks())
+                    .unlockedBy("has_planks", has(set.planks()))
+                    .save(output);
+        }
 
         stairBuilder(set.pillarStairs().get(), Ingredient.of(pillar))
                 .group("pillar_stairs")
@@ -254,6 +270,17 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('W', set.window().get())
                 .unlockedBy("has_window", has(set.window().get()))
                 .save(output);
+    }
+
+    private void coloredPlankRecipes(RecipeOutput output, ModBlocks.ColoredWoodSet set) {
+        Block planks = set.plankBlock().get();
+
+        stairBuilder(set.plankStairs().get(), Ingredient.of(planks))
+                .group("colored_plank_stairs")
+                .unlockedBy(getHasName(planks), has(planks))
+                .save(output);
+
+        slab(output, RecipeCategory.BUILDING_BLOCKS, set.plankSlab().get(), planks);
     }
 
     private void facadeRecipe(RecipeOutput output) {

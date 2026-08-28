@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "bbb:block/gray_boards",
+    "side": "bbb:block/gray_boards",
+    "top": "bbb:block/gray_boards"
+  }
+}

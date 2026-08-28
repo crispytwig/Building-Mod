@@ -1,0 +1,8 @@
+{
+  "parent": "bbb:block/template/chair",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "all": "bbb:block/pink_chair",
+    "particle": "bbb:block/pink_boards"
+  }
+}

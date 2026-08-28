@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "bbb:block/light_blue_pillar_slab"
+    },
+    "type=double": {
+      "model": "bbb:block/light_blue_pillar"
+    },
+    "type=top": {
+      "model": "bbb:block/light_blue_pillar_slab_top"
+    }
+  }
+}

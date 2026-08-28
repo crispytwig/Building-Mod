@@ -1,0 +1,72 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "bbb:yellow_beam",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "x": "true"
+          }
+        },
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "bbb:yellow_beam"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "bbb:yellow_beam",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "y": "true"
+          }
+        },
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "bbb:yellow_beam"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "bbb:yellow_beam",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "z": "true"
+          }
+        },
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "bbb:yellow_beam"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "bbb:blocks/yellow_beam"
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_light_gray_trim": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bbb:light_gray_trim"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "bbb:light_gray_trim_stairs"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_light_gray_trim"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "bbb:light_gray_trim_stairs"
+    ]
+  }
+}

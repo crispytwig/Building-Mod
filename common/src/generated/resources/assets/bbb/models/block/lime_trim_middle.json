@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "bbb:block/lime_boards",
+    "particle": "bbb:block/lime_boards",
+    "side": "bbb:block/lime_trim_middle"
+  }
+}

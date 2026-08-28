@@ -1,0 +1,7 @@
+{
+  "parent": "bbb:block/template_pane_noside",
+  "render_type": "minecraft:translucent",
+  "textures": {
+    "pane": "bbb:block/white_window_top"
+  }
+}

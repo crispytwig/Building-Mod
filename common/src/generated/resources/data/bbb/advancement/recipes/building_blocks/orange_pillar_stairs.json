@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_orange_pillar": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bbb:orange_pillar"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "bbb:orange_pillar_stairs"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_orange_pillar"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "bbb:orange_pillar_stairs"
+    ]
+  }
+}

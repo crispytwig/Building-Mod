@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "bbb:block/light_gray_boards",
+    "side": "bbb:block/light_gray_boards",
+    "top": "bbb:block/light_gray_boards"
+  }
+}

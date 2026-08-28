@@ -49,7 +49,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        ModBlocks.WOOD.forEach(this::woodSet);
+        ModBlocks.allWood().forEach(this::woodSet);
+        ModBlocks.COLORED_WOOD.forEach(set -> cubeSet(new ModBlocks.BlockSet(set.plankBlock(), set.plankStairs(), set.plankSlab())));
 
         ResourceLocation stoneTiles = BuildingButBetter.location("block/stone_tiles");
         cubeSet(ModBlocks.STONE_TILES);
@@ -69,7 +70,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         ModBlocks.CURTAINS.values().forEach(holder -> curtain(holder.get()));
     }
 
-    private void woodSet(ModBlocks.WoodSet set) {
+    private void woodSet(ModBlocks.WoodVariant set) {
         String wood = set.name();
         ResourceLocation boards = BuildingButBetter.location("block/" + wood + "_boards");
         ResourceLocation pillar = BuildingButBetter.location("block/" + wood + "_pillar");

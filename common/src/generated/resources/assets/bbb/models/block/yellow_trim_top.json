@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "bbb:block/yellow_boards",
+    "particle": "bbb:block/yellow_boards",
+    "side": "bbb:block/yellow_trim_top"
+  }
+}

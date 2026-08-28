@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "bbb:block/cyan_board_slab"
+    },
+    "type=double": {
+      "model": "bbb:block/cyan_boards"
+    },
+    "type=top": {
+      "model": "bbb:block/cyan_board_slab_top"
+    }
+  }
+}

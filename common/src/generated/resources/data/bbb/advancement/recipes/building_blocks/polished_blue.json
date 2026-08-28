@@ -1,0 +1,25 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_blue_boards": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bbb:blue_boards"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_blue_boards"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "bbb:polished_blue"
+    ]
+  }
+}

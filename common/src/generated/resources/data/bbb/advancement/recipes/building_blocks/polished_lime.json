@@ -1,0 +1,25 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_lime_boards": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bbb:lime_boards"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_lime_boards"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "bbb:polished_lime"
+    ]
+  }
+}

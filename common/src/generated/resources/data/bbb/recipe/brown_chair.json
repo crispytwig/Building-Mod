@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "chair",
+  "key": {
+    "P": {
+      "item": "bbb:brown_planks"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "P ",
+    "PP",
+    "SS"
+  ],
+  "result": {
+    "count": 1,
+    "id": "bbb:brown_chair"
+  }
+}

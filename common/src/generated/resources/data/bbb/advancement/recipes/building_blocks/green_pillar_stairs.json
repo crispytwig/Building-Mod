@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_green_pillar": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bbb:green_pillar"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "bbb:green_pillar_stairs"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_green_pillar"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "bbb:green_pillar_stairs"
+    ]
+  }
+}

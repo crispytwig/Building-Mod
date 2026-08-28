@@ -37,6 +37,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 public final class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(BuiltInRegistries.BLOCK, BuildingButBetter.MOD_ID);
@@ -64,6 +65,8 @@ public final class ModBlocks {
 
     public static final List<ColoredSet> PLASTER = createPlaster();
 
+    public static final List<ColoredWoodSet> COLORED_WOOD = createColoredWood();
+
     public static final Map<DyeColor, DeferredHolder<Block, SofaBlock>> SOFAS = createSofas();
 
     public static final Map<DyeColor, DeferredHolder<Block, CurtainBlock>> CURTAINS = createCurtains();
@@ -72,6 +75,60 @@ public final class ModBlocks {
     }
 
     public record ColoredSet(DyeColor color, List<BlockSet> sets) {
+    }
+
+    public interface WoodVariant {
+        String name();
+
+        Block planks();
+
+        Block slab();
+
+        TagKey<Item> logs();
+
+        boolean burnable();
+
+        DeferredHolder<Block, Block> boards();
+
+        DeferredHolder<Block, ModStairBlock> boardStairs();
+
+        DeferredHolder<Block, SlabBlock> boardSlab();
+
+        DeferredHolder<Block, Block> polished();
+
+        DeferredHolder<Block, SlabBlock> polishedSlab();
+
+        DeferredHolder<Block, TrimBlock> trim();
+
+        DeferredHolder<Block, TrimStairBlock> trimStairs();
+
+        DeferredHolder<Block, RotatedPillarBlock> pillar();
+
+        DeferredHolder<Block, ModStairBlock> pillarStairs();
+
+        DeferredHolder<Block, SlabBlock> pillarSlab();
+
+        DeferredHolder<Block, BeamBlock> beam();
+
+        DeferredHolder<Block, TableBlock> table();
+
+        DeferredHolder<Block, ChairBlock> chair();
+
+        DeferredHolder<Block, FrameBlock> frame();
+
+        DeferredHolder<Block, TimberFrameBlock> timberFrame();
+
+        DeferredHolder<Block, ShutterBlock> shutter();
+
+        DeferredHolder<Block, ModLanternBlock> lantern();
+
+        DeferredHolder<Block, WindowBlock> window();
+
+        DeferredHolder<Block, WindowPaneBlock> windowPane();
+
+        List<DeferredHolder<Block, ? extends Block>> blocks();
+
+        List<DeferredHolder<Block, ? extends Block>> windows();
     }
 
     public record WoodSet(String name, TagKey<Item> logs, Block planks, Block slab, boolean burnable,
@@ -93,12 +150,72 @@ public final class ModBlocks {
                           DeferredHolder<Block, ShutterBlock> shutter,
                           DeferredHolder<Block, ModLanternBlock> lantern,
                           DeferredHolder<Block, WindowBlock> window,
-                          DeferredHolder<Block, WindowPaneBlock> windowPane) {
+                          DeferredHolder<Block, WindowPaneBlock> windowPane) implements WoodVariant {
         public List<DeferredHolder<Block, ? extends Block>> blocks() {
             return List.of(boards, boardStairs, boardSlab, polished, polishedSlab, trim, trimStairs,
                     pillar, pillarStairs, pillarSlab, beam, table, chair, frame, timberFrame, shutter);
         }
 
+        public List<DeferredHolder<Block, ? extends Block>> windows() {
+            return List.of(window, windowPane);
+        }
+    }
+
+    public record ColoredWoodSet(DyeColor color,
+                                 DeferredHolder<Block, Block> plankBlock,
+                                 DeferredHolder<Block, ModStairBlock> plankStairs,
+                                 DeferredHolder<Block, SlabBlock> plankSlab,
+                                 DeferredHolder<Block, Block> boards,
+                                 DeferredHolder<Block, ModStairBlock> boardStairs,
+                                 DeferredHolder<Block, SlabBlock> boardSlab,
+                                 DeferredHolder<Block, Block> polished,
+                                 DeferredHolder<Block, SlabBlock> polishedSlab,
+                                 DeferredHolder<Block, TrimBlock> trim,
+                                 DeferredHolder<Block, TrimStairBlock> trimStairs,
+                                 DeferredHolder<Block, RotatedPillarBlock> pillar,
+                                 DeferredHolder<Block, ModStairBlock> pillarStairs,
+                                 DeferredHolder<Block, SlabBlock> pillarSlab,
+                                 DeferredHolder<Block, BeamBlock> beam,
+                                 DeferredHolder<Block, TableBlock> table,
+                                 DeferredHolder<Block, ChairBlock> chair,
+                                 DeferredHolder<Block, FrameBlock> frame,
+                                 DeferredHolder<Block, TimberFrameBlock> timberFrame,
+                                 DeferredHolder<Block, ShutterBlock> shutter,
+                                 DeferredHolder<Block, ModLanternBlock> lantern,
+                                 DeferredHolder<Block, WindowBlock> window,
+                                 DeferredHolder<Block, WindowPaneBlock> windowPane) implements WoodVariant {
+        @Override
+        public String name() {
+            return color.getName();
+        }
+
+        @Override
+        public Block planks() {
+            return plankBlock.get();
+        }
+
+        @Override
+        public Block slab() {
+            return plankSlab.get();
+        }
+
+        @Override
+        public TagKey<Item> logs() {
+            return null;
+        }
+
+        @Override
+        public boolean burnable() {
+            return true;
+        }
+
+        @Override
+        public List<DeferredHolder<Block, ? extends Block>> blocks() {
+            return List.of(plankBlock, plankStairs, plankSlab, boards, boardStairs, boardSlab, polished, polishedSlab,
+                    trim, trimStairs, pillar, pillarStairs, pillarSlab, beam, table, chair, frame, timberFrame, shutter);
+        }
+
+        @Override
         public List<DeferredHolder<Block, ? extends Block>> windows() {
             return List.of(window, windowPane);
         }
@@ -110,16 +227,27 @@ public final class ModBlocks {
     public static void init() {
     }
 
+    public static List<WoodVariant> allWood() {
+        return Stream.concat(WOOD.stream(), COLORED_WOOD.stream()).map(WoodVariant.class::cast).toList();
+    }
+
     public static List<DeferredHolder<Block, ? extends Block>> woodenBlocks() {
-        return WOOD.stream().flatMap(set -> set.blocks().stream()).toList();
+        return allWood().stream().flatMap(set -> set.blocks().stream()).toList();
     }
 
     public static List<DeferredHolder<Block, ModLanternBlock>> lanterns() {
-        return WOOD.stream().map(WoodSet::lantern).toList();
+        return allWood().stream().map(WoodVariant::lantern).toList();
     }
 
     public static List<DeferredHolder<Block, ? extends Block>> burnableBlocks() {
-        return WOOD.stream().filter(WoodSet::burnable).flatMap(set -> set.blocks().stream()).toList();
+        return allWood().stream().filter(WoodVariant::burnable).flatMap(set -> set.blocks().stream()).toList();
+    }
+
+    public static List<DeferredHolder<Block, ? extends Block>> coloredWoodBlocks() {
+        return COLORED_WOOD.stream()
+                .flatMap(set -> Stream.concat(set.blocks().stream(),
+                        Stream.concat(set.windows().stream(), Stream.of(set.lantern()))))
+                .toList();
     }
 
     public static Block vanillaTerracotta(DyeColor color) {
@@ -180,6 +308,50 @@ public final class ModBlocks {
                 register(name + "_window_pane", WindowPaneBlock::new, windowProperties(planks.defaultMapColor())));
     }
 
+    private static List<ColoredWoodSet> createColoredWood() {
+        List<ColoredWoodSet> sets = new ArrayList<>();
+        for (DyeColor color : COLOR_ORDER) {
+            sets.add(coloredWoodSet(color));
+        }
+        return List.copyOf(sets);
+    }
+
+    private static ColoredWoodSet coloredWoodSet(DyeColor color) {
+        String name = color.getName();
+        MapColor mapColor = color.getMapColor();
+        Supplier<BlockBehaviour.Properties> properties =
+                () -> BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).mapColor(mapColor);
+
+        DeferredHolder<Block, Block> planks = register(name + "_planks", Block::new, properties.get());
+        DeferredHolder<Block, Block> boards = register(name + "_boards", Block::new, properties.get());
+        DeferredHolder<Block, Block> polished = register("polished_" + name, Block::new, properties.get());
+        DeferredHolder<Block, TrimBlock> trim = register(name + "_trim", TrimBlock::new, properties.get());
+        DeferredHolder<Block, RotatedPillarBlock> pillar = register(name + "_pillar", RotatedPillarBlock::new, properties.get());
+        return new ColoredWoodSet(color,
+                planks,
+                registerStairs(name + "_stairs", planks, properties.get()),
+                register(name + "_slab", SlabBlock::new, properties.get()),
+                boards,
+                registerStairs(name + "_board_stairs", boards, properties.get()),
+                register(name + "_board_slab", SlabBlock::new, properties.get()),
+                polished,
+                register("polished_" + name + "_slab", SlabBlock::new, properties.get()),
+                trim,
+                BLOCKS.register(name + "_trim_stairs", () -> new TrimStairBlock(trim.get().defaultBlockState(), properties.get())),
+                pillar,
+                registerStairs(name + "_pillar_stairs", pillar, properties.get()),
+                register(name + "_pillar_slab", SlabBlock::new, properties.get()),
+                register(name + "_beam", BeamBlock::new, properties.get().noOcclusion()),
+                register(name + "_table", TableBlock::new, decorativeProperties(mapColor, SoundType.WOOD).strength(2.5F).dynamicShape()),
+                register(name + "_chair", ChairBlock::new, decorativeProperties(mapColor, SoundType.WOOD).strength(2.5F)),
+                register(name + "_frame", FrameBlock::new, properties.get().noOcclusion()),
+                register(name + "_timber_frame", TimberFrameBlock::new, properties.get().noOcclusion().sound(SoundType.SCAFFOLDING)),
+                register(name + "_shutter", ShutterBlock::new, properties.get().noOcclusion()),
+                register(name + "_lantern", ModLanternBlock::new, lanternProperties(mapColor)),
+                register(name + "_window", WindowBlock::new, windowProperties(mapColor)),
+                register(name + "_window_pane", WindowPaneBlock::new, windowProperties(mapColor)));
+    }
+
     private static BlockSet registerSet(String pluralName, String singularName, Supplier<BlockBehaviour.Properties> properties) {
         DeferredHolder<Block, Block> block = register(pluralName, Block::new, properties.get());
         return new BlockSet(block, registerStairs(singularName + "_stairs", block, properties.get()), register(singularName + "_slab", SlabBlock::new, properties.get()));
@@ -230,7 +402,11 @@ public final class ModBlocks {
     }
 
     private static BlockBehaviour.Properties lanternProperties(Block planks) {
-        return decorativeProperties(planks.defaultMapColor(), SoundType.LANTERN).strength(2.0F).lightLevel(state -> 15);
+        return lanternProperties(planks.defaultMapColor());
+    }
+
+    private static BlockBehaviour.Properties lanternProperties(MapColor mapColor) {
+        return decorativeProperties(mapColor, SoundType.LANTERN).strength(2.0F).lightLevel(state -> 15);
     }
 
     private static BlockBehaviour.Properties curtainProperties(MapColor mapColor) {

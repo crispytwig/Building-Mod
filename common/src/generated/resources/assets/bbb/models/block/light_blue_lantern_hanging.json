@@ -1,0 +1,8 @@
+{
+  "parent": "bbb:block/template/wooden_lantern_hanging",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "all": "bbb:block/light_blue_lantern",
+    "particle": "bbb:block/light_blue_lantern"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "bbb:block/template/frame_corner_tr",
+  "textures": {
+    "all": "bbb:block/red_frame",
+    "particle": "bbb:block/red_frame"
+  }
+}

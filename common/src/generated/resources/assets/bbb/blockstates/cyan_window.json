@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "bbb:block/cyan_window_bottom"
+    },
+    "type=middle": {
+      "model": "bbb:block/cyan_window_middle"
+    },
+    "type=single": {
+      "model": "bbb:block/cyan_window"
+    },
+    "type=top": {
+      "model": "bbb:block/cyan_window_top"
+    }
+  }
+}

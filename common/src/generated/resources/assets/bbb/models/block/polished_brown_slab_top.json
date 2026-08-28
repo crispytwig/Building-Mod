@@ -1,0 +1,9 @@
+{
+  "parent": "bbb:block/template/polished_slab_top",
+  "textures": {
+    "bottom": "bbb:block/polished_brown",
+    "particle": "bbb:block/polished_brown",
+    "side": "bbb:block/brown_pillar",
+    "top": "bbb:block/polished_brown"
+  }
+}

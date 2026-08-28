@@ -1,0 +1,7 @@
+{
+  "parent": "bbb:block/template/pillar_stairs",
+  "textures": {
+    "bottom": "bbb:block/blue_pillar_top",
+    "side": "bbb:block/blue_pillar"
+  }
+}

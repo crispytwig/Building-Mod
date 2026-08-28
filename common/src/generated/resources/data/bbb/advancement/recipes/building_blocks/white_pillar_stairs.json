@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "bbb:white_pillar_stairs"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_white_pillar": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bbb:white_pillar"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_white_pillar"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "bbb:white_pillar_stairs"
+    ]
+  }
+}

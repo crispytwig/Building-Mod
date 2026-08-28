@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_magenta_board_slab": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bbb:magenta_board_slab"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "bbb:magenta_trim"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_magenta_board_slab"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "bbb:magenta_trim"
+    ]
+  }
+}

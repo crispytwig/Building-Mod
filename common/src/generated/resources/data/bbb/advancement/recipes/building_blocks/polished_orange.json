@@ -1,0 +1,25 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_orange_boards": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bbb:orange_boards"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_orange_boards"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "bbb:polished_orange"
+    ]
+  }
+}

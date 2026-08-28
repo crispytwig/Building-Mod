@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "bbb:block/black_window_bottom"
+    },
+    "type=middle": {
+      "model": "bbb:block/black_window_middle"
+    },
+    "type=single": {
+      "model": "bbb:block/black_window"
+    },
+    "type=top": {
+      "model": "bbb:block/black_window_top"
+    }
+  }
+}

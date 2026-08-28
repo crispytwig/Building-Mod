@@ -1,0 +1,17 @@
+{
+  "type": "bbb:polishing",
+  "category": "building",
+  "group": "polished_wood",
+  "ingredients": [
+    {
+      "item": "bbb:light_blue_boards"
+    },
+    {
+      "tag": "c:sands"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "bbb:polished_light_blue"
+  }
+}

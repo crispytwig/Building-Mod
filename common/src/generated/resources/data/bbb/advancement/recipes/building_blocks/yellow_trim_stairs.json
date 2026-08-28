@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "bbb:yellow_trim_stairs"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_yellow_trim": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bbb:yellow_trim"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_yellow_trim"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "bbb:yellow_trim_stairs"
+    ]
+  }
+}

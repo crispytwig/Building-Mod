@@ -1,0 +1,8 @@
+{
+  "parent": "bbb:block/template/beam_inventory",
+  "textures": {
+    "end": "bbb:block/red_pillar_top",
+    "particle": "bbb:block/red_pillar",
+    "side": "bbb:block/red_pillar"
+  }
+}

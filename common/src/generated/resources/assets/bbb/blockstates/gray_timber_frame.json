@@ -1,0 +1,88 @@
+{
+  "variants": {
+    "cross=cross,type=bottom": {
+      "model": "bbb:block/gray_timber_frame_bottom_cross"
+    },
+    "cross=cross,type=middle": {
+      "model": "bbb:block/gray_timber_frame_middle_cross"
+    },
+    "cross=cross,type=single": {
+      "model": "bbb:block/gray_timber_frame_cross"
+    },
+    "cross=cross,type=top": {
+      "model": "bbb:block/gray_timber_frame_top_cross"
+    },
+    "cross=horizontal,type=bottom": {
+      "model": "bbb:block/gray_timber_frame_bottom_horizontal"
+    },
+    "cross=horizontal,type=middle": {
+      "model": "bbb:block/gray_timber_frame_middle_horizontal"
+    },
+    "cross=horizontal,type=single": {
+      "model": "bbb:block/gray_timber_frame_horizontal"
+    },
+    "cross=horizontal,type=top": {
+      "model": "bbb:block/gray_timber_frame_top_horizontal"
+    },
+    "cross=left_cross,type=bottom": {
+      "model": "bbb:block/gray_timber_frame_bottom_left_cross"
+    },
+    "cross=left_cross,type=middle": {
+      "model": "bbb:block/gray_timber_frame_middle_left_cross"
+    },
+    "cross=left_cross,type=single": {
+      "model": "bbb:block/gray_timber_frame_left_cross"
+    },
+    "cross=left_cross,type=top": {
+      "model": "bbb:block/gray_timber_frame_top_left_cross"
+    },
+    "cross=none,type=bottom": {
+      "model": "bbb:block/gray_timber_frame_bottom"
+    },
+    "cross=none,type=middle": {
+      "model": "bbb:block/gray_timber_frame_middle"
+    },
+    "cross=none,type=single": {
+      "model": "bbb:block/gray_timber_frame"
+    },
+    "cross=none,type=top": {
+      "model": "bbb:block/gray_timber_frame_top"
+    },
+    "cross=plus,type=bottom": {
+      "model": "bbb:block/gray_timber_frame_bottom_plus"
+    },
+    "cross=plus,type=middle": {
+      "model": "bbb:block/gray_timber_frame_middle_plus"
+    },
+    "cross=plus,type=single": {
+      "model": "bbb:block/gray_timber_frame_plus"
+    },
+    "cross=plus,type=top": {
+      "model": "bbb:block/gray_timber_frame_top_plus"
+    },
+    "cross=right_cross,type=bottom": {
+      "model": "bbb:block/gray_timber_frame_bottom_right_cross"
+    },
+    "cross=right_cross,type=middle": {
+      "model": "bbb:block/gray_timber_frame_middle_right_cross"
+    },
+    "cross=right_cross,type=single": {
+      "model": "bbb:block/gray_timber_frame_right_cross"
+    },
+    "cross=right_cross,type=top": {
+      "model": "bbb:block/gray_timber_frame_top_right_cross"
+    },
+    "cross=vertical,type=bottom": {
+      "model": "bbb:block/gray_timber_frame_bottom_vertical"
+    },
+    "cross=vertical,type=middle": {
+      "model": "bbb:block/gray_timber_frame_middle_vertical"
+    },
+    "cross=vertical,type=single": {
+      "model": "bbb:block/gray_timber_frame_vertical"
+    },
+    "cross=vertical,type=top": {
+      "model": "bbb:block/gray_timber_frame_top_vertical"
+    }
+  }
+}

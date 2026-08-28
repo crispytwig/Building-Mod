@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "frame",
+  "key": {
+    "B": {
+      "item": "bbb:blue_boards"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "BSB",
+    "S S",
+    "BSB"
+  ],
+  "result": {
+    "count": 4,
+    "id": "bbb:blue_frame"
+  }
+}

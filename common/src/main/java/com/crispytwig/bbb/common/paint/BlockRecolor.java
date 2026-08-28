@@ -1,5 +1,6 @@
 package com.crispytwig.bbb.common.paint;
 
+import com.crispytwig.bbb.common.BuildingButBetter;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.DyeColor;
@@ -13,6 +14,11 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public final class BlockRecolor {
     private static final DyeColor[] COLORS = DyeColor.values();
+
+    private static final String[] WOODS = {
+            "dark_oak", "mangrove", "crimson", "acacia", "bamboo", "spruce", "cherry",
+            "jungle", "warped", "birch", "oak"
+    };
 
     private static final Map<Block, Map<DyeColor, Optional<Block>>> RECOLOR_CACHE = new ConcurrentHashMap<>();
     private static final Map<Block, String> BASE_NAME_CACHE = new ConcurrentHashMap<>();
@@ -52,6 +58,21 @@ public final class BlockRecolor {
                 if (found.isPresent()) {
                     return found;
                 }
+            }
+        }
+
+        for (String wood : WOODS) {
+            int index = findWord(path, wood);
+            if (index < 0) {
+                continue;
+            }
+            String swapped = path.substring(0, index) + target + path.substring(index + wood.length());
+            Optional<Block> found = getBlock(namespace, swapped);
+            if (found.isEmpty() && !namespace.equals(BuildingButBetter.MOD_ID)) {
+                found = getBlock(BuildingButBetter.MOD_ID, swapped);
+            }
+            if (found.isPresent()) {
+                return found;
             }
         }
 

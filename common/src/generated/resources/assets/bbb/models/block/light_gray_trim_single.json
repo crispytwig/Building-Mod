@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "bbb:block/light_gray_boards",
+    "particle": "bbb:block/light_gray_boards",
+    "side": "bbb:block/light_gray_trim_single"
+  }
+}

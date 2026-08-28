@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_blue_trim": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bbb:blue_trim"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "bbb:blue_trim_stairs"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_blue_trim"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "bbb:blue_trim_stairs"
+    ]
+  }
+}

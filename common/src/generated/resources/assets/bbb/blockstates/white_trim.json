@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "axis=x,type=bottom": {
+      "model": "bbb:block/white_trim_bottom",
+      "x": 90,
+      "y": 90
+    },
+    "axis=x,type=middle": {
+      "model": "bbb:block/white_trim_middle",
+      "x": 90,
+      "y": 90
+    },
+    "axis=x,type=single": {
+      "model": "bbb:block/white_trim_single",
+      "x": 90,
+      "y": 90
+    },
+    "axis=x,type=top": {
+      "model": "bbb:block/white_trim_top",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y,type=bottom": {
+      "model": "bbb:block/white_trim_bottom"
+    },
+    "axis=y,type=middle": {
+      "model": "bbb:block/white_trim_middle"
+    },
+    "axis=y,type=single": {
+      "model": "bbb:block/white_trim_single"
+    },
+    "axis=y,type=top": {
+      "model": "bbb:block/white_trim_top"
+    },
+    "axis=z,type=bottom": {
+      "model": "bbb:block/white_trim_bottom",
+      "x": 270
+    },
+    "axis=z,type=middle": {
+      "model": "bbb:block/white_trim_middle",
+      "x": 270
+    },
+    "axis=z,type=single": {
+      "model": "bbb:block/white_trim_single",
+      "x": 270
+    },
+    "axis=z,type=top": {
+      "model": "bbb:block/white_trim_top",
+      "x": 270
+    }
+  }
+}

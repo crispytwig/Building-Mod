@@ -1,0 +1,9 @@
+{
+  "parent": "bbb:block/template/trim_outer_stairs",
+  "textures": {
+    "particle": "bbb:block/yellow_boards",
+    "side": "bbb:block/yellow_trim_top",
+    "stair": "bbb:block/polished_yellow",
+    "top": "bbb:block/yellow_boards"
+  }
+}

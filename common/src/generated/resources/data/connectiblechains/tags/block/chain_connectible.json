@@ -10,6 +10,22 @@
     "bbb:cherry_beam",
     "bbb:bamboo_beam",
     "bbb:crimson_beam",
-    "bbb:warped_beam"
+    "bbb:warped_beam",
+    "bbb:white_beam",
+    "bbb:light_gray_beam",
+    "bbb:gray_beam",
+    "bbb:black_beam",
+    "bbb:brown_beam",
+    "bbb:red_beam",
+    "bbb:orange_beam",
+    "bbb:yellow_beam",
+    "bbb:lime_beam",
+    "bbb:green_beam",
+    "bbb:cyan_beam",
+    "bbb:light_blue_beam",
+    "bbb:blue_beam",
+    "bbb:purple_beam",
+    "bbb:magenta_beam",
+    "bbb:pink_beam"
   ]
 }

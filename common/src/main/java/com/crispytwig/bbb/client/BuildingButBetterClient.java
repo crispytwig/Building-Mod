@@ -14,7 +14,6 @@ import com.crispytwig.bbb.client.renderer.FrameBlockRenderer;
 import com.crispytwig.bbb.client.renderer.SeatEntityRenderer;
 import com.crispytwig.bbb.client.renderer.SofaBlockRenderer;
 import com.crispytwig.bbb.client.renderer.TableBlockRenderer;
-import com.crispytwig.bbb.client.renderer.TimberFrameBlockRenderer;
 import com.crispytwig.bbb.client.screen.SofaScreen;
 import com.crispytwig.bbb.common.registry.ModMenuTypes;
 import com.crispytwig.bbb.platform.registry.DeferredHolder;
@@ -96,7 +95,6 @@ public final class BuildingButBetterClient {
     public static void registerBlockEntityRenderers(BlockEntityRendererRegistrar registrar) {
         registrar.register(ModBlockEntities.TABLE.get(), context -> new TableBlockRenderer());
         registrar.register(ModBlockEntities.FRAME.get(), context -> new FrameBlockRenderer());
-        registrar.register(ModBlockEntities.TIMBER_FRAME.get(), context -> new TimberFrameBlockRenderer());
         registrar.register(ModBlockEntities.SOFA.get(), context -> new SofaBlockRenderer());
         registrar.register(ModBlockEntities.CURTAIN.get(), context -> ClientServices.CLIENT.curtainRenderer());
     }

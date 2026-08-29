@@ -64,4 +64,10 @@ public class TableBlockRenderer implements BlockEntityRenderer<TableBlockEntity>
     private static ModelResourceLocation standalone(String tableName, String part) {
         return new ModelResourceLocation(partLocation(tableName, part), "standalone");
     }
+
+    @Override
+    public int getViewDistance() {
+        return ViewDistance.blocks();
+    }
+
 }

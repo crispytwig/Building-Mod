@@ -1,6 +1,7 @@
 package com.crispytwig.bbb.common.mixin.client;
 
 import com.crispytwig.bbb.client.assets.LayerAssets;
+import com.crispytwig.bbb.client.renderer.TimberFrameModel;
 import net.minecraft.server.packs.PackResources;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.resources.MultiPackResourceManager;
@@ -29,6 +30,7 @@ public class ReloadableResourceManagerMixin {
     private void bbb$generateLayerAssets(Executor backgroundExecutor, Executor gameExecutor, CompletableFuture<Unit> waitingFor, List<PackResources> resourcePacks, CallbackInfoReturnable<ReloadInstance> cir) {
         if (this.type == PackType.CLIENT_RESOURCES) {
             LayerAssets.generate(new MultiPackResourceManager(this.type, resourcePacks));
+            TimberFrameModel.clearCache();
         }
     }
 }

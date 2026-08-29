@@ -101,4 +101,10 @@ public class FrameBlockRenderer implements BlockEntityRenderer<FrameBlockEntity>
         }
         return worldDirection;
     }
+
+    @Override
+    public int getViewDistance() {
+        return ViewDistance.blocks();
+    }
+
 }

@@ -135,4 +135,10 @@ public class SofaBlockRenderer implements BlockEntityRenderer<SofaBlockEntity> {
         }
         return worldDirection;
     }
+
+    @Override
+    public int getViewDistance() {
+        return ViewDistance.blocks();
+    }
+
 }

@@ -105,4 +105,10 @@ public class CurtainBlockRenderer implements BlockEntityRenderer<CurtainBlockEnt
         }
         return single ? "closed_top_single" : "closed_" + vertical + "_middle";
     }
+
+    @Override
+    public int getViewDistance() {
+        return ViewDistance.blocks();
+    }
+
 }

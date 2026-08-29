@@ -69,9 +69,13 @@ public class TimberFrameBlockEntity extends BlockEntity implements KeepsDataWhen
     @Override
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
+        BlockState previous = heldBlock;
         heldBlock = tag.contains(HELD_BLOCK)
                 ? NbtUtils.readBlockState(registries.lookupOrThrow(Registries.BLOCK), tag.getCompound(HELD_BLOCK))
                 : Blocks.AIR.defaultBlockState();
+        if (level != null && level.isClientSide && !previous.equals(heldBlock)) {
+            level.setBlocksDirty(worldPosition, previous, heldBlock);
+        }
     }
 
     @Override

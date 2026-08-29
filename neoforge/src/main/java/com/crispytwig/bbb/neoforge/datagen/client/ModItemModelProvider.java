@@ -22,6 +22,7 @@ public class ModItemModelProvider extends ItemModelProvider {
             String name = holder.getId().getPath();
             generated(name, modLoc("item/" + name));
         });
+        withExistingParent("hammer", mcLoc("item/handheld")).texture("layer0", modLoc("item/hammer"));
         paintBrush();
     }
 

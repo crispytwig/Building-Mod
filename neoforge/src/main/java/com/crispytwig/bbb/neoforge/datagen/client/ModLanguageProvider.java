@@ -35,6 +35,7 @@ public class ModLanguageProvider extends LanguageProvider {
 
         add(ModItems.FACADE.get(), "Facade");
         add(ModItems.PAINT_BRUSH.get(), "Paint Brush");
+        add(ModItems.HAMMER.get(), "Hammer");
         add("subtitles.bbb.block_painted", "Block painted");
         add("subtitles.bbb.curtain_open", "Curtain opens");
         add("subtitles.bbb.curtain_close", "Curtain closes");
@@ -44,6 +45,7 @@ public class ModLanguageProvider extends LanguageProvider {
         addTag(ModTags.WOODEN_LAYERS.location(), "Wooden Layers");
         addTag(ModTags.PRISMARINE.location(), "Prismarine");
         addTag(ModTags.FACADE_MATERIALS.location(), "Facade Materials");
+        addTag(ModTags.HAMMERS.location(), "Hammers");
 
         ModBlocks.BLOCKS.getEntries().forEach(this::addTitleCased);
     }

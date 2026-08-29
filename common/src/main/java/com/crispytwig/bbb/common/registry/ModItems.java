@@ -4,6 +4,7 @@ import com.crispytwig.bbb.common.BuildingButBetter;
 import com.crispytwig.bbb.common.block.CurtainBlock;
 import com.crispytwig.bbb.common.item.CurtainBlockItem;
 import com.crispytwig.bbb.common.item.FacadeItem;
+import com.crispytwig.bbb.common.item.HammerItem;
 import com.crispytwig.bbb.common.item.PaintBrushItem;
 import com.crispytwig.bbb.platform.registry.DeferredHolder;
 import com.crispytwig.bbb.platform.registry.DeferredRegister;
@@ -21,6 +22,9 @@ public final class ModItems {
 
     public static final DeferredHolder<Item, FacadeItem> FACADE = ITEMS.register("facade",
             () -> new FacadeItem(new Item.Properties()));
+
+    public static final DeferredHolder<Item, HammerItem> HAMMER = ITEMS.register("hammer",
+            () -> new HammerItem(new Item.Properties().stacksTo(1).durability(256)));
 
     public static final DeferredHolder<Item, PaintBrushItem> PAINT_BRUSH = ITEMS.register("paint_brush",
             () -> new PaintBrushItem(new Item.Properties().stacksTo(1).durability(256)));

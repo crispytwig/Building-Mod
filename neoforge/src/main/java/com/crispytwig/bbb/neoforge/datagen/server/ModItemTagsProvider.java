@@ -1,6 +1,8 @@
 package com.crispytwig.bbb.neoforge.datagen.server;
 
 import com.crispytwig.bbb.common.BuildingButBetter;
+import com.crispytwig.bbb.common.registry.ModItems;
+import com.crispytwig.bbb.common.registry.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
@@ -22,5 +24,7 @@ public class ModItemTagsProvider extends ItemTagsProvider {
         copy(BlockTags.PLANKS, ItemTags.PLANKS);
         copy(BlockTags.STAIRS, ItemTags.STAIRS);
         copy(BlockTags.SLABS, ItemTags.SLABS);
+
+        tag(ModTags.HAMMERS).add(ModItems.HAMMER.get());
     }
 }

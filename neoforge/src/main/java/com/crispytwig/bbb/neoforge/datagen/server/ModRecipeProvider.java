@@ -5,6 +5,7 @@ import com.crispytwig.bbb.common.recipe.FacadeRecipe;
 import com.crispytwig.bbb.common.recipe.PaintingRecipe;
 import com.crispytwig.bbb.common.recipe.PolishingRecipe;
 import com.crispytwig.bbb.common.registry.ModBlocks;
+import com.crispytwig.bbb.common.registry.ModItems;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementRequirements;
 import net.minecraft.advancements.AdvancementRewards;
@@ -48,6 +49,16 @@ public class ModRecipeProvider extends RecipeProvider {
         SpecialRecipeBuilder.special(PaintingRecipe::new).save(output, BuildingButBetter.location("painting"));
 
         stoneRecipes(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.HAMMER.get())
+                .define('c', Items.COPPER_INGOT)
+                .define('C', Blocks.COPPER_BLOCK)
+                .define('/', Items.STICK)
+                .pattern("cCc")
+                .pattern("c/c")
+                .pattern(" / ")
+                .unlockedBy(getHasName(Items.COPPER_INGOT), has(Items.COPPER_INGOT))
+                .save(output);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.PRISMARINE_TILES.get(), 4)
                 .define('#', Blocks.PRISMARINE_BRICKS)

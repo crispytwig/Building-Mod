@@ -869,10 +869,12 @@
   "subtitles.bbb.curtain_close": "Curtain closes",
   "subtitles.bbb.curtain_open": "Curtain opens",
   "tag.block.bbb.facade_materials": "Facade Materials",
+  "tag.block.bbb.hammers": "Hammers",
   "tag.block.bbb.layers": "Layers",
   "tag.block.bbb.prismarine": "Prismarine",
   "tag.block.bbb.wooden_layers": "Wooden Layers",
   "tag.item.bbb.facade_materials": "Facade Materials",
+  "tag.item.bbb.hammers": "Hammers",
   "tag.item.bbb.layers": "Layers",
   "tag.item.bbb.prismarine": "Prismarine",
   "tag.item.bbb.wooden_layers": "Wooden Layers"

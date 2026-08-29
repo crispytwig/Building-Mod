@@ -13,6 +13,7 @@ public final class ModTags {
     public static final TagKey<Block> CHAIN_CONNECTIBLE = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("connectiblechains", "chain_connectible"));
 
     public static final TagKey<Item> ABRASIVES = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "sands"));
+    public static final TagKey<Item> HAMMERS = TagKey.create(Registries.ITEM, BuildingButBetter.location("hammers"));
 
     public static final TagKey<Block> LAYERS = TagKey.create(Registries.BLOCK, BuildingButBetter.location("layers"));
     public static final TagKey<Item> WOODEN_LAYERS = TagKey.create(Registries.ITEM, BuildingButBetter.location("wooden_layers"));

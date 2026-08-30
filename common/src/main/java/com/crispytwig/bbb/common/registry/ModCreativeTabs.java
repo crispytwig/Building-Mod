@@ -1,6 +1,9 @@
 package com.crispytwig.bbb.common.registry;
 
 import com.crispytwig.bbb.common.BuildingButBetter;
+import com.crispytwig.bbb.common.config.BlockConfig;
+import com.crispytwig.bbb.common.config.BlockGroup;
+import com.crispytwig.bbb.common.config.BlockGroup;
 import com.crispytwig.bbb.platform.registry.DeferredHolder;
 import com.crispytwig.bbb.platform.registry.DeferredRegister;
 import com.crispytwig.bbb.platform.Services;
@@ -38,7 +41,11 @@ public final class ModCreativeTabs {
             () -> after(CreativeModeTab.builder(CreativeModeTab.Row.TOP, 2)
                     .title(Component.translatable("itemGroup." + BuildingButBetter.MOD_ID + ".layers"))
                     .icon(ModCreativeTabs::layerIcon)
-                    .displayItems((parameters, output) -> ModLayers.layers().values().forEach(output::accept)), "colored_tab")
+                    .displayItems((parameters, output) -> {
+                        if (BlockConfig.isEnabled(BlockGroup.LAYERS)) {
+                            ModLayers.layers().values().forEach(output::accept);
+                        }
+                    }), "colored_tab")
                     .build());
 
     private ModCreativeTabs() {
@@ -57,9 +64,10 @@ public final class ModCreativeTabs {
     }
 
     private static void displayItems(CreativeModeTab.Output output, boolean colored) {
-        Set<Block> coloredBlocks = coloredBlocks();
+        Set<Block> coloredBlocks = ColoredBlocks.SET;
         ModItems.ITEMS.getEntries().stream()
                 .map(DeferredHolder::get)
+                .filter(BlockConfig::isEnabled)
                 .filter(item -> isColored(item, coloredBlocks) == colored)
                 .forEach(output::accept);
     }
@@ -68,16 +76,20 @@ public final class ModCreativeTabs {
         return item instanceof BlockItem blockItem && coloredBlocks.contains(blockItem.getBlock());
     }
 
-    private static Set<Block> coloredBlocks() {
-        return Stream.of(
+    private static final class ColoredBlocks {
+        private static final Set<Block> SET = build();
+
+        private static Set<Block> build() {
+            return Stream.of(
                         Stream.concat(ModBlocks.TERRACOTTA.stream(), ModBlocks.PLASTER.stream())
                                 .filter(colored -> colored.color() != null)
                                 .flatMap(colored -> colored.sets().stream())
                                 .flatMap(set -> Stream.of(set.block().get(), set.stairs().get(), set.slab().get())),
                         ModBlocks.coloredWoodBlocks().stream().map(holder -> (Block) holder.get()),
-                        Stream.concat(ModBlocks.SOFAS.values().stream(), ModBlocks.CURTAINS.values().stream())
-                                .map(holder -> (Block) holder.get()))
-                .flatMap(stream -> stream)
-                .collect(Collectors.toSet());
+                            Stream.concat(ModBlocks.SOFAS.values().stream(), ModBlocks.CURTAINS.values().stream())
+                                    .map(holder -> (Block) holder.get()))
+                    .flatMap(stream -> stream)
+                    .collect(Collectors.toSet());
+        }
     }
 }

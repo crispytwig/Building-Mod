@@ -18,6 +18,7 @@ import com.crispytwig.bbb.client.screen.SofaScreen;
 import com.crispytwig.bbb.common.registry.ModMenuTypes;
 import com.crispytwig.bbb.platform.registry.DeferredHolder;
 import com.crispytwig.bbb.common.registry.ModBlockEntities;
+import com.crispytwig.bbb.client.paint.PaintBrushClient;
 import com.crispytwig.bbb.common.item.PaintBrushItem;
 import com.crispytwig.bbb.common.registry.ModBlocks;
 import com.crispytwig.bbb.common.registry.ModEntityTypes;
@@ -83,6 +84,17 @@ public final class BuildingButBetterClient {
     @FunctionalInterface
     public interface RenderTypeRegistrar {
         void register(RenderType type, Block block);
+    }
+
+    public static void tick() {
+        PaintBrushClient.tick();
+        ConfigNotifier.tick();
+    }
+
+    public static void disconnect() {
+        PaintBrushClient.clear();
+        BlockConfigClient.clear();
+        ConfigNotifier.clear();
     }
 
     public static void registerLayerDefinitions(LayerRegistrar registrar) {

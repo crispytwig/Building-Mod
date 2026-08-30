@@ -35,9 +35,9 @@ public final class BuildingButBetterNeoForgeClient {
         modEventBus.addListener(BuildingButBetterNeoForgeClient::registerScreens);
         modEventBus.addListener(BuildingButBetterNeoForgeClient::clientSetup);
 
-        NeoForge.EVENT_BUS.addListener((ClientTickEvent.Post event) -> PaintBrushClient.tick());
+        NeoForge.EVENT_BUS.addListener((ClientTickEvent.Post event) -> BuildingButBetterClient.tick());
         NeoForge.EVENT_BUS.addListener(BuildingButBetterNeoForgeClient::renderLevelStage);
-        NeoForge.EVENT_BUS.addListener((ClientPlayerNetworkEvent.LoggingOut event) -> PaintBrushClient.clear());
+        NeoForge.EVENT_BUS.addListener((ClientPlayerNetworkEvent.LoggingOut event) -> BuildingButBetterClient.disconnect());
     }
 
     private static void renderLevelStage(RenderLevelStageEvent event) {

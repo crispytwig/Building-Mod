@@ -21,12 +21,11 @@ import java.util.Map;
 public class TimberFrameBlockEntity extends BlockEntity implements KeepsDataWhenPainted {
     private static final String HELD_BLOCK = "held_block";
 
-    private static final int REMOVED_MEMORY = 16;
 
     private static final Map<BlockPos, BlockState> REMOVED = new LinkedHashMap<>() {
         @Override
         protected boolean removeEldestEntry(Map.Entry<BlockPos, BlockState> eldest) {
-            return size() > REMOVED_MEMORY;
+            return size() > 16;
         }
     };
 

@@ -17,7 +17,6 @@ public final class SelectionOutline {
     private static final int SPHERE_SLICES = 10;
 
     private static final float THICKNESS = 7.0F / 100.0F;
-    private static final float BLOCKS_PER_WOBBLE = 2.0F;
     private static final float WOBBLE_SPEED = 3.0F;
 
     private static final int[][] EDGES = {
@@ -156,7 +155,7 @@ public final class SelectionOutline {
         by /= bLength;
         bz /= bLength;
 
-        double frequency = (Mth.PI * 2) / BLOCKS_PER_WOBBLE;
+        double frequency = (Mth.PI * 2) / 2.0F;
         double[] previous = RING_A;
         double[] current = RING_B;
 

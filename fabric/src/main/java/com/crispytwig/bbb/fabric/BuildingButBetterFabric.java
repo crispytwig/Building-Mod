@@ -4,6 +4,7 @@ import com.crispytwig.bbb.common.BuildingButBetter;
 import com.crispytwig.bbb.common.block.TimberFrameBlock;
 import com.crispytwig.bbb.common.item.FacadeItem;
 import com.crispytwig.bbb.common.item.PaintBrushItem;
+import com.crispytwig.bbb.common.network.BlockConfigPayload;
 import com.crispytwig.bbb.common.network.FacadePayload;
 import com.crispytwig.bbb.common.network.PaintSelectionPayload;
 import com.crispytwig.bbb.common.registry.ModLayers;
@@ -16,6 +17,7 @@ import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
@@ -36,6 +38,7 @@ public class BuildingButBetterFabric implements ModInitializer {
         BuildingButBetter.registerFuelTags(FuelRegistry.INSTANCE::add);
 
         PayloadTypeRegistry.playS2C().register(FacadePayload.TYPE, FacadePayload.STREAM_CODEC);
+        PayloadTypeRegistry.playS2C().register(BlockConfigPayload.TYPE, BlockConfigPayload.STREAM_CODEC);
         PayloadTypeRegistry.playC2S().register(PaintSelectionPayload.TYPE, PaintSelectionPayload.STREAM_CODEC);
         ServerPlayNetworking.registerGlobalReceiver(PaintSelectionPayload.TYPE,
                 (payload, context) -> PaintJobs.start(context.player(), payload.from(), payload.to()));
@@ -51,7 +54,15 @@ public class BuildingButBetterFabric implements ModInitializer {
             }
         });
 
-        ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> FacadeItem.sync(handler.player));
+        ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
+            BlockConfigPayload.current().send(handler.player);
+            FacadeItem.sync(handler.player);
+        });
+
+        ServerLifecycleEvents.END_DATA_PACK_RELOAD.register((server, manager, success) -> {
+            BlockConfigPayload payload = BlockConfigPayload.current();
+            server.getPlayerList().getPlayers().forEach(payload::send);
+        });
         ServerPlayerEvents.AFTER_RESPAWN.register((oldPlayer, newPlayer, alive) -> FacadeItem.sync(newPlayer));
         ServerEntityWorldChangeEvents.AFTER_PLAYER_CHANGE_WORLD.register((player, origin, destination) -> FacadeItem.sync(player));
     }

@@ -1,6 +1,7 @@
 package com.crispytwig.bbb.neoforge.datagen.client;
 
 import com.crispytwig.bbb.common.BuildingButBetter;
+import com.crispytwig.bbb.common.config.BlockGroup;
 import com.crispytwig.bbb.platform.registry.DeferredHolder;
 import com.crispytwig.bbb.common.registry.ModBlocks;
 import com.crispytwig.bbb.common.registry.ModItems;
@@ -25,11 +26,25 @@ public class ModLanguageProvider extends LanguageProvider {
         add("itemGroup." + BuildingButBetter.MOD_ID + ".colored", "Building But Better Colored Blocks");
         add("itemGroup." + BuildingButBetter.MOD_ID + ".layers", "Building But Better Layers");
 
+        add("bbb.config.reloaded", "Building But Better config reloaded.");
+        add("bbb.config.reloaded.recipes", "- Run /reload to update recipes.");
+        add("bbb.config.reloaded.rejoin", "- Rejoin to update the recipe book.");
+        add("bbb.config.reloaded.restart", "- Restart to apply sound settings.");
+
         add("bbb.configuration.title", "Building But Better Config");
         add("bbb.configuration.cherry_wood_sounds", "Wood Sounds");
         add("bbb.configuration.cherry_wood_sounds.tooltip", "Makes every woodset use the Cherry woodset's sounds");
         add("bbb.configuration.prismarine_deepslate_sounds", "Prismarine Sounds");
         add("bbb.configuration.prismarine_deepslate_sounds.tooltip", "Makes every Prismarine block use Deepslate sounds");
+        add("bbb.configuration.block_groups", "Blocks");
+        add("bbb.configuration.block_groups.tooltip", "Disable blocks, removing them from Creative tabs, loot, and recipes.");
+        add("bbb.configuration.section.bbb.common.toml", "Settings");
+        add("bbb.configuration.section.bbb.common.toml.title", "%s Settings");
+        add("bbb.configuration.block_groups.button", "Blocks");
+        for (BlockGroup group : BlockGroup.values()) {
+            add("bbb.configuration.block_groups." + group.key(), group.title());
+            add("bbb.configuration.block_groups." + group.key() + ".tooltip", "");
+        }
 
         add("container.bbb.sofa_crevice", "Sofa Crevice");
 

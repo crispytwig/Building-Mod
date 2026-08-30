@@ -53,8 +53,6 @@ public class CurtainBlock extends Block implements EntityBlock {
             "open_top_right", "open_mid_right", "open_bot_right",
             "open_top_middle"};
 
-    public static final String EMPTY_PART = "empty";
-
     private static final Map<Direction, VoxelShape> SHAPES = Map.of(
             Direction.NORTH, Block.box(0, 0, 0, 16, 16, 3),
             Direction.SOUTH, Block.box(0, 0, 13, 16, 16, 16),

@@ -20,7 +20,6 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Objects;
 
 public final class PaintBrushClient {
-    private static final int CANCEL_COLOR = 0xC5B548;
 
     private static @Nullable BlockPos corner;
     private static @Nullable BlockPos hovered;
@@ -69,7 +68,7 @@ public final class PaintBrushClient {
             return;
         }
         SelectionOutline.draw(poseStack, buffers, AABB.encapsulatingFullBlocks(corner, hovered),
-                cancelling ? CANCEL_COLOR : color.getFireworkColor());
+                cancelling ? 0xC5B548 : color.getFireworkColor());
     }
 
     public static boolean onRightClick() {

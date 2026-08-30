@@ -1,8 +1,10 @@
 package com.crispytwig.bbb.fabric;
 
 import com.crispytwig.bbb.client.BuildingButBetterClient;
+import com.crispytwig.bbb.client.BlockConfigClient;
 import com.crispytwig.bbb.client.FacadeClient;
 import com.crispytwig.bbb.client.paint.PaintBrushClient;
+import com.crispytwig.bbb.common.network.BlockConfigPayload;
 import com.crispytwig.bbb.common.network.FacadePayload;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
@@ -40,9 +42,10 @@ public class BuildingButBetterFabricClient implements ClientModInitializer {
         ModelLoadingPlugin.register(context -> BuildingButBetterClient.registerExtraModels(context::addModels));
 
         ClientPlayNetworking.registerGlobalReceiver(FacadePayload.TYPE, (payload, context) -> FacadeClient.handle(payload));
+        ClientPlayNetworking.registerGlobalReceiver(BlockConfigPayload.TYPE, (payload, context) -> BlockConfigClient.handle(payload));
 
-        ClientTickEvents.END_CLIENT_TICK.register(client -> PaintBrushClient.tick());
-        ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> PaintBrushClient.clear());
+        ClientTickEvents.END_CLIENT_TICK.register(client -> BuildingButBetterClient.tick());
+        ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> BuildingButBetterClient.disconnect());
         WorldRenderEvents.AFTER_TRANSLUCENT.register(context -> {
             if (context.consumers() instanceof MultiBufferSource.BufferSource bufferSource) {
                 PaintBrushClient.render(context.matrixStack(), bufferSource);

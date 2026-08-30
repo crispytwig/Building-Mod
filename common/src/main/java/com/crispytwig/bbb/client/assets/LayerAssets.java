@@ -22,8 +22,6 @@ import java.util.Optional;
 
 // Adapted from ClutterNoMore: https://github.com/Alchemists-Of-Yore/ClutterNoMore
 public final class LayerAssets {
-    private static final List<String> FACES = List.of("top", "side", "bottom");
-    private static final int MAX_TEXTURE_DEPTH = 4;
     private static final String SIDE_SUFFIX = "_side";
     private static final String DOWN_SUFFIX = "_down";
 
@@ -148,7 +146,7 @@ public final class LayerAssets {
         }
 
         JsonObject faces = new JsonObject();
-        for (String face : FACES) {
+        for (String face : List.of("top", "side", "bottom")) {
             JsonElement texture = resolve(inherited, face);
             if (texture != null) {
                 faces.add(face, texture);
@@ -176,7 +174,7 @@ public final class LayerAssets {
 
     private static @Nullable JsonElement resolve(JsonObject textures, String key) {
         JsonElement value = textures.get(key);
-        for (int depth = 0; value != null && value.getAsString().startsWith("#") && depth < MAX_TEXTURE_DEPTH; depth++) {
+        for (int depth = 0; value != null && value.getAsString().startsWith("#") && depth < 4; depth++) {
             value = textures.get(value.getAsString().substring(1));
         }
         return value == null || value.getAsString().startsWith("#") ? null : value;

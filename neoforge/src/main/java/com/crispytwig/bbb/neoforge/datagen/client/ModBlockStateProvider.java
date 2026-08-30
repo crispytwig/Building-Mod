@@ -165,7 +165,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                     .renderType("cutout");
         }
 
-        ModelFile empty = models().withExistingParent(name + "_" + CurtainBlock.EMPTY_PART, BuildingButBetter.location("block/template/curtain/template_curtain_empty"))
+        ModelFile empty = models().withExistingParent(name + "_empty", BuildingButBetter.location("block/template/curtain/template_curtain_empty"))
                 .texture("cloth", cloth)
                 .renderType("cutout");
         getVariantBuilder(block).forAllStates(state -> ConfiguredModel.builder().modelFile(empty).build());

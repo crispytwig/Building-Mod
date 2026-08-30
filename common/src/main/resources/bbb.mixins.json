@@ -5,16 +5,19 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "BlockBehaviourMixin",
+    "BlockItemMixin",
     "BlockSetTypeMixin",
     "PackRepositoryMixin",
+    "RecipeManagerMixin",
     "VillagerGoalPackagesMixin",
     "WoodTypeMixin"
   ],
   "client": [
     "client.BlockRenderDispatcherMixin",
+    "client.CreativeModeTabsAccessor",
     "client.ParticleEngineMixin",
-    "client.RenderChunkRegionMixin",
-    "client.ReloadableResourceManagerMixin"
+    "client.ReloadableResourceManagerMixin",
+    "client.RenderChunkRegionMixin"
   ],
   "injectors": {
     "defaultRequire": 1
